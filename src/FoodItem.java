@@ -10,7 +10,7 @@ public class FoodItem extends FoodCategory{
     private boolean containsPeanuts;
     private boolean containsSoyBeans;
     private boolean containsDairy;
-    private boolean containsNuts;
+    private boolean containsTreeNuts;
 
 
 }
