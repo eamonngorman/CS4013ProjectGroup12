@@ -17,6 +17,7 @@ public class Customer extends Person{
         String name = Customer.super.getName();
         String phoneNumber = Customer.super.getPhoneNumber();
         new Reservation(name, date, phoneNumber, numPeople, tableNum);
+        // Set table's isReserved to true
     }
 
     public void cancelReservation(){
