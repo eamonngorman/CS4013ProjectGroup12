@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Customer extends Person{
 
@@ -8,9 +9,10 @@ public class Customer extends Person{
         return customerId;
     }
 
-    public void searchForAvailableTable(LocalDateTime time){
+    public ArrayList<Table> searchForAvailableTable(LocalDateTime time, int partySize){
 
-
+        ArrayList<Table> placeholder = new ArrayList<Table>();
+        return placeholder;
     }
 
     public void reserveTable(LocalDateTime date, int numPeople, int tableNum){
@@ -20,7 +22,7 @@ public class Customer extends Person{
         // Set table's isReserved to true
     }
 
-    public void cancelReservation(){
+    public void cancelReservation(int reservationId){
         //delete Reservation object and free table
     }
 }
