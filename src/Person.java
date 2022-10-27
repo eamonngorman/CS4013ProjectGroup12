@@ -1,15 +1,16 @@
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Person {
     private String name;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String phoneNumber;
 
     public String getName() {
         return name;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
