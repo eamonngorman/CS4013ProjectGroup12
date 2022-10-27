@@ -1,13 +1,22 @@
+import java.time.LocalDateTime;
+
 public class Customer extends Person{
 
     private int customerId;
 
-    public void searchForAvailableTable(){
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void searchForAvailableTable(LocalDateTime time){
+
 
     }
 
-    public void reserveTable(){
-        //create Reservation object and select table from available
+    public void reserveTable(LocalDateTime date, int numPeople, int tableNum){
+        String name = Customer.super.getName();
+        String phoneNumber = Customer.super.getPhoneNumber();
+        new Reservation(name, date, phoneNumber, numPeople, tableNum);
     }
 
     public void cancelReservation(){
