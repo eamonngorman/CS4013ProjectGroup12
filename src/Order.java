@@ -3,14 +3,18 @@ import java.util.ArrayList;
 public class Order {
     private static int count = 0;
     private int orderNumber;
+    private int tableNum;
     private ArrayList<FoodItem> order;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
 
 
-    public Order(){
+    public Order(int tableNum){
         this.orderNumber = ++count;
         this.orderStatus = statuses[0];
+        this.tableNum = tableNum;
+        // I'm assuming we're leaving the first entry in tables as null for convenience
+        Restaurant.getTables().get(tableNum).setCurrentOrder(this);
 
     }
 
