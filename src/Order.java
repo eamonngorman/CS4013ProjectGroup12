@@ -9,7 +9,7 @@ public class Order {
 
 
     public Order(){
-        this.setOrderNumber(++count);
+        this.orderNumber = ++count;
         this.orderStatus = statuses[0];
 
     }
