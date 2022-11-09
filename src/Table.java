@@ -4,6 +4,9 @@ public class Table {
     private boolean isAvailable;
     private int canSeatXCustomers;
 
+    // Should this be set to null after the bill is paid?
+    private Order currentOrder;
+
     Table(int tableNum, int canSeatXCustomers){
         
         this.canSeatXCustomers = canSeatXCustomers;
@@ -20,6 +23,10 @@ public class Table {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
     }
 
     public String toString(){
