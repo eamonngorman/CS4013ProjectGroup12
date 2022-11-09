@@ -2,7 +2,8 @@ import java.time.LocalDateTime;
 
 public class Reservation {
     private String reservationName;
-    private int reservationId; // There might be a better way of implementing this. Ideas? - Eamonn
+    private static int count = 0;
+    private int reservationId;
     private LocalDateTime reservationDate;
     private String phoneNumber;
     private int numPeople;
@@ -14,6 +15,8 @@ public class Reservation {
         this.phoneNumber = phoneNumber;
         this.numPeople = numPeople;
         this.tableNum = tableNum;
+        // The following code might be error prone, we may have to protect against errors like reservations having the same id
+        this.reservationId = ++count;
     }
 
     public void setReservationName(String reservationName) {
@@ -26,6 +29,10 @@ public class Reservation {
 
     public void sendReminderToCustomer(){
 
+    }
+
+    public int getReservationId() {
+        return reservationId;
     }
 
     public void makeTableNotAvailable(){
