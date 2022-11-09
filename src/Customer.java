@@ -25,4 +25,16 @@ public class Customer extends Person{
     public void cancelReservation(int reservationId){
         //delete Reservation object and free table
     }
+
+    public void payBill(Bill bill, boolean cashOrCredit, boolean isPaid){
+        if (isPaid){
+            bill.setPaid(true);
+            bill.setCashOrCredit(cashOrCredit);
+        }
+    }
+
+    public void addGratuity(Bill bill, double gratuity){
+        bill.setGratuity(gratuity);
+        bill.setBillTotal(bill.getBillTotal() + gratuity);
+    }
 }
