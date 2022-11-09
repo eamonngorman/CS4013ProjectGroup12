@@ -23,7 +23,15 @@ public class Customer extends Person{
     }
 
     public void cancelReservation(int reservationId){
-        //delete Reservation object and free table
+        //deletes Reservation object
+        for (Reservation reservation : Restaurant.getReservations()){
+            if (reservation.getReservationId() == reservationId){
+                Restaurant.getReservations().remove(reservation);
+                reservation = null;
+            }
+        }
+
+        //Still have to free up the table. We need to link the Table and Reservation class together somehow.
     }
 
     public void payBill(Bill bill, boolean cashOrCredit, boolean isPaid){
