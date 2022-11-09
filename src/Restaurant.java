@@ -12,4 +12,8 @@ public class Restaurant {
     public ArrayList<Table> getTables() {
         return tables;
     }
+
+    public ArrayList<Bill> getRestaurantBills() {
+        return restaurantBills;
+    }
 }
