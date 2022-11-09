@@ -7,7 +7,7 @@ public class Restaurant {
     // Wrapper class conversion might be needed for interaction with Staff.staffId
     private ArrayList<Integer> restaurantStaff;
     private ArrayList<Bill> restaurantBills;
-    private ArrayList<Reservation> reservations;
+    private static ArrayList<Reservation> reservations;
 
     public ArrayList<Table> getTables() {
         return tables;
@@ -15,5 +15,9 @@ public class Restaurant {
 
     public ArrayList<Bill> getRestaurantBills() {
         return restaurantBills;
+    }
+
+    public static ArrayList<Reservation> getReservations() {
+        return reservations;
     }
 }
