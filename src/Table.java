@@ -18,6 +18,10 @@ public class Table {
         return canSeatXCustomers;
     }
 
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
     public String toString(){
         
         String print = "Table: " + getTableNo() + "\n" +
