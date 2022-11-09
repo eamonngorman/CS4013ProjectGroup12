@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Order {
     private static int count = 0;
     private int orderNumber;
-    private ArrayList<OrderedItem> order;
+    private ArrayList<FoodItem> order;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
 
@@ -29,5 +29,9 @@ public class Order {
 
     public String[] getStatuses() {
         return statuses;
+    }
+
+    public ArrayList<FoodItem> getOrder() {
+        return order;
     }
 }
