@@ -1,13 +1,16 @@
 public class Table {
     private int tableNo;
-    private boolean isReserved;
+    private int tableCounter = 1;
+
+    //private boolean isReserved;
     private boolean isAvailable;
     private int canSeatXCustomers;
 
-    Table(int tableNum, int canSeatXCustomers){
+    Table(int canSeatXCustomers){
         
         this.canSeatXCustomers = canSeatXCustomers;
-        this.tableNo = tableNum;
+        this.tableNo = tableCounter;
+        tableCounter++;
     }
 
     public int getTableNo(){
@@ -18,10 +21,22 @@ public class Table {
         return canSeatXCustomers;
     }
 
+    public void isAvailable(){
+        this.isAvailable = true;
+    }
+
+    public void isReserved(){
+        this.isAvailable = false;
+    }
+
+    public boolean checkAvailability(){
+        return isAvailable;
+    }
+
     public String toString(){
         
         String print = "Table: " + getTableNo() + "\n" +
-        "can seat: " + getNumSeats();
+        "Can seat: " + getNumSeats() + "\n";
 
         return print;
     }
