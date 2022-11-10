@@ -4,7 +4,7 @@ public class Restaurant {
     private String location;
     private Menu menu;
     // private int[] restaurantTables; This mightn't be needed anymore
-    private  ArrayList<Table> notInUsetables;
+    private static ArrayList<Table> notInUsetables;
     private  ArrayList<Table> inUseTables;
     // Wrapper class conversion might be needed for interaction with Staff.staffId
     private ArrayList<Integer> restaurantStaff;

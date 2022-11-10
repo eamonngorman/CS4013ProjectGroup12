@@ -10,9 +10,20 @@ public class Customer extends Person{
     }
 
     public ArrayList<Table> searchForAvailableTable(LocalDateTime time, int partySize){
+        // This function only checks current availability,
+        // we have to figure out a way to have tables availability dependent on timeslots
 
-        ArrayList<Table> placeholder = new ArrayList<Table>();
-        return placeholder;
+        ArrayList<Table> availableSuitableTables = new ArrayList<Table>();
+        for (Table table : Restaurant.getTables()){
+
+            //Possible issue with parties selecting a table that is way too big for
+            // their party size maybe we should implement something to prevent this?
+
+            if (table.isAvailable() && table.getNumSeats() >= partySize){
+                availableSuitableTables.add(table);
+            }
+        }
+        return availableSuitableTables;
     }
 
     public void reserveTable(LocalDateTime date, int numPeople, int tableNum){
@@ -23,6 +34,26 @@ public class Customer extends Person{
     }
 
     public void cancelReservation(int reservationId){
-        //delete Reservation object and free table
+        //deletes Reservation object
+        for (Reservation reservation : Restaurant.getReservations()){
+            if (reservation.getReservationId() == reservationId){
+                Restaurant.getReservations().remove(reservation);
+                reservation = null;
+            }
+        }
+
+        //Still have to free up the table. We need to link the Table and Reservation class together somehow.
+    }
+
+    public void payBill(Bill bill, boolean cashOrCredit, boolean isPaid){
+        if (isPaid){
+            bill.setPaid(true);
+            bill.setCashOrCredit(cashOrCredit);
+        }
+    }
+
+    public void addGratuity(Bill bill, double gratuity){
+        bill.setGratuity(gratuity);
+        bill.setBillTotal(bill.getBillTotal() + gratuity);
     }
 }

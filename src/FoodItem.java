@@ -18,4 +18,7 @@ public class FoodItem extends FoodCategory{
     }
 
 
+    public static double getDishCost() {
+        return dishCost;
+    }
 }

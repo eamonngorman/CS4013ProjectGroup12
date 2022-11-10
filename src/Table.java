@@ -6,10 +6,7 @@ public class Table {
     private boolean isAvailable;
     private int canSeatXCustomers;
 
-    // Should this be set to null after the bill is paid?
-    private Order currentOrder;
-
-    Table(int canSeatXCustomers){
+    Table(int tableNum, int canSeatXCustomers){
         
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
@@ -24,22 +21,6 @@ public class Table {
         return canSeatXCustomers;
     }
 
-    public void isAvailable(){
-        this.isAvailable = true;
-    }
-
-    public void isReserved(){
-        this.isAvailable = false;
-    }
-
-    public boolean checkAvailability(){
-        return isAvailable;
-    }
-
-    public void setCurrentOrder(Order currentOrder) {
-        this.currentOrder = currentOrder;
-    }
-    
     public String toString(){
         
         String print = "Table: " + getTableNo() + "\n" +
