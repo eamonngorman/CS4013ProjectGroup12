@@ -9,12 +9,30 @@ public class Restaurant {
     // Wrapper class conversion might be needed for interaction with Staff.staffId
     private ArrayList<Integer> restaurantStaff;
     private ArrayList<Bill> restaurantBills;
+    // Maybe restaurantOrders should be a map for ease of traversal and finding specific Orders to add FoodItems to?
+    private static ArrayList<Order> restaurantOrders;
     private ArrayList<Reservation> reservations;
 
     Restaurant (String location){
         this.location = location;
         this.menu = new Menu();
         this.notInUsetables = new ArrayList<Table>();
+    }
+
+    public ArrayList<Table> getTables() {
+        return tables;
+    }
+
+    public ArrayList<Order> getRestaurantOrders() {
+        return restaurantOrders;
+    }
+
+    public ArrayList<Bill> getRestaurantBills() {
+        return restaurantBills;
+    }
+
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
     }
 
     public void addTable(Table t){
@@ -26,7 +44,7 @@ public class Restaurant {
        
         ArrayList<Table> availableTables = new ArrayList<Table>();
 
-        for(Table t: inUseTables){
+        for(Table t: notInUsetables){
             if(t.getNumSeats() >= partySize){
                 availableTables.add(t);
             }
