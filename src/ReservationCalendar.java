@@ -10,10 +10,13 @@ public class ReservationCalendar {
         int flag = 0;
 
         for (Reservation r : listReservations) {
+
+            //get time + & - 1hour from a reservation
             LocalDateTime before = r.getTime().plusHours(1);
             LocalDateTime after = r.getTime().minusHours(1);
             
-            
+            //only add reservation if there is a 1hour gap (+ or - 1hr)
+            //this could be made so that a member of staff chooses the buffer timeframe
             if(reservation.getTime().compareTo(before) == -1 || 
                 reservation.getTime().compareTo(before) == 1){
                 flag = 1;
@@ -22,9 +25,10 @@ public class ReservationCalendar {
 
         if (flag == 1) {
             listReservations.add(reservation);
+            
         } else {
             //need to create an exception
-            throw new AppointmentException("This reservation already exists");
+            throw new ReservationException("This reservation already exists");
             //need to create an exception
         }
 

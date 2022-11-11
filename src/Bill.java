@@ -10,7 +10,7 @@ public class Bill {
 
         this.billTotal = 0;
         for (FoodItem item : order.getOrder()){
-            this.billTotal += FoodItem.getDishCost();
+            this.billTotal += item.getDishCost();
         }
     }
 

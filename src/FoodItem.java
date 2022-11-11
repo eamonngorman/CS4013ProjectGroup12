@@ -13,12 +13,9 @@ public class FoodItem extends FoodCategory{
     private boolean containsDairy;
     private boolean containsTreeNuts;
 
-    public static double getDishCost() {
+    
+    public double getDishCost() {
         return dishCost;
     }
 
-
-    public static double getDishCost() {
-        return dishCost;
-    }
 }

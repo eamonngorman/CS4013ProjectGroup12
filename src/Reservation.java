@@ -6,9 +6,9 @@ public class Reservation {
 
     private int reservationId;
     private LocalDateTime reservationDate;
-    private String phoneNumber;
+    private String phoneNumber; //this should be Customer object, all relevent info will then be from Customer
     private int numPeople;
-    private int tableNum;
+    private int tableNum; //this should be Table object, selected from list. Table object will have this info
 
     public Reservation(String reservationName, LocalDateTime reservationDate, String phoneNumber, int numPeople, int tableNum){
         this.reservationName = reservationName;
@@ -16,8 +16,6 @@ public class Reservation {
         this.phoneNumber = phoneNumber;
         this.numPeople = numPeople;
         this.tableNum = tableNum;
-        // The following code might be error prone, we may have to protect against errors like reservations having the same id
-        this.reservationId = ++count;
         // The following code might be error prone, we may have to protect against errors like reservations having the same id
         this.reservationId = ++count;
     }
