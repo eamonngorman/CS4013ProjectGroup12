@@ -1,5 +1,5 @@
 public class FoodItem extends FoodCategory{
-    
+
     private String dishName;
     private double dishCost;
     private boolean isVegan;
@@ -13,11 +13,11 @@ public class FoodItem extends FoodCategory{
     private boolean containsDairy;
     private boolean containsTreeNuts;
 
-    public FoodItem(String dishName, double dishCost){
+    public FoodItem(String category, String dishName, double dishCost) {
+        super(category);
         this.dishName = dishName;
         this.dishCost = dishCost;
     }
-
     
     public double getDishCost() {
         return dishCost;
