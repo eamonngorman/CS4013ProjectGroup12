@@ -58,7 +58,7 @@ public class Restaurant {
 
     public void sendReservationReminders(){
         for (Reservation reservation : reservations){
-            if (reservation.getReservationDate().plusDays(-1).isBefore(LocalDateTime.now())){
+            if (reservation.getReservationDate().minusDays(1).isBefore(LocalDateTime.now())){
                 textReminder(reservation.getCustomer().getPhoneNumber());
             }
         }
