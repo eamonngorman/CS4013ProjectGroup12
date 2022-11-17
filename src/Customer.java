@@ -30,10 +30,10 @@ public class Customer extends Person{
         return availableSuitableTables;
     }
 
-    public void reserveTable(LocalDateTime date, int numPeople, int tableNum){
+    public void reserveTable(LocalDateTime date, int numPeople, Customer customer, Table table){
         String name = Customer.super.getName();
-        String phoneNumber = Customer.super.getPhoneNumber();
-        new Reservation(name, date, phoneNumber, numPeople, tableNum);
+
+        new Reservation(name, date, customer, numPeople, table);
         // Set table's isReserved to true
     }
 
