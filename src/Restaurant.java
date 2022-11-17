@@ -20,6 +20,7 @@ public class Restaurant {
     }
 
     public ArrayList<Table> getTables() {
+        ArrayList<Table> tables = new ArrayList<>();
         return tables;
     }
 
