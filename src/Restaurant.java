@@ -24,7 +24,7 @@ public class Restaurant {
         return tables;
     }
 
-    public ArrayList<Order> getRestaurantOrders() {
+    public static ArrayList<Order> getRestaurantOrders() {
         return restaurantOrders;
     }
 
