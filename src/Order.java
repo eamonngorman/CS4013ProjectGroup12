@@ -4,7 +4,7 @@ public class Order {
     private static int count = 0;
     private int orderNumber;
     private int tableNum;
-    private ArrayList<FoodItem> order;
+    private ArrayList<FoodItem> items;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
 
@@ -15,7 +15,7 @@ public class Order {
         this.tableNum = tableNum;
         // I'm assuming we're leaving the first entry in tables as null for convenience
         Restaurant.getTables().get(tableNum).setCurrentOrder(this);
-
+        Restaurant.getRestaurantOrders().put(this.orderNumber, this);
     }
 
 
@@ -36,6 +36,14 @@ public class Order {
     }
 
     public ArrayList<FoodItem> getOrder() {
-        return order;
+        return items;
+    }
+
+    public void addItemToOrder(FoodItem item) {
+        this.items.add(item);
+    }
+
+    public void removeItemFromOrder(FoodItem item) {
+        this.items.remove(item);
     }
 }

@@ -6,9 +6,15 @@ public class Reservation {
 
     private int reservationId;
     private LocalDateTime reservationDate;
+    private Table t1;
+    private Customer c1;
     private String phoneNumber; //this should be Customer object, all relevent info will then be from Customer
     private int numPeople;
     private int tableNum; //this should be Table object, selected from list. Table object will have this info
+
+    public Reservation(int reservationId, Table t1, Customer c1){
+        
+    }
 
     public Reservation(String reservationName, LocalDateTime reservationDate, String phoneNumber, int numPeople, int tableNum){
         this.reservationName = reservationName;

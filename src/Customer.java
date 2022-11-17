@@ -9,6 +9,10 @@ public class Customer extends Person{
         return customerId;
     }
 
+    public void setCustomerId(int customerId){
+        this.customerId = customerId;
+    }
+
     public ArrayList<Table> searchForAvailableTable(LocalDateTime time, int partySize){
         // This function only checks current availability,
         // we have to figure out a way to have tables availability dependent on timeslots

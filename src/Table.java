@@ -10,15 +10,24 @@ public class Table {
     }
 
     private int canSeatXCustomers;
+    private Order currentOrder;
 
     Table(int tableNum){
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
-        tableCounter++;
+        this.tableCounter++;
     }
 
     public int getTableNo(){
         return tableNo;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
     public int getNumSeats(){
