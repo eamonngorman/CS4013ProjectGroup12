@@ -3,11 +3,15 @@ public class Table {
     private int tableCounter = 1;
 
     //private boolean isReserved;
-    private boolean isAvailable;
+    public boolean isAvailable() {
+        return true;
+
+
+    }
+
     private int canSeatXCustomers;
 
     Table(int tableNum){
-        
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
         tableCounter++;
@@ -31,5 +35,6 @@ public class Table {
 
         return print;
     }
+
 
 }
