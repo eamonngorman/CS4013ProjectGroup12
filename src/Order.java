@@ -15,7 +15,7 @@ public class Order {
         this.tableNum = tableNum;
         // I'm assuming we're leaving the first entry in tables as null for convenience
         Restaurant.getTables().get(tableNum).setCurrentOrder(this);
-
+        Restaurant.getRestaurantOrders().put(this.orderNumber, this);
     }
 
 
@@ -37,5 +37,13 @@ public class Order {
 
     public ArrayList<FoodItem> getOrder() {
         return items;
+    }
+
+    public void addItemToOrder(FoodItem item) {
+        this.items.add(item);
+    }
+
+    public void removeItemFromOrder(FoodItem item) {
+        this.items.remove(item);
     }
 }
