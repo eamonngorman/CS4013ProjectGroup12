@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ReservationCalendar {
     private ArrayList<Reservation> listReservations = new ArrayList<Reservation>();
 
-    public void add(Reservation reservation) {
+    public void addReservation(Reservation reservation) throws Exception {
 
         int flag = 0;
 
@@ -18,7 +18,7 @@ public class ReservationCalendar {
             //only add reservation if there is a 1hour gap (+ or - 1hr)
             //this could be made so that a member of staff chooses the buffer timeframe
             if(reservation.getTime().compareTo(before) == -1 || 
-                reservation.getTime().compareTo(before) == 1){
+                reservation.getTime().compareTo(after) == 1){
                 flag = 1;
             }
         }
@@ -28,11 +28,19 @@ public class ReservationCalendar {
             
         } else {
             //need to create an exception
-            throw new ReservationException("This reservation already exists");
+            throw new Exception("This reservation already exists");
             //need to create an exception
         }
 
     }
+
+    public void removeReservation(Reservation reservation){
+    
+        int reservationId = reservation.getReservationId();
+
+        
+    }
+
 
     public ArrayList<Reservation> getReservationsForDay(int day, int month, int year) {
 

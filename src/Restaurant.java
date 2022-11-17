@@ -51,6 +51,7 @@ public class Restaurant {
                 availableTables.add(t);
             }
         }
+
         return availableTables;
     }
 
