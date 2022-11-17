@@ -1,10 +1,11 @@
 public class Table {
     private int tableNo;
     private int tableCounter = 1;
+    private boolean isCurrentlyAvailable;
 
     //private boolean isReserved;
-    public boolean isAvailable() {
-        return true;
+    public boolean isCurrentlyAvailable() {
+        return isCurrentlyAvailable;
 
 
     }
@@ -26,9 +27,6 @@ public class Table {
         this.currentOrder = currentOrder;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
-    }
 
     public int getNumSeats(){
         return canSeatXCustomers;
