@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -53,6 +54,18 @@ public class Restaurant {
         }
 
         return availableTables;
+    }
+
+    public void sendReservationReminders(){
+        for (Reservation reservation : reservations){
+            if (reservation.getReservationDate().minusDays(1).isBefore(LocalDateTime.now())){
+                textReminder(reservation.getCustomer().getPhoneNumber());
+            }
+        }
+    }
+
+    public void textReminder(String phoneNumber){
+        // sends a textReminder to this phoneNumber
     }
 
     
