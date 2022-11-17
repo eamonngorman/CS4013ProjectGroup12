@@ -10,7 +10,7 @@ public class Table {
         
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
-        tableCounter++;
+        this.tableCounter++;
     }
 
     public int getTableNo(){
