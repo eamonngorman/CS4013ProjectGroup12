@@ -6,8 +6,10 @@ public class Table {
     //private boolean isReserved;
     public boolean isCurrentlyAvailable() {
         return isCurrentlyAvailable;
+    }
 
-
+    public void setCurrentlyAvailable(boolean currentlyAvailable) {
+        isCurrentlyAvailable = currentlyAvailable;
     }
 
     private int canSeatXCustomers;
@@ -32,8 +34,6 @@ public class Table {
         return canSeatXCustomers;
     }
 
-    public void setCurrentOrder(Order order) {
-    }
 
     public String toString(){
         
