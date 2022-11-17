@@ -14,3 +14,4 @@ public class Menu {
         menuCategories.add(category);
     }
 }
+

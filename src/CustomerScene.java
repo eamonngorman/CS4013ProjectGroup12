@@ -2,7 +2,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class CustomerMenu {
+public class CustomerScene {
    private Scanner in;
 
    /**
@@ -43,7 +43,7 @@ public class CustomerMenu {
          { 
             System.out.println("Enter Appointment Date");
             String line = in.nextLine();
-            AppointmentDate day = new AppointmentDate(line);
+            ReservationDate day = new AppointmentDate(line);
             Appointment a = getChoice(calendar.getAppointmentsForDay(day));
             if (a != null)
                calendar.cancel(a);
