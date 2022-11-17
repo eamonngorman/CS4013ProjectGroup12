@@ -1,14 +1,21 @@
 public class Table {
     private int tableNo;
     private int tableCounter = 1;
+    private boolean isCurrentlyAvailable;
 
     //private boolean isReserved;
-    private boolean isAvailable;
+    public boolean isCurrentlyAvailable() {
+        return isCurrentlyAvailable;
+    }
+
+    public void setCurrentlyAvailable(boolean currentlyAvailable) {
+        isCurrentlyAvailable = currentlyAvailable;
+    }
+
     private int canSeatXCustomers;
     private Order currentOrder;
 
-    Table(int tableNum, int canSeatXCustomers){
-        
+    Table(int tableNum){
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
         this.tableCounter++;
@@ -22,13 +29,11 @@ public class Table {
         this.currentOrder = currentOrder;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
-    }
 
     public int getNumSeats(){
         return canSeatXCustomers;
     }
+
 
     public String toString(){
         
@@ -37,4 +42,6 @@ public class Table {
 
         return print;
     }
+
+
 }

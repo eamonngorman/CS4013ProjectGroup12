@@ -7,6 +7,9 @@ public class WaitingPerson extends Staff{
         return newOrder.getOrderNumber();
 
     }
+    public void deleteOrder(int orderNumber) {
+        int removeOrderNumber = Restaurant.getRestaurantOrders().get(orderNumber).deleteOrder;
+    }
     public void addItemToOrder(int orderNumber, FoodItem foodItem){
         Restaurant.getRestaurantOrders().get(orderNumber).addItemToOrder(foodItem);
 
@@ -14,6 +17,6 @@ public class WaitingPerson extends Staff{
     public void deleteItemFromOrder(int orderNumber, FoodItem foodItem){
         Restaurant.getRestaurantOrders().get(orderNumber).removeItemFromOrder(foodItem);
 
-
     }
+
 }
