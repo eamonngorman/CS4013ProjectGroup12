@@ -5,16 +5,25 @@ public class Table {
     //private boolean isReserved;
     private boolean isAvailable;
     private int canSeatXCustomers;
+    private Order currentOrder;
 
     Table(int tableNum, int canSeatXCustomers){
         
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
-        tableCounter++;
+        this.tableCounter++;
     }
 
     public int getTableNo(){
         return tableNo;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
     public int getNumSeats(){

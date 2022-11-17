@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Restaurant {
     private String location;
@@ -10,8 +11,8 @@ public class Restaurant {
     private ArrayList<Integer> restaurantStaff;
     private ArrayList<Bill> restaurantBills;
     // Maybe restaurantOrders should be a map for ease of traversal and finding specific Orders to add FoodItems to?
-    private static ArrayList<Order> restaurantOrders;
-    private ArrayList<Reservation> reservations;
+    private static HashMap<Integer, Order> restaurantOrders;
+    private static ArrayList<Reservation> reservations;
 
     Restaurant (String location){
         this.location = location;
@@ -19,12 +20,12 @@ public class Restaurant {
         this.notInUsetables = new ArrayList<Table>();
     }
 
-    public ArrayList<Table> getTables() {
+    public static ArrayList<Table> getTables() {
         ArrayList<Table> tables = new ArrayList<>();
         return tables;
     }
 
-    public static ArrayList<Order> getRestaurantOrders() {
+    public static HashMap<Integer, Order> getRestaurantOrders() {
         return restaurantOrders;
     }
 
@@ -32,7 +33,7 @@ public class Restaurant {
         return restaurantBills;
     }
 
-    public ArrayList<Reservation> getReservations() {
+    public static ArrayList<Reservation> getReservations() {
         return reservations;
     }
 
