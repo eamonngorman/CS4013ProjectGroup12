@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Order {
     private static int count = 0;
     private int orderNumber;
-    int removeOrderNumber;
+    int deleteOrder;
     private int tableNum;
     private ArrayList<FoodItem> items;
     private String orderStatus;
