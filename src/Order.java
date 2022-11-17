@@ -4,7 +4,7 @@ public class Order {
     private static int count = 0;
     private int orderNumber;
     private int tableNum;
-    private ArrayList<FoodItem> order;
+    private ArrayList<FoodItem> items;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
 
@@ -36,6 +36,6 @@ public class Order {
     }
 
     public ArrayList<FoodItem> getOrder() {
-        return order;
+        return items;
     }
 }
