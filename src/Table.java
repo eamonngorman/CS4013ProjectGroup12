@@ -6,7 +6,7 @@ public class Table {
     private boolean isAvailable;
     private int canSeatXCustomers;
 
-    Table(int tableNum, int canSeatXCustomers){
+    Table(int tableNum){
         
         this.canSeatXCustomers = canSeatXCustomers;
         this.tableNo = tableCounter;
@@ -21,6 +21,9 @@ public class Table {
         return canSeatXCustomers;
     }
 
+    public void setCurrentOrder(Order order) {
+    }
+
     public String toString(){
         
         String print = "Table: " + getTableNo() + "\n" +
@@ -28,4 +31,5 @@ public class Table {
 
         return print;
     }
+
 }
