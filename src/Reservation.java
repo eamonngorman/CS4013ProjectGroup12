@@ -44,6 +44,14 @@ public class Reservation {
 
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public LocalDateTime getReservationDate() {
+        return reservationDate;
+    }
+
     public int getReservationId() {
         return reservationId;
     }
