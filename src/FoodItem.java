@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class FoodItem extends FoodCategory{
 
     private String dishName;
@@ -25,6 +27,11 @@ public class FoodItem extends FoodCategory{
 
     public String getDishName(){
         return dishName;
+    }
+    public void foodToCategory(String category, String dishName){
+        for (int i = 0; i<getCategories().size(); i++){
+            if (getCategories() == category)
+        }
     }
 
 }
