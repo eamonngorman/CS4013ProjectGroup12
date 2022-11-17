@@ -8,7 +8,7 @@ public class WaitingPerson extends Staff{
 
     }
     public void deleteOrder(int orderNumber) {
-        int removeOrderNumber = Restaurant.getRestaurantOrders().get(orderNumber).removeOrderNumber;
+        Restaurant.getRestaurantOrders().remove(orderNumber);
     }
     public void addItemToOrder(int orderNumber, FoodItem foodItem){
         Restaurant.getRestaurantOrders().get(orderNumber).addItemToOrder(foodItem);
