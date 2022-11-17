@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Order {
     private static int count = 0;
-    int removeOrderNumber;
     private int orderNumber;
+    int removeOrderNumber;
     private int tableNum;
     private ArrayList<FoodItem> items;
     private String orderStatus;
