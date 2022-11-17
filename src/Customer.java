@@ -23,7 +23,7 @@ public class Customer extends Person{
             //Possible issue with parties selecting a table that is way too big for
             // their party size maybe we should implement something to prevent this?
 
-            if (table.isAvailable() && table.getNumSeats() >= partySize){
+            if (table.isCurrentlyAvailable() && table.getNumSeats() >= partySize){
                 availableSuitableTables.add(table);
             }
         }
