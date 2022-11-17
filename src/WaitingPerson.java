@@ -12,6 +12,14 @@ public class WaitingPerson extends Staff{
 
     }
     public void deleteItemFromOrder(int orderNumber, FoodItem foodItem){
-
+        for (Order order: Restaurant.getRestaurantOrders()){
+            if (order.getOrderNumber() == orderNumber){
+                for (FoodItem item : order.getOrder()){
+                    if (item == foodItem){
+                        order.getOrder().remove(item);
+                    }
+                }
+            }
+        }
     }
 }
