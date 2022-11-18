@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 
 public class Menu {
     private ArrayList<FoodItem> menuCategories;
