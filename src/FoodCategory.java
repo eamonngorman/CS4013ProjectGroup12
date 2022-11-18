@@ -12,7 +12,6 @@ public class FoodCategory {
     public String getCategory(){
         return category;
     }
-    }
     public ArrayList<String> getCategories(){
         return categories;
     }
