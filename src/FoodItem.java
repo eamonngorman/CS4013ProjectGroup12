@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FoodItem extends FoodCategory{
 
@@ -14,6 +15,7 @@ public class FoodItem extends FoodCategory{
     private boolean containsSoyBeans;
     private boolean containsDairy;
     private boolean containsTreeNuts;
+    private HashMap<String, String> categorizedMenu;
 
     public FoodItem(String category, String dishName, double dishCost) {
         super(category);
@@ -29,10 +31,7 @@ public class FoodItem extends FoodCategory{
         return dishName;
     }
     public void foodToCategory(String category, String dishName){
-        for (int i = 0; i<getCategories().size(); i++){
-            if (getCategories() == category)
+        categorizedMenu.put(category, dishName);
         }
-    }
-    
-
 }
+
