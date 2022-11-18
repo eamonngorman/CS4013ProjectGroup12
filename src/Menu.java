@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Menu {
     private ArrayList<FoodItem> menuCategories;
     private ArrayList<FoodItem> outCategories;
-    private HashMap<String, Double> menuCost = new HashMap<String, Double>();
+    //private HashMap<String, Double> menuCost = new HashMap<String, Double>();
 
     /** not used at the minute
      * public void menuAdder(String category, String dishName, double dishCost){
