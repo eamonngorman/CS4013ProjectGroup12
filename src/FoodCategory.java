@@ -1,19 +1,27 @@
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 
 public class FoodCategory {
+
     private ArrayList<FoodItem> menuItems;
     private String category;
-    private ArrayList<String> categories;
-    public FoodCategory(String category){
+
+    FoodCategory(String category) {
         this.category = category;
     }
-    public String getCategory(){
+
+    public String getCategoryName() {
         return category;
     }
-    public ArrayList<String> getCategories(){
-        return categories;
+
+    public void setCategories(String category) {
+        this.category = category;
+    }
+
+    public void addFoodToCategory(FoodItem food) {
+        menuItems.add(food);
+    }
+
+    public void removeFoodFromCategory(FoodItem food) {
+        menuItems.remove(food);
     }
 }
-
