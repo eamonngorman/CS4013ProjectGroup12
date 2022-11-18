@@ -4,6 +4,7 @@ public class FoodItem extends FoodCategory{
 
     private String dishName;
     private double dishCost;
+    /**
     private boolean isVegan;
     private boolean containsMeat;
     private boolean containsGluten;
@@ -14,6 +15,7 @@ public class FoodItem extends FoodCategory{
     private boolean containsSoyBeans;
     private boolean containsDairy;
     private boolean containsTreeNuts;
+    */
     //private HashMap<String, String> categorizedMenu;
 
     FoodItem(String category, String dishName, double dishCost) {
