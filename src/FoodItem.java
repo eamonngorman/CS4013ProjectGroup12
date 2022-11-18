@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class FoodItem {
+public class FoodItem extends FoodCategory{
 
     private String dishName;
     private double dishCost;
@@ -16,7 +16,8 @@ public class FoodItem {
     private boolean containsTreeNuts;
     //private HashMap<String, String> categorizedMenu;
 
-    FoodItem(String dishName, double dishCost) {
+    FoodItem(String category, String dishName, double dishCost) {
+        super(category);
         this.dishName = dishName;
         this.dishCost = dishCost;
     }
