@@ -1,14 +1,14 @@
 public class Table {
     private int tableNo;
-    private int tableCounter = 1;
-    private boolean isCurrentlyAvailable;
+    //private int tableCounter = 1;
+    private boolean isCurrentlyAvailable = false;
     private int canSeatXCustomers;
     private Order currentOrder;
 
-    Table(int tableNum) {
+    Table(int tableNumn, int canSeatXCustomers) {
         this.canSeatXCustomers = canSeatXCustomers;
-        this.tableNo = tableCounter;
-        this.tableCounter++;
+        this.tableNo = tableNumn;
+        //this.tableCounter++;
     }
 
     //private boolean isReserved;
