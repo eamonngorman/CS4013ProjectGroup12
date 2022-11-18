@@ -10,9 +10,13 @@ public class Menu {
         menuCost.put(addToMenu.getDishName(), addToMenu.getDishCost());
     }
 
-    public void categorizedMenu(String category,String dishName, double dishCost){
+    public void addCategorizedMenu(String category,String dishName, double dishCost){
         FoodItem cat = new FoodItem(category, dishName, dishCost);
         menuCategories.add(cat);
+    }
+    public void removeCategorizedMenu(String category,String dishName, double dishCost){
+        FoodItem cat = new FoodItem(category, dishName, dishCost);
+        menuCategories.remove(cat);
     }
 }
 
