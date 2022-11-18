@@ -3,12 +3,11 @@ import java.time.LocalDate;
 public class Person {
     private String name;
     private LocalDate dateOfBirth; //why do we need this?
-    private String id;
+    // private String id; StaffId and CustomerId are separate
     private String phoneNumber;
 
-    Person(String name, String id, String phoneNumber) {
+    Person(String name, String phoneNumber) {
         this.name = name;
-        this.id = id;
         this.phoneNumber = phoneNumber;
     }
 
