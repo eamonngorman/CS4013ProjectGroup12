@@ -1,24 +1,23 @@
 import java.time.LocalDateTime;
 
 public class Reservation {
-    private String reservationName;
-    private static int count = 0;
+    private static int count = 0; //what is this for
 
     private int reservationId;
     private LocalDateTime reservationDate;
+    private LocalDateTime reservationLength;
     private Table table;
     private Customer customer;
-    //private String phoneNumber; //this should be Customer object, all relevent info will then be from Customer
     private int numPeople;
-    //private int tableNum; //this should be Table object, selected from list. Table object will have this info
 
-    public Reservation(int reservationId, Table t1, Customer c1){
-        
+    public Reservation(Table table, Customer customer) {
+        this.table = table;
+        this.customer = customer;
     }
 
-    public Reservation(String reservationName, LocalDateTime reservationDate, Customer customer, int numPeople, Table table){
-        this.reservationName = reservationName;
+    public Reservation(LocalDateTime reservationDate, Customer customer, int numPeople, Table table) {
         this.reservationDate = reservationDate;
+        this.reservationLength = reservationDate.plusHours(2);
         this.customer = customer;
         this.table = table;
         //this.phoneNumber = phoneNumber;
@@ -28,19 +27,11 @@ public class Reservation {
         this.reservationId = ++count;
     }
 
-    public void setReservationName(String reservationName) {
-        this.reservationName = reservationName;
-    }
-
-    public String getReservationName() {
-        return reservationName;
-    }
-
-    public LocalDateTime getTime(){
+    public LocalDateTime getTime() {
         return reservationDate;
     }
 
-    public void sendReminderToCustomer(){
+    public void sendReminderToCustomer() {
 
     }
 
@@ -56,7 +47,7 @@ public class Reservation {
         return reservationId;
     }
 
-    public void changeTableStatus(){
+    public void changeTableStatus() {
         // 1 hour(or more suitable time interval) before table is due to have a
         // reservation turn it's isAvailable variable from true to false
     }

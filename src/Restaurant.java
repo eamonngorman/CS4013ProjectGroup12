@@ -4,51 +4,48 @@ import java.util.HashMap;
 
 public class Restaurant {
     private String location;
-    private Menu menu;
-    // private int[] restaurantTables; This mightn't be needed anymore
-    private static ArrayList<Table> notInUsetables;
-    private  ArrayList<Table> inUseTables;
-    // Wrapper class conversion might be needed for interaction with Staff.staffId
-    private ArrayList<Integer> restaurantStaff;
-    private ArrayList<Bill> restaurantBills;
+    private ArrayList<Menu> menu;
+    private ArrayList<Table> tables;
+    private ArrayList<Staff> staff;
+    private ArrayList<Bill> bills;
+    private ArrayList<Reservation> reservations;
     // Maybe restaurantOrders should be a map for ease of traversal and finding specific Orders to add FoodItems to?
     private static HashMap<Integer, Order> restaurantOrders;
-    private static ArrayList<Reservation> reservations;
 
-    Restaurant (String location){
+    Restaurant(String location) {
         this.location = location;
-        this.menu = new Menu();
-        this.notInUsetables = new ArrayList<Table>();
+        this.menu = new ArrayList<Menu>();
+        this.tables = new ArrayList<Table>();
+        this.staff = new ArrayList<Staff>();
+        this.bills = new ArrayList<Bill>();
     }
 
-    public static ArrayList<Table> getTables() {
-        ArrayList<Table> tables = new ArrayList<>();
+    public ArrayList<Table> getTables() {
         return tables;
     }
 
-    public static HashMap<Integer, Order> getRestaurantOrders() {
+    public HashMap<Integer, Order> getRestaurantOrders() {
         return restaurantOrders;
     }
 
     public ArrayList<Bill> getRestaurantBills() {
-        return restaurantBills;
+        return bills;
     }
 
-    public static ArrayList<Reservation> getReservations() {
+    public ArrayList<Reservation> getReservations() {
         return reservations;
     }
 
-    public void addTable(Table t){
-        //Table t = new Table(tablenum, size);
-        notInUsetables.add(t);
+    public void addTable(Table t) {
+        tables.add(t);
     }
 
-    public ArrayList<Table> showAvailableTables(int partySize){
-       
+    public ArrayList<Table> showAvailableTables(int partySize) {
+
         ArrayList<Table> availableTables = new ArrayList<Table>();
 
-        for(Table t: notInUsetables){
-            if(t.getNumSeats() >= partySize){
+        for (Table t : notInUsetables) {
+            if (t.getNumSeats() >= partySize) {
                 availableTables.add(t);
             }
         }
@@ -56,17 +53,16 @@ public class Restaurant {
         return availableTables;
     }
 
-    public void sendReservationReminders(){
-        for (Reservation reservation : reservations){
-            if (reservation.getReservationDate().minusDays(1).isBefore(LocalDateTime.now())){
+    public void sendReservationReminders() {
+        for (Reservation reservation : reservations) {
+            if (reservation.getReservationDate().minusDays(1).isBefore(LocalDateTime.now())) {
                 textReminder(reservation.getCustomer().getPhoneNumber());
             }
         }
     }
 
-    public void textReminder(String phoneNumber){
+    public void textReminder(String phoneNumber) {
         // sends a textReminder to this phoneNumber
     }
 
-    
 }

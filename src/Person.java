@@ -1,10 +1,16 @@
 import java.time.LocalDate;
 
-
 public class Person {
     private String name;
-    private LocalDate dateOfBirth;
+    private LocalDate dateOfBirth; //why do we need this?
+    private String id;
     private String phoneNumber;
+
+    Person(String name, String id, String phoneNumber) {
+        this.name = name;
+        this.id = id;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getName() {
         return name;

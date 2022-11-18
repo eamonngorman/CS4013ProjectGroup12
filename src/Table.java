@@ -2,6 +2,14 @@ public class Table {
     private int tableNo;
     private int tableCounter = 1;
     private boolean isCurrentlyAvailable;
+    private int canSeatXCustomers;
+    private Order currentOrder;
+
+    Table(int tableNum) {
+        this.canSeatXCustomers = canSeatXCustomers;
+        this.tableNo = tableCounter;
+        this.tableCounter++;
+    }
 
     //private boolean isReserved;
     public boolean isCurrentlyAvailable() {
@@ -12,16 +20,7 @@ public class Table {
         isCurrentlyAvailable = currentlyAvailable;
     }
 
-    private int canSeatXCustomers;
-    private Order currentOrder;
-
-    Table(int tableNum){
-        this.canSeatXCustomers = canSeatXCustomers;
-        this.tableNo = tableCounter;
-        this.tableCounter++;
-    }
-
-    public int getTableNo(){
+    public int getTableNo() {
         return tableNo;
     }
 
@@ -29,19 +28,16 @@ public class Table {
         this.currentOrder = currentOrder;
     }
 
-
-    public int getNumSeats(){
+    public int getNumSeats() {
         return canSeatXCustomers;
     }
 
+    public String toString() {
 
-    public String toString(){
-        
         String print = "Table: " + getTableNo() + "\n" +
-        "Can seat: " + getNumSeats() + "\n";
+                "Can seat: " + getNumSeats() + "\n";
 
         return print;
     }
-
 
 }
