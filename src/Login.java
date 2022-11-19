@@ -1,4 +1,5 @@
-public class Login {
+public class Login {    //may have to replace boolean with int
+                        //I couldnt figure that out right now but will look into it
 
     public String name;
     public String userName;
