@@ -40,12 +40,20 @@ public class Restaurant {
         tables.add(t);
     }
 
+    public void removeTable(Table t){
+        tables.remove(t);
+    }
+
+    public void addReservation(Reservation r){
+        
+    }
+
     public ArrayList<Table> showAvailableTables(int partySize) {
 
         ArrayList<Table> availableTables = new ArrayList<Table>();
 
-        for (Table t : notInUsetables) {
-            if (t.getNumSeats() >= partySize) {
+        for (Table t : tables) {
+            if (t.getNumSeats() >= partySize && t.isCurrentlyAvailable()) {
                 availableTables.add(t);
             }
         }
