@@ -5,10 +5,11 @@ import java.util.HashMap;
 public class Restaurant {
     private String location;
     private ArrayList<Menu> menu;
-    private ArrayList<Table> tables;
-    private ArrayList<Staff> staff;
+    private static ArrayList<Table> tables;
+    private static ArrayList<Staff> staff;
+    private static ArrayList<Customer> customers;
     private ArrayList<Bill> bills;
-    private ArrayList<Reservation> reservations;
+    private static ArrayList<Reservation> reservations;
     // Maybe restaurantOrders should be a map for ease of traversal and finding specific Orders to add FoodItems to?
     private static HashMap<Integer, Order> restaurantOrders;
 
@@ -20,11 +21,11 @@ public class Restaurant {
         this.bills = new ArrayList<Bill>();
     }
 
-    public ArrayList<Table> getTables() {
+    public static ArrayList<Table> getTables() {
         return tables;
     }
 
-    public HashMap<Integer, Order> getRestaurantOrders() {
+    public static HashMap<Integer, Order> getRestaurantOrders() {
         return restaurantOrders;
     }
 
@@ -32,8 +33,12 @@ public class Restaurant {
         return bills;
     }
 
-    public ArrayList<Reservation> getReservations() {
+    public static ArrayList<Reservation> getReservations() {
         return reservations;
+    }
+
+    public static ArrayList<Customer> getCustomers() {
+        return customers;
     }
 
     public void addTable(Table t) {
@@ -73,4 +78,7 @@ public class Restaurant {
         // sends a textReminder to this phoneNumber
     }
 
+    public static ArrayList<Staff> getStaff() {
+        return staff;
+    }
 }

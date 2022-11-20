@@ -1,10 +1,10 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class FoodItem {
+public class FoodItem extends FoodCategory{
 
     private String dishName;
     private double dishCost;
+    /**
     private boolean isVegan;
     private boolean containsMeat;
     private boolean containsGluten;
@@ -15,9 +15,11 @@ public class FoodItem {
     private boolean containsSoyBeans;
     private boolean containsDairy;
     private boolean containsTreeNuts;
+    */
     //private HashMap<String, String> categorizedMenu;
 
-    FoodItem(String dishName, double dishCost) {
+    FoodItem(String category, String dishName, double dishCost) {
+        super(category);
         this.dishName = dishName;
         this.dishCost = dishCost;
     }

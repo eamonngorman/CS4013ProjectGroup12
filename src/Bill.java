@@ -4,6 +4,7 @@ public class Bill {
     private double gratuity;
     private boolean cashOrCredit; // cash = false; credit = true;
     private boolean isPaid;
+    private String paymentMethod;
 
     public Bill (Order order){
         this.order = order;
@@ -36,5 +37,25 @@ public class Bill {
 
     public boolean isPaid() {
         return isPaid;
+    }
+
+    public void printBill (){  //method to print the bill. will only show payment type and tip after the bill has been paid
+        if (cashOrCredit == false){
+            paymentMethod = "Cash";
+        } else{
+            paymentMethod = "Card";
+        }
+        double beforeTip = billTotal;
+        billTotal += gratuity;
+        System.out.println("Yum Restaurant");
+        if(isPaid == true){
+            System.out.println("Payment Method: " + paymentMethod);
+        }
+        System.out.println(order);
+        System.out.println("Total: " + beforeTip);
+        if (isPaid == true){
+            System.out.println("Tip: " + gratuity);
+            System.out.println("Grand Total: " + billTotal);
+        }
     }
 }

@@ -4,6 +4,15 @@ import java.util.ArrayList;
 public class Customer extends Person{
 
     private int customerId;
+    private int count = 1;
+
+    Customer(String name, String phoneNumber) {
+        super(name, phoneNumber);
+        this.customerId = count;
+        count++;
+        Restaurant.getCustomers().add(this);
+    }
+
 
     public int getCustomerId() {
         return customerId;
@@ -31,9 +40,9 @@ public class Customer extends Person{
     }
 
     public void reserveTable(LocalDateTime date, int numPeople, Customer customer, Table table){
-        String name = Customer.super.getName();
+        //String name = Customer.super.getName(); Unnecessary now that Customer is included
 
-        new Reservation(name, date, customer, numPeople, table);
+        new Reservation(date, customer, numPeople, table);
         // Set table's isReserved to true
     }
 

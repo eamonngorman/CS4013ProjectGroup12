@@ -1,5 +1,9 @@
 public class WaitingPerson extends Staff{
 
+    WaitingPerson(String name, String phoneNumber) {
+        super(name, phoneNumber);
+    }
+
     // made this return the order number for tracking purposes. Maybe printing it to the screen would be sufficient?
     public int createOrder(int tableNum){
         Order newOrder = new Order(tableNum);

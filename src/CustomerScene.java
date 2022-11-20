@@ -1,12 +1,11 @@
-
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CustomerScene {
    private Scanner in;
 
    /**
-      Constructs an AppointmentMenu object.
+      Constructs an ReservationMenu object.
    */
    public CustomerScene() {
       in = new Scanner(System.in);
@@ -29,21 +28,21 @@ public class CustomerScene {
                String line = in.nextLine();
                Table t = new Table(Integer.parseInt(line));
                calendar.add(t);
-            } catch (AppointmentException ex) {
+            } catch (ReservationException ex) {
                System.out.println(ex.getMessage());
             }
          } else if (command.equals("C")) {
-            System.out.println("Enter Appointment Date");
+            System.out.println("Enter Reservation Date");
             String line = in.nextLine();
-            ReservationDate day = new AppointmentDate(line);
-            Appointment a = getChoice(calendar.getAppointmentsForDay(day));
+            ReservationDate day = new ReservationDate(line);
+            Reservation a = getChoice(calendar.getReservationsForDay(day));
             if (a != null)
                calendar.cancel(a);
          } else if (command.equals("S")) {
             System.out.println("Date");
             String line = in.nextLine();
-            AppointmentDate day = new AppointmentDate(line);
-            for (Appointment appt : calendar.getAppointmentsForDay(day))
+            ReservationDate day = new ReservationDate(line);
+            for (Reservation appt : calendar.getReservationsForDay(day))
                System.out.println(appt.format());
          } else if (command.equals("Q")) {
             more = false;
@@ -51,12 +50,12 @@ public class CustomerScene {
       }
    }
 
-   private Appointment getChoice(ArrayList<Appointment> choices) {
+   private Reservation getChoice(ArrayList<Reservation> choices) {
       if (choices.size() == 0)
          return null;
       while (true) {
          char c = 'A';
-         for (Appointment choice : choices) {
+         for (Reservation choice : choices) {
             System.out.println(c + ") " + choice.format());
             c++;
          }
