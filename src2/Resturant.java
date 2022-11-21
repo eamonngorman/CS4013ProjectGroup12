@@ -8,6 +8,7 @@ public class Resturant {
     private ArrayList<Table> tables;
     private ArrayList<Reservation> reservations;
     private ArrayList<Order> orders;
+    private ArrayList<Person> people;
 
     Resturant(String name) {
         this.name = name;
@@ -15,6 +16,7 @@ public class Resturant {
         this.tables = new ArrayList<Table>();
         this.reservations = new ArrayList<Reservation>();
         this.orders = new ArrayList<Order>();
+        this.people = new ArrayList<Person>();
     }
 
     public void setName(String name) {

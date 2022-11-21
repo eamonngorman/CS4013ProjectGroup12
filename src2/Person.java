@@ -1,4 +1,5 @@
 public class Person {
+    
     private String name;
     private int accessLevel;
     private int idNum;
@@ -29,7 +30,7 @@ public class Person {
         return accessLevel;
     }
 
-    public int getIdNeum() {
+    public int getIdNum() {
         return idNum;
     }
 }
