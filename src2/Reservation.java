@@ -4,7 +4,7 @@ public class Reservation {
 
     private Customer customer;
     private Table table;
-    private int numOfPeople;
+    private int numOfPeople; //not needed?
     private LocalDateTime startTime;
     private LocalDateTime finishTime;
 
