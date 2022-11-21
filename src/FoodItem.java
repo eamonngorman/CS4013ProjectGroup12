@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class FoodItem extends FoodCategory{
+public class FoodItem{
 
     private String dishName;
     private double dishCost;
@@ -18,8 +18,13 @@ public class FoodItem extends FoodCategory{
     */
     //private HashMap<String, String> categorizedMenu;
 
-    FoodItem(String category, String dishName, double dishCost) {
-        super(category);
+    // FoodItem(String category, String dishName, double dishCost) {
+    //     super(category);
+    //     this.dishName = dishName;
+    //     this.dishCost = dishCost;
+    // }
+
+    public FoodItem(String dishName, double dishCost){
         this.dishName = dishName;
         this.dishCost = dishCost;
     }
