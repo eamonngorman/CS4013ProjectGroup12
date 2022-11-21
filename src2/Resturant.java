@@ -35,6 +35,17 @@ public class Resturant {
         return tables;
     }
 
+    //not nessacary, created a general object.toArray instead
+    // public Table[] getTablesArr() {
+    //     ArrayList<Table> temp = this.tables;
+    //     Table[] tablesArr = new Table[temp.size()];
+    //     for(Table t: temp){
+    //         tablesArr[temp.indexOf(t)] = t;
+    //     }
+
+    //     return tablesArr;
+    // }
+
     public ArrayList<Reservation> getReservations() {
         return reservations;
     }

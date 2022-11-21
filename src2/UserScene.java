@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,11 +7,18 @@ public class UserScene {
 
     private Scanner in;
     private Person user;
+    private Resturant restaurant;
 
     public UserScene() {
         in = new Scanner(System.in);
     }
 
+    /*
+     * for users
+     * we can use a hashmap with String userName as the key
+     * and Person person as the value
+     * this will require storing people in resturant
+     */
     public void runStart() {
         boolean more = true;
 
@@ -119,8 +128,6 @@ public class UserScene {
                 runStart();
             }
         }
-
-        String command = in.nextLine().toUpperCase();
     }
 
     private Object getChoice(ArrayList<Object> choices) {
@@ -137,5 +144,25 @@ public class UserScene {
             if (0 <= n && n < choices.size())
                 return choices.get(n);
         }
+    }
+
+    public void makeReservation() {
+
+        String date = in.nextLine();
+        System.out.println("What day would you like a reservation? (dd/mm/yyyy)");
+        String time = in.nextLine();
+        System.out.println("What time would you like your reservation? (hh:mm)");
+        String format = date + " " + time;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime formattedDate = LocalDateTime.parse(format, formatter);
+
+        int people = Integer.parseInt(in.nextLine());
+        System.out.println("How many people are coming?");
+
+        Table table = (getChoice(
+                restaurant.getFreeTables(people, formattedDate, formattedDate.plusHours(1).plusMinutes(30))));
+
+        Reservation r = new Reservation((Customer) user, people, formattedDate);
+
     }
 }

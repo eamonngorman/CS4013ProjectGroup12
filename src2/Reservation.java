@@ -8,6 +8,13 @@ public class Reservation {
     private LocalDateTime startTime;
     private LocalDateTime finishTime;
 
+    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime) {
+        this.customer = customer;
+        this.table = table;
+        this.numOfPeople = numOfPeople;
+        this.startTime = startTime;
+    }
+
     Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime, LocalDateTime finishTime) {
         this.customer = customer;
         this.table = table;
