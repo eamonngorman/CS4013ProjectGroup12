@@ -72,6 +72,7 @@ public class Resturant {
 
     public void addReservation(Reservation r) {
 
+        //make boolean return so that it can throw an error
         int flag = 0;
 
         for (Reservation reservation : reservations) {
@@ -93,7 +94,8 @@ public class Resturant {
         ArrayList<Table> bookedTable = new ArrayList<Table>();
 
         for (Reservation r : reservations) {
-            if (r.getStartTime().isAfter(start) && r.getStartTime().isBefore(finish)) {
+            if (r.getStartTime().compareTo(start) >= 0 &&
+            r.getStartTime().compareTo(finish) <= 0) {
                 bookedTable.add(r.getTable());
             }
         }
@@ -104,6 +106,22 @@ public class Resturant {
 
     public ArrayList<Table> getFreeTables(int partySize, LocalDateTime start, LocalDateTime finish) {
         ArrayList<Table> inUse = getBookedTables(start, finish);
+        ArrayList<Table> temp = tables;
+        temp.removeAll(inUse);
+        ArrayList<Table> freeTables = new ArrayList<Table>();
+
+        for (Table t : temp) {
+            if (t.getCanSeat() >= partySize) {
+                freeTables.add(t);
+            }
+        }
+
+        return freeTables;
+    }
+
+    public ArrayList<Table> getFreeTables(int partySize, LocalDateTime start) {
+
+        ArrayList<Table> inUse = getBookedTables(start, start.plusMinutes(Reservation.getReservationMinutes()));
         ArrayList<Table> temp = tables;
         temp.removeAll(inUse);
         ArrayList<Table> freeTables = new ArrayList<Table>();
