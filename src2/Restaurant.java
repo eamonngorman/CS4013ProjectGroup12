@@ -70,6 +70,8 @@ public class Restaurant {
         tables.remove(t);
     }
 
+    public void removeOrder(Order o) { orders.remove(o)}
+
     public void addReservation(Reservation r) {
 
         //make boolean return so that it can throw an error
