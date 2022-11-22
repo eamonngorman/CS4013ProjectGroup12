@@ -166,6 +166,31 @@ public class UserScene {
 
     }
 
+    public void addItemToOrder(){
+        ArrayList<Menu> menus = restaurant.getMenus();
+        System.out.println("Select menu to add item from: ");
+        Menu selectedMenu = getChoice(menus);
+
+        ArrayList<MenuCategory> menuCategories = selectedMenu.getCategories();
+        System.out.println(("Select category to add item from: "));
+        MenuCategory selectedCategory = getChoice(menuCategories);
+
+        ArrayList<MenuItem> menuItems = selectedCategory.getMenuItems();
+        System.out.println(("Select item to add to order: "));
+        MenuItem item = getChoice(menuItems);
+
+        ArrayList<Table> tables = restaurant.getTables();
+        System.out.println("Select table to add item to it's order: ");
+        Table table = getChoice(tables);
+        Order selectedOrder = table.getOrder();
+
+        for (Order order : restaurant.getOrders()){
+            if (order == selectedOrder){
+                order.addToOrder(item);
+            }
+        }
+    }
+
     public void deleteOrder(){
         System.out.println("Enter order number: ");
         int orderNumber = in.nextInt();
