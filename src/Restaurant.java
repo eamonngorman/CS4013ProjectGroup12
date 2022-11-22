@@ -50,6 +50,26 @@ public class Restaurant {
         return reservations;
     }
 
+    public ArrayList<Reservation> getReservationByCustomers(Customer cust) {
+        ArrayList<Reservation> resByCust = new ArrayList<Reservation>();
+        for(Reservation r: reservations){
+            if(r.getCustomer() == cust){
+                resByCust.add(r);
+            }
+        }
+        return resByCust;
+    }
+
+    public ArrayList<Reservation> getReservationByDay(LocalDate day) {
+        ArrayList<Reservation> resByDay = new ArrayList<Reservation>();
+        for(Reservation r: reservations){
+            if(r.getStartTime().toLocalDate() == day){
+                resByDay.add(r);
+            }
+        }
+        return resByDay;
+    }    
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
@@ -70,7 +90,11 @@ public class Restaurant {
         tables.remove(t);
     }
 
-    public void removeOrder(Order o) { orders.remove(o);}
+    public void removeOrder(Order o) { 
+        orders.remove(o);
+    
+    }
+
 
     public void addReservation(Reservation r) {
 

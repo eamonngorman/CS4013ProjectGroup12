@@ -3,6 +3,7 @@ public class MenuItem {
     private String itemName;
     private double itemCost;
 
+
     MenuItem(String itemName, double itemCost) {
         this.itemName = itemName;
         this.itemCost = itemCost;

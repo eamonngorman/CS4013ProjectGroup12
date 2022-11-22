@@ -120,13 +120,138 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println("A)Edit Restaurants  Q)uit");
+            System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
             if(command.equals("A")){
                 editResturants();
             }
             if(command.equals("Q")){
                 runStart();
             }
+        }
+    }
+
+
+    private void editStaff() {
+
+
+    }
+
+    private void editResturants() {
+        System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
+        String command = in.nextLine().toUpperCase();
+        if(command.equals("A")){
+            addResturants(); ;
+        }
+        if(command.equals("B")){
+            System.out.print("Set Name");
+        }
+        if(command.equals("C")) {
+            System.out.print("Find Restaurant");
+            ArrayList<String> restaurant = new ArrayList<String>();
+        }
+        if(command.equals("D")){
+            System.out.println("Get Name");
+        }
+        if(command.equals("Q")){
+            runStart();
+        }
+
+
+
+        }
+
+
+    private void editTables() {
+        System.out.println("A)dd R)emove");
+        String command = in.nextLine().toUpperCase();
+        if(command.equals("A")){
+            System.out.println("Enter number of seats");
+            int numSeats = in.nextInt();
+            System.out.println("Enter table number");
+            int tabNum = in.nextInt();
+            Table table = new Table(tabNum, numSeats);
+            restaurant.addTable(table);
+        }
+        if(command.equals("R")){
+            System.out.println("Select a table to remove")
+            Table table = getChoice(restaurant.getTables())
+            restaurant.removeTable(table);
+        }
+    }
+
+    private void editMenus() {
+        System.out.println("E)dit menu R)emove menu");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals ("E")){
+            System.out.println("Select a menu to edit");
+            Menu menus = getChoice(restaurant.getMenus());
+            editMenu(menus);
+        }
+        if (command.equals ("R")){
+            System.out.println("Select a menu to remove");
+            Menu menus = getChoice(restaurant.getMenus());
+            restaurant.removeMenu(menus);
+        }
+    }
+
+    private void editMenu(Menu menus){
+        ArrayList<MenuCategory> menuCategories = menus.getCategories();
+        System.out.println("E)dit category A)dd category R)emove category");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("E")){
+            System.out.println("Select a category to edit");
+            MenuCategory menuCat = getChoice(menuCategories);
+            editCats(menuCat);
+        }
+        if (command.equals("A")){
+            System.out.println("Enter Category Name");
+            String cat = in.nextLine();
+            MenuCategory menuCat = new MenuCategory(cat);
+            menus.addCategory(menuCat);
+        }
+        if (command.equals("R")){
+            System.out.println("Select a category to remove");
+            MenuCategory menuCat = getChoice(menuCategories);
+            menus.removeCategory(menuCat);
+        }
+    }
+
+    private void editCats(MenuCategory menuCat){
+        ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
+        System.out.println("E)dit Item A)dd Item R)emove Item");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("E")){
+            System.out.println("Select an item to edit");
+            MenuItem menuItem = getChoice(menuItems);
+            editItems(menuItem);
+        }
+        if (command.equals("A")){
+            System.out.println("Enter Item Name");
+            String item = in.nextLine();
+            System.out.println("Enter Item Price");
+            Double price = in.nextDouble();
+            MenuItem menuItem = new MenuItem(item, price);
+            menuCat.addMenuItem(menuItem);
+        }
+        if (command.equals("R")){
+            System.out.println("Select an item to remove");
+            MenuItem menuItem = getChoice(menuItems);
+            menuCat.removeMenuItem(menuItem);
+        }
+    }
+
+    private void editItems(MenuItem menuItem){
+        System.out.println("Change N)ame P)rice");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("N")){
+            System.out.println("Enter New Name");
+            String name = in.nextLine();
+            menuItem.setItemName(name);
+        }
+        if (command.equals("P")){
+            System.out.println("Enter New Price");
+            Double price = in.nextDouble();
+            menuItem.setItemCost(price);
         }
     }
 
@@ -147,21 +272,21 @@ public class UserScene {
         }
     }
 
-    private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
-        if (choices.length == 0)
-            return null;
-        while (true) {
-            char c = 'A';
-            for (String choice : choices) {
-                System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
-                c++;
-            }
-            String input = in.nextLine();
-            int n = input.toUpperCase().charAt(0) - 'A';
-            if (0 <= n && n < choices.length)
-                return choices[n];
-        }
-    }
+    // private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
+    //     if (choices.length == 0)
+    //         return null;
+    //     while (true) {
+    //         char c = 'A';
+    //         for (String choice : choices) {
+    //             System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+    //             c++;
+    //         }
+    //         String input = in.nextLine();
+    //         int n = input.toUpperCase().charAt(0) - 'A';
+    //         if (0 <= n && n < choices.length)
+    //             return choices[n];
+    //     }
+    // }
 
     public void makeReservation() {
 
@@ -184,7 +309,7 @@ public class UserScene {
 
     public void addItemToOrder(){
         MenuItem item = selectItem();
-        Order selectedOrder = selectOrderFromTable()
+        Order selectedOrder = selectOrderFromTable();
 
         for (Order order : restaurant.getOrders()){
             if (order == selectedOrder){
@@ -202,8 +327,6 @@ public class UserScene {
                 order.removeFromOrder(item);
             }
         }
-
-
     }
 
     public MenuItem selectItem(){
@@ -260,7 +383,30 @@ public class UserScene {
     }
 
     public void deleteReservationCustomer(){
-        System.out.println("What reservation would you like to remove");
-        getChoice(re)
+        System.out.println("What reservation would you like to remove?");
+        Reservation r = getChoice(restaurant.getReservationByCustomers((Customer)user));
+        restaurant.removeReservation(r);
+        System.out.println("Reservation Removed");
+    }
+
+    public void deleteReservationStaff(){
+        String date = in.nextLine();
+        System.out.println("What day is the reservation? (dd/mm/yyyy)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate formattedDate = LocalDate.parse(date, formatter);
+
+        Reservation r = getChoice(restaurant.getReservationByDay(formattedDate));
+        restaurant.removeReservation(r);
+    }
+
+    public void finishOrder(){
+        
+        System.out.println("Which order would you like to complete?:");
+        Order o = getChoice(resturant.getOrders());
+        //save to csv
+
+        restaurant.removeOrder(o);
+        table.changeAvailablity();
+        
     }
 }
