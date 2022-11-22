@@ -50,6 +50,16 @@ public class Restaurant {
         return reservations;
     }
 
+    public ArrayList<Reservation> getReservationByCustomers(Customer cust) {
+        ArrayList<Reservation> resByCust = new ArrayList<Reservation>();
+        for(Reservation r: reservations){
+            if(r.getCustomer() == cust){
+                resByCust.add(r);
+            }
+        }
+        return resByCust;
+    }
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
