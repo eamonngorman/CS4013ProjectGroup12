@@ -226,7 +226,23 @@ public class UserScene {
     }
 
     public void deleteReservationCustomer(){
-        System.out.println("What reservation would you like to remove");
-        getChoice(re)
+        System.out.println("What reservation would you like to remove?");
+        Reservation r = getChoice(restaurant.getReservationByCustomers((Customer)user));
+        restaurant.removeReservation(r);
+        System.out.println("Reservation Removed");
+    }
+
+    public void deleteReservationStaff(){
+        String date = in.nextLine();
+        System.out.println("What day is the reservation? (dd/mm/yyyy)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate formattedDate = LocalDate.parse(date, formatter);
+
+        Reservation r = getChoice(restaurant.getReservationByDay(formattedDate));
+        restaurant.removeReservation(r);
+    }
+
+    public void finishOrder(){
+        
     }
 }
