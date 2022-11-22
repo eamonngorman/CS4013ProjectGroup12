@@ -121,7 +121,7 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println("A)Edit Restaurants  Q)uit");
+            System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
             if(command.equals("A")){
                 editResturants();
             }
@@ -130,6 +130,37 @@ public class UserScene {
             }
         }
     }
+
+
+    private void editStaff() {
+
+
+    }
+
+    private void editResturants() {
+        System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
+        String command = in.nextLine().toUpperCase();
+        if(command.equals("A")){
+            editResturants(); ;
+        }
+        if(command.equals("B")){
+            System.out.print("Set Name");
+        }
+        if(command.equals("C")) {
+            System.out.print("Find Restaurant");
+            ArrayList<String> restaurant = new ArrayList<String>();
+        }
+        if(command.equals("D")){
+            System.out.println("Get Name");
+        }
+        if(command.equals("Q")){
+            runStart();
+        }
+
+
+
+        }
+
 
     private void editTables() {
         System.out.println("A)dd R)emove");
@@ -172,6 +203,7 @@ public class UserScene {
             menuCategory.removeMenuItem(item);
         }
     }
+
 
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
         if (choices.size() == 0)
