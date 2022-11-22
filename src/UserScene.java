@@ -130,22 +130,23 @@ public class UserScene {
             }
         }
     }
-    
+
     private void editTables() {
         System.out.println("A)dd R)emove");
+        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             System.out.println("Enter number of seats");
-            int numSeats = in.nextLine();
+            int numSeats = in.nextInt();
             System.out.println("Enter table number");
-            int tabNum = in.nextLine();
+            int tabNum = in.nextInt();
             Table table = new Table(tabNum, numSeats);
             restaurant.addTable(table);
         }
         if(command.equals("R")){
             System.out.println("Enter number of seats");
-            int numSeats = in.nextLine();
+            int numSeats = in.nextInt();
             System.out.println("Enter table number");
-            int tabNum = in.nextLine();
+            int tabNum = in.nextInt();
             Table table = new Table(tabNum, numSeats);
             restaurant.removeTable(table);
         }
@@ -153,11 +154,12 @@ public class UserScene {
 
     private void editMenus() {
         System.out.println("A)dd Item R)emove Item");
+        String command = in.nextLine().toUpperCase();
         if (command.equals ("A")){
             System.out.println("Enter dish name");
             String dishName = in.nextLine();
             System.out.println("Enter dish cost");
-            double dishCost = in.nextLine();
+            double dishCost = in.nextDouble();
             MenuItem item = new MenuItem(dishName, dishCost);
             menuCategory.addMenuItem(item);
         }
