@@ -68,7 +68,15 @@ public class Order {
         fileWriter.write(line.toString());
     }
 
-    public void printBill (){  //method to print the bill. will only show tip after the bill has been paid
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String[] getStatuses() {
+        return statuses;
+    }
+
+    public void printBill(){  //method to print the bill. will only show tip after the bill has been paid
         double beforeTip = totalCost;
         totalCost += tip;
         System.out.println("Yum Restaurant");

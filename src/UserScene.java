@@ -8,6 +8,7 @@ public class UserScene {
     private Scanner in;
     private Person user;
     private Restaurant restaurant;
+    private MenuCategory menuCategory;
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -130,6 +131,7 @@ public class UserScene {
         }
     }
 
+
     private void editStaff() {
 
 
@@ -160,6 +162,49 @@ public class UserScene {
         }
 
 
+    private void editTables() {
+        System.out.println("A)dd R)emove");
+        String command = in.nextLine().toUpperCase();
+        if(command.equals("A")){
+            System.out.println("Enter number of seats");
+            int numSeats = in.nextInt();
+            System.out.println("Enter table number");
+            int tabNum = in.nextInt();
+            Table table = new Table(tabNum, numSeats);
+            restaurant.addTable(table);
+        }
+        if(command.equals("R")){
+            System.out.println("Enter number of seats");
+            int numSeats = in.nextInt();
+            System.out.println("Enter table number");
+            int tabNum = in.nextInt();
+            Table table = new Table(tabNum, numSeats);
+            restaurant.removeTable(table);
+        }
+    }
+
+    private void editMenus() {
+        System.out.println("A)dd Item R)emove Item");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals ("A")){
+            System.out.println("Enter dish name");
+            String dishName = in.nextLine();
+            System.out.println("Enter dish cost");
+            double dishCost = in.nextDouble();
+            MenuItem item = new MenuItem(dishName, dishCost);
+            menuCategory.addMenuItem(item);
+        }
+        if (command.equals ("R")){
+            System.out.println("Enter dish name");
+            String dishName = in.nextLine();
+            System.out.println("Enter dish cost");
+            double dishCost = in.nextLine();
+            MenuItem item = new MenuItem(dishName, dishCost);
+            menuCategory.removeMenuItem(item);
+        }
+    }
+
+
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
         if (choices.size() == 0)
             return null;
@@ -173,6 +218,22 @@ public class UserScene {
             int n = input.toUpperCase().charAt(0) - 'A';
             if (0 <= n && n < choices.size())
                 return choices.get(n);
+        }
+    }
+
+    private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
+        if (choices.length == 0)
+            return null;
+        while (true) {
+            char c = 'A';
+            for (String choice : choices) {
+                System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+                c++;
+            }
+            String input = in.nextLine();
+            int n = input.toUpperCase().charAt(0) - 'A';
+            if (0 <= n && n < choices.length)
+                return choices[n];
         }
     }
 
@@ -197,7 +258,7 @@ public class UserScene {
 
     public void addItemToOrder(){
         MenuItem item = selectItem();
-        Order selectedOrder = selectOrderFromTable()
+        Order selectedOrder = selectOrderFromTable();
 
         for (Order order : restaurant.getOrders()){
             if (order == selectedOrder){
@@ -215,8 +276,6 @@ public class UserScene {
                 order.removeFromOrder(item);
             }
         }
-
-
     }
 
     public MenuItem selectItem(){
@@ -254,8 +313,49 @@ public class UserScene {
         }
     }
 
+    public void updateOrderStatus(){
+        Order selectedOrder = selectOrderFromTable();
+        String status = getChoice(selectedOrder.getStatuses());
+        selectedOrder.setOrderStatus(status);
+    }
+
+    public void seeOrders(){
+        ArrayList<Order> orders = restaurant.getOrders();
+        if (orders.size() == 0) {
+            return;
+        }
+        char c = 'A';
+        for (Object order : orders) {
+            System.out.println("\n" + c + ") \n" + orders.toString() + "\n");
+            c++;
+        }
+    }
+
     public void deleteReservationCustomer(){
-        System.out.println("What reservation would you like to remove");
-        getChoice(re)
+        System.out.println("What reservation would you like to remove?");
+        Reservation r = getChoice(restaurant.getReservationByCustomers((Customer)user));
+        restaurant.removeReservation(r);
+        System.out.println("Reservation Removed");
+    }
+
+    public void deleteReservationStaff(){
+        String date = in.nextLine();
+        System.out.println("What day is the reservation? (dd/mm/yyyy)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate formattedDate = LocalDate.parse(date, formatter);
+
+        Reservation r = getChoice(restaurant.getReservationByDay(formattedDate));
+        restaurant.removeReservation(r);
+    }
+
+    public void finishOrder(){
+        
+        System.out.println("Which order would you like to complete?:");
+        Order o = getChoice(resturant.getOrders());
+        //save to csv
+
+        restaurant.removeOrder(o);
+        table.changeAvailablity();
+        
     }
 }
