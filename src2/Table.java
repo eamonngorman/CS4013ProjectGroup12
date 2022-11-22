@@ -34,7 +34,11 @@ public class Table {
     }
 
     public void addTableToCsv() throws IOException{
-
+        StringBuilder line = new StringBuilder();
+        line.append(tableNum + ",");
+        line.append(canSeat);
+        line.append("\n");
+        fileWriter.write(line.toString());
     }
 
     public void changeAvailablity(){
