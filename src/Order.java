@@ -1,51 +1,82 @@
-/*import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Order {
-    private static int count = 0;
-    private int orderNumber;
-    int deleteOrder;
-    private int tableNum;
-    private ArrayList<FoodItem> items;
+
+    private int count = 0;
+    private int orderId;
+    private ArrayList<MenuItem> itemsInOrder;
+    private double totalCost;
+    private double tip;
+    private boolean isPaid;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
 
 
-    public Order(int tableNum){
-        this.orderNumber = ++count;
+    File ordersCSV = new File("Orders.csv");
+    FileWriter fileWriter = new FileWriter(ordersCSV);
+
+    Order(){
+        this.orderId = ++count;
         this.orderStatus = statuses[0];
-        this.tableNum = tableNum;
-        // I'm assuming we're leaving the first entry in tables as null for convenience
-        Restaurant.getTables().get(tableNum).setCurrentOrder(this);
-        Restaurant.getRestaurantOrders().put(this.orderNumber, this);
+        this.itemsInOrder = new ArrayList<MenuItem>();
+        this.totalCost = 0;
+
     }
 
-
-    public int getOrderNumber() {
-        return orderNumber;
+    public void setTip(double tip){
+        this.tip = tip;
+    }
+    public void setPaid(boolean paid){
+        isPaid = paid;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public ArrayList<MenuItem> getItems() {
+        return itemsInOrder;
     }
 
-    public String[] getStatuses() {
-        return statuses;
+    public double getTotal() {
+        return totalCost;
     }
 
-    public ArrayList<FoodItem> getOrder() {
-        return items;
+    public void addToOrder(MenuItem item) {
+        itemsInOrder.add(item);
+        totalCost += item.getItemCost();
     }
 
-    public void addItemToOrder(FoodItem item) {
-        this.items.add(item);
+    public void removeFromOrder(MenuItem item) {
+        itemsInOrder.remove(item);
+        totalCost -= item.getItemCost();
     }
 
-    public void removeItemFromOrder(FoodItem item) {
-        this.items.remove(item);
+    public void addOrderToCSv() throws IOException {
+        StringBuilder line = new StringBuilder();
+        String listString = "";
+        for (MenuItem m : itemsInOrder){
+            listString += m + "; ";
+        }
+        line.append(orderId + ",");
+        line.append(listString + ",");
+        line.append(totalCost);
+        line.append("\n");
+        fileWriter.write(line.toString());
+    }
+
+    public void printBill (){  //method to print the bill. will only show tip after the bill has been paid
+        double beforeTip = totalCost;
+        totalCost += tip;
+        System.out.println("Yum Restaurant");
+        System.out.println(itemsInOrder);
+        System.out.println("Total: " + beforeTip);
+        if (isPaid == true){
+            System.out.println("Tip: " + tip);
+            System.out.println("Grand Total: " + totalCost);
+        }
     }
 }
-*/

@@ -1,44 +1,61 @@
-/*public class Table {
-    private int tableNo;
-    //private int tableCounter = 1;
-    private boolean isCurrentlyAvailable = false;
-    private int canSeatXCustomers;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Table {
+    private int tableNum;
+    private int canSeat;
+    private boolean isAvailable;
     private Order currentOrder;
 
-    Table(int tableNumn, int canSeatXCustomers) {
-        this.canSeatXCustomers = canSeatXCustomers;
-        this.tableNo = tableNumn;
-        //this.tableCounter++;
+    File tablesCSV = new File("Tables.csv");
+    FileWriter fileWriter = new FileWriter(tablesCSV);
+
+    Table(int tableNum, int canSeat){
+        this.tableNum = tableNum;
+        this.canSeat = canSeat;
+        this.currentOrder = new Order();
     }
 
-    //private boolean isReserved;
-    public boolean isCurrentlyAvailable() {
-        return isCurrentlyAvailable;
+    public void setTableNum(int tableNum){
+        this.tableNum = tableNum;
     }
 
-    public void setCurrentlyAvailable(boolean currentlyAvailable) {
-        isCurrentlyAvailable = currentlyAvailable;
+    public int getTableNum(){
+        return tableNum;
     }
 
-    public int getTableNo() {
-        return tableNo;
+    public void setCanSeat(int canSeat){
+        this.canSeat = canSeat;
     }
 
-    public void setCurrentOrder(Order currentOrder) {
-        this.currentOrder = currentOrder;
+    public int getCanSeat(){
+        return canSeat;
     }
 
-    public int getNumSeats() {
-        return canSeatXCustomers;
+    public void addTableToCsv() throws IOException{
+        StringBuilder line = new StringBuilder();
+        line.append(tableNum + ",");
+        line.append(canSeat);
+        line.append("\n");
+        fileWriter.write(line.toString());
     }
 
-    public String toString() {
-
-        String print = "Table: " + getTableNo() + "\n" +
-                "Can seat: " + getNumSeats() + "\n";
-
-        return print;
+    public void changeAvailablity(){
+        if(isAvailable){
+            this.isAvailable = false;
+        } else {
+            this.isAvailable = true;
+        }
     }
+
+    public boolean getAvailablity(){
+        return isAvailable;
+    }
+
+    public Order getOrder(){
+        return currentOrder;
+    }
+
 
 }
-*/

@@ -1,15 +1,9 @@
-/*import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Menu {
-
-    private ArrayList<FoodCategory> menuCategories;
-    //private HashMap<String, Double> menuCost = new HashMap<String, Double>();
+    private ArrayList<MenuCategory> menuCategories;
     private String menuName;
 
-    // public void menuAdder(String category, String dishName, double dishCost){
-    //     FoodItem addToMenu = new FoodItem(category, dishName, dishCost);
-    //     menuCost.put(addToMenu.getDishName(), addToMenu.getDishCost());
     Menu() {
         this.menuName = "Menu";
     }
@@ -26,19 +20,15 @@ public class Menu {
         this.menuName = menuName;
     }
 
-    public void categoryAdder(FoodCategory category) {
+    public void addCategory(MenuCategory category) {
         menuCategories.add(category);
     }
 
-    public ArrayList<FoodCategory> getMenuCategories() {
+    public void removeCategory(MenuCategory category) {
+        menuCategories.remove(category);
+    }
+
+    public ArrayList<MenuCategory> getCategories() {
         return menuCategories;
     }
 }
-
-//     //what is this for?
-//     public void menuAdder(String category, String dishName, double dishCost) {
-//         FoodItem addToMenu = new FoodItem(category, dishName, dishCost);
-//         menuCost.put(addToMenu.getDishName(), addToMenu.getDishCost());
-//     }
-
-// }*/

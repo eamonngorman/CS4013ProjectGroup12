@@ -1,72 +1,83 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class Reservation {
-    private static int count = 0; //what is this for
 
-    private int reservationId;
-    private LocalDateTime startTime;
-    private LocalDateTime finishTime;
-    private Table table;
     private Customer customer;
-    private int numPeople;
+    private Table table;
+    private int numOfPeople; // not needed?
+    private LocalDateTime startTime;
+    private static int reservationMinutes = 90;
+    private LocalDateTime finishTime;
+    File reservationsCSV = new File("Reservations.csv");
+    FileWriter fileWriter = new FileWriter(reservationsCSV);
 
-    public Reservation(Table table, Customer customer) {
-        this.table = table;
+    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime){
         this.customer = customer;
-    }
-
-    public Reservation(LocalDateTime startTime, Customer customer, int numPeople, Table table) {
+        this.table = table;
+        this.numOfPeople = numOfPeople;
         this.startTime = startTime;
-        this.finishTime = startTime.plusHours(2);
-        this.customer = customer;
+        this.finishTime = startTime.plusMinutes(reservationMinutes);
+    }
+
+    Reservation(Table table, LocalDateTime startTime) {
         this.table = table;
-        //this.phoneNumber = phoneNumber;
-        this.numPeople = numPeople;
-        //this.tableNum = tableNum;
-        // The following code might be error prone, we may have to protect against errors like reservations having the same id
-        this.reservationId = ++count;
-    }
-
-    public LocalDateTime getTimeStart() {
-        return startTime;
-    }
-
-    public LocalDateTime getTimeFinish() {
-        return finishTime;
-    }
-
-    public void sendReminderToCustomer() {
-
+        this.startTime = startTime;
+        this.finishTime = startTime.plusMinutes(reservationMinutes);
     }
 
     public Customer getCustomer() {
         return customer;
     }
 
-    public LocalDateTime getstartTime() {
+    public Table getTable() {
+        return table;
+    }
+
+    public int getNumOfPeople() {
+        return numOfPeople;
+    }
+
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public int getReservationId() {
-        return reservationId;
+    public LocalDateTime getFinishTime() {
+        return finishTime;
+    }
+    public void addReservationToCsv() throws IOException{
+        StringBuilder line = new StringBuilder();
+        line.append(customer + ",");
+        line.append(table + ",");
+        line.append(numOfPeople + ",");
+        line.append(startTime + ",");
+        line.append(finishTime);
+        line.append("\n");
+        fileWriter.write(line.toString());
     }
 
-    public boolean isAvailable(Reservation reservationToCheck){
-        if(table.equals(reservationToCheck.table)){
-            return false;
-        } else if (reservationToCheck.startTime.compareTo(startTime) == 0 ||
-                    reservationToCheck.startTime.compareTo(startTime) == -1){
-            return false;
-        } else if (reservationToCheck.finishTime.compareTo(finishTime) == 0 ||
-        reservationToCheck.finishTime.compareTo(finishTime) == 1){
-            return false;
-        } else {
-            return true;
+    public static int getReservationMinutes() {
+        return reservationMinutes;
+    }
+
+    public void setReservationMinutes(int minutes) {
+        this.reservationMinutes = minutes;
+    }
+
+    // true = is available
+    // false = not available
+    public boolean isAvailable(Reservation r) {
+
+        if (r.startTime.compareTo(this.startTime) >= 0 &&
+                r.startTime.compareTo(this.finishTime) <= 0) {
+            if (this.table.equals(r.table)) {
+                return false;
+            } 
         }
+        return true;
     }
 
-    public void changeTableStatus() {
-        // 1 hour(or more suitable time interval) before table is due to have a
-        // reservation turn it's isAvailable variable from true to false
-    }
+    
 }

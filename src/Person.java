@@ -1,37 +1,36 @@
-import java.time.LocalDate;
-
 public class Person {
+    
     private String name;
-    private LocalDate dateOfBirth; //why do we need this?
-    // private String id; StaffId and CustomerId are separate
-    private String phoneNumber;
+    private int accessLevel;
+    private int idNum;
 
-    Person(String name, String phoneNumber) {
+    Person(String name, int accessLevel) {
         this.name = name;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
+        this.accessLevel = accessLevel;
+        //need a way to create a unique ID number for every created person
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setAccessLevel(int accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setIdNum(int idNum) {
+        this.idNum = idNum;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAccessLevel() {
+        return accessLevel;
+    }
+
+    public int getIdNum() {
+        return idNum;
     }
 }
