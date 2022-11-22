@@ -9,7 +9,7 @@ public class Order {
     private boolean isPaid;
 
     Order() {
-        this.orderId = 123; //need way to create unique id
+        this.orderId = 123; //need way to create unique id....  could do random number. add it to arraylist and whenever creating new order id check if its in the arraylist. would create unneccery clog though
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
     }
