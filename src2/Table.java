@@ -3,7 +3,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Table {
-
     private int tableNum;
     private int canSeat;
     private boolean isAvailable;
