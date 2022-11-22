@@ -143,11 +143,8 @@ public class UserScene {
             restaurant.addTable(table);
         }
         if(command.equals("R")){
-            System.out.println("Enter number of seats");
-            int numSeats = in.nextInt();
-            System.out.println("Enter table number");
-            int tabNum = in.nextInt();
-            Table table = new Table(tabNum, numSeats);
+            System.out.println("Select a table to remove")
+            Table table = getChoice(restaurant.getTables())
             restaurant.removeTable(table);
         }
     }
