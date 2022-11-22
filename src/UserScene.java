@@ -8,7 +8,6 @@ public class UserScene {
     private Scanner in;
     private Person user;
     private Restaurant restaurant;
-    private MenuCategory menuCategory;
 
     public UserScene() {
         in = new Scanner(System.in);
