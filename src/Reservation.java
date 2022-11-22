@@ -1,13 +1,18 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Reservation {
 
     private Customer customer;
+    private int reservationId;
     private Table table;
     private int numOfPeople; // not needed?
+    private LocalDate date;
+    private LocalTime start;
     private LocalDateTime startTime;
     private static int reservationMinutes = 90;
     private LocalDateTime finishTime;
@@ -20,6 +25,7 @@ public class Reservation {
         this.numOfPeople = numOfPeople;
         this.startTime = startTime;
         this.finishTime = startTime.plusMinutes(reservationMinutes);
+        this.date = startTime.toLocalDate();
     }
 
     Reservation(Table table, LocalDateTime startTime) {
@@ -36,8 +42,16 @@ public class Reservation {
         return table;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public int getNumOfPeople() {
         return numOfPeople;
+    }
+
+    public LocalTime getStart() {
+        return start;
     }
 
     public LocalDateTime getStartTime() {
@@ -60,6 +74,10 @@ public class Reservation {
 
     public static int getReservationMinutes() {
         return reservationMinutes;
+    }
+
+    public int getReservationId() {
+        return reservationId;
     }
 
     public void setReservationMinutes(int minutes) {

@@ -9,7 +9,7 @@ public class Order {
     private int orderId;
     private ArrayList<MenuItem> itemsInOrder;
     private double totalCost;
-    private double tip;
+    private double gratuity;
     private boolean isPaid;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
@@ -74,6 +74,14 @@ public class Order {
 
     public String[] getStatuses() {
         return statuses;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public double getGratuity() {
+        return gratuity;
     }
 
     public void printBill(){  //method to print the bill. will only show tip after the bill has been paid
