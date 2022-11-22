@@ -138,10 +138,10 @@ public class UserScene {
     }
 
     private void editResturants() {
-        System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
+        System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
-            editResturants(); ;
+            addResturants(); ;
         }
         if(command.equals("B")){
             System.out.print("Set Name");
@@ -221,21 +221,21 @@ public class UserScene {
         }
     }
 
-    private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
-        if (choices.length == 0)
-            return null;
-        while (true) {
-            char c = 'A';
-            for (String choice : choices) {
-                System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
-                c++;
-            }
-            String input = in.nextLine();
-            int n = input.toUpperCase().charAt(0) - 'A';
-            if (0 <= n && n < choices.length)
-                return choices[n];
-        }
-    }
+    // private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
+    //     if (choices.length == 0)
+    //         return null;
+    //     while (true) {
+    //         char c = 'A';
+    //         for (String choice : choices) {
+    //             System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+    //             c++;
+    //         }
+    //         String input = in.nextLine();
+    //         int n = input.toUpperCase().charAt(0) - 'A';
+    //         if (0 <= n && n < choices.length)
+    //             return choices[n];
+    //     }
+    // }
 
     public void makeReservation() {
 
