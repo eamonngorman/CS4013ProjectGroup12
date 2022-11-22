@@ -1,4 +1,4 @@
-import java.time.LocalDateTime;
+/*import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +25,7 @@ public class Restaurant {
         return tables;
     }
 
-    public static HashMap<Integer, Order> getRestaurantOrders() {
+    public static HashMap<Integer, Order> getOrders() {
         return restaurantOrders;
     }
 
@@ -82,3 +82,4 @@ public class Restaurant {
         return staff;
     }
 }
+*/

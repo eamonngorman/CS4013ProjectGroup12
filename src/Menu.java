@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Menu {
@@ -29,6 +29,10 @@ public class Menu {
     public void categoryAdder(FoodCategory category) {
         menuCategories.add(category);
     }
+
+    public ArrayList<FoodCategory> getMenuCategories() {
+        return menuCategories;
+    }
 }
 
 //     //what is this for?
@@ -37,4 +41,4 @@ public class Menu {
 //         menuCost.put(addToMenu.getDishName(), addToMenu.getDishCost());
 //     }
 
-// }
+// }*/

@@ -1,4 +1,4 @@
-public class Table {
+/*public class Table {
     private int tableNo;
     //private int tableCounter = 1;
     private boolean isCurrentlyAvailable = false;
@@ -41,3 +41,4 @@ public class Table {
     }
 
 }
+*/
