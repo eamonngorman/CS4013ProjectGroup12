@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Order {
@@ -6,7 +9,10 @@ public class Order {
     private ArrayList<MenuItem> itemsInOrder;
     private double totalCost;
 
-    Order() {
+    File ordersCSV = new File("Orders.csv");
+    FileWriter fileWriter = new FileWriter(ordersCSV);
+
+    Order() throws IOException {
         this.orderId = 123; //need way to create unique id
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
@@ -32,5 +38,13 @@ public class Order {
     public void removeFromOrder(MenuItem item) {
         itemsInOrder.remove(item);
         totalCost -= item.getItemCost();
+    }
+
+    public void addOrderToCSv() throws IOException {
+        StringBuilder line = new StringBuilder();
+        line.append(orderId + ",");
+        line.append(itemsInOrder + ",");
+        line.append(totalCost);
+        fileWriter.write(line.toString());
     }
 }
