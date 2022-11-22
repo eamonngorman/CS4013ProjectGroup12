@@ -1,11 +1,16 @@
-public class Table {
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
+public class Table {
     private int tableNum;
     private int canSeat;
     private boolean isAvailable;
     private Order currentOrder;
+    File tablesCSV = new File("Tables.csv");
+    FileWriter fileWriter = new FileWriter(tablesCSV);
 
-    Table(int tableNum, int canSeat){
+    Table(int tableNum, int canSeat) throws IOException{
         this.tableNum = tableNum;
         this.canSeat = canSeat;
         this.currentOrder = new Order();
@@ -27,6 +32,14 @@ public class Table {
         return canSeat;
     }
 
+    public void addTableToCsv() throws IOException{
+        StringBuilder line = new StringBuilder();
+        line.append(tableNum + ",");
+        line.append(canSeat);
+        line.append("\n");
+        fileWriter.write(line.toString());
+    }
+
     public void changeAvailablity(){
         if(isAvailable){
             this.isAvailable = false;
@@ -42,4 +55,6 @@ public class Table {
     public Order getOrder(){
         return currentOrder;
     }
+
+
 }

@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Resturant {
+public class Restaurant {
 
     private String name;
     private ArrayList<Menu> menus;
@@ -10,7 +10,7 @@ public class Resturant {
     private ArrayList<Order> orders;
     private ArrayList<Person> people;
 
-    Resturant(String name) {
+    Restaurant(String name) {
         this.name = name;
         this.menus = new ArrayList<Menu>();
         this.tables = new ArrayList<Table>();
