@@ -247,6 +247,18 @@ public class UserScene {
         selectedOrder.setOrderStatus(status);
     }
 
+    public void seeOrders(){
+        ArrayList<Order> orders = restaurant.getOrders();
+        if (orders.size() == 0) {
+            return;
+        }
+        char c = 'A';
+        for (Object order : orders) {
+            System.out.println("\n" + c + ") \n" + orders.toString() + "\n");
+            c++;
+        }
+    }
+
     public void deleteReservationCustomer(){
         System.out.println("What reservation would you like to remove?");
         Reservation r = getChoice(restaurant.getReservationByCustomers((Customer)user));
