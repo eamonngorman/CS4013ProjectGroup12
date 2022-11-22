@@ -7,7 +7,7 @@ public class UserScene {
 
     private Scanner in;
     private Person user;
-    private Resturant restaurant;
+    private Restaurant restaurant;
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -164,5 +164,16 @@ public class UserScene {
 
         Reservation r = new Reservation((Customer) user, people, formattedDate);
 
+    }
+    public void deleteOrder(){
+        System.out.println("Enter order number: ");
+        int orderNumber = in.nextInt();
+        ArrayList<Order> orders = restaurant.getOrders();
+        for (Order order: orders){
+            if (order.getOrderId() == orderNumber){
+                order = null;
+                return;
+            }
+        }
     }
 }
