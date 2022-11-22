@@ -8,7 +8,6 @@ public class UserScene {
     private Scanner in;
     private Person user;
     private Restaurant restaurant;
-    private MenuCategory menuCategory;
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -174,33 +173,85 @@ public class UserScene {
             restaurant.addTable(table);
         }
         if(command.equals("R")){
-            System.out.println("Enter number of seats");
-            int numSeats = in.nextInt();
-            System.out.println("Enter table number");
-            int tabNum = in.nextInt();
-            Table table = new Table(tabNum, numSeats);
+            System.out.println("Select a table to remove")
+            Table table = getChoice(restaurant.getTables())
             restaurant.removeTable(table);
         }
     }
 
     private void editMenus() {
-        System.out.println("A)dd Item R)emove Item");
+        System.out.println("E)dit menu R)emove menu");
         String command = in.nextLine().toUpperCase();
-        if (command.equals ("A")){
-            System.out.println("Enter dish name");
-            String dishName = in.nextLine();
-            System.out.println("Enter dish cost");
-            double dishCost = in.nextDouble();
-            MenuItem item = new MenuItem(dishName, dishCost);
-            menuCategory.addMenuItem(item);
+        if (command.equals ("E")){
+            System.out.println("Select a menu to edit");
+            Menu menus = getChoice(restaurant.getMenus());
+            editMenu(menus);
         }
         if (command.equals ("R")){
-            System.out.println("Enter dish name");
-            String dishName = in.nextLine();
-            System.out.println("Enter dish cost");
-            double dishCost = in.nextLine();
-            MenuItem item = new MenuItem(dishName, dishCost);
-            menuCategory.removeMenuItem(item);
+            System.out.println("Select a menu to remove");
+            Menu menus = getChoice(restaurant.getMenus());
+            restaurant.removeMenu(menus);
+        }
+    }
+
+    private void editMenu(Menu menus){
+        ArrayList<MenuCategory> menuCategories = menus.getCategories();
+        System.out.println("E)dit category A)dd category R)emove category");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("E")){
+            System.out.println("Select a category to edit");
+            MenuCategory menuCat = getChoice(menuCategories);
+            editCats(menuCat);
+        }
+        if (command.equals("A")){
+            System.out.println("Enter Category Name");
+            String cat = in.nextLine();
+            MenuCategory menuCat = new MenuCategory(cat);
+            menus.addCategory(menuCat);
+        }
+        if (command.equals("R")){
+            System.out.println("Select a category to remove");
+            MenuCategory menuCat = getChoice(menuCategories);
+            menus.removeCategory(menuCat);
+        }
+    }
+
+    private void editCats(MenuCategory menuCat){
+        ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
+        System.out.println("E)dit Item A)dd Item R)emove Item");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("E")){
+            System.out.println("Select an item to edit");
+            MenuItem menuItem = getChoice(menuItems);
+            editItems(menuItem);
+        }
+        if (command.equals("A")){
+            System.out.println("Enter Item Name");
+            String item = in.nextLine();
+            System.out.println("Enter Item Price");
+            Double price = in.nextDouble();
+            MenuItem menuItem = new MenuItem(item, price);
+            menuCat.addMenuItem(menuItem);
+        }
+        if (command.equals("R")){
+            System.out.println("Select an item to remove");
+            MenuItem menuItem = getChoice(menuItems);
+            menuCat.removeMenuItem(menuItem);
+        }
+    }
+
+    private void editItems(MenuItem menuItem){
+        System.out.println("Change N)ame P)rice");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("N")){
+            System.out.println("Enter New Name");
+            String name = in.nextLine();
+            menuItem.setItemName(name);
+        }
+        if (command.equals("P")){
+            System.out.println("Enter New Price");
+            Double price = in.nextDouble();
+            menuItem.setItemCost(price);
         }
     }
 
