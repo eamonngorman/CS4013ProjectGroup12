@@ -73,4 +73,40 @@ public class CSVWriter {
             e.printStackTrace();
         }
     }
+
+    public void writeRestaurantToCSV(Restaurant restaurant){
+        PrintWriter printWriter;
+        try {
+            File file = new File("restaurants.csv");
+            printWriter = new PrintWriter(new FileWriter(file, true));
+            Scanner input = new Scanner(file);
+            StringBuffer csvData = new StringBuffer("");
+
+            if (!input.hasNext()){
+                StringBuffer header = new StringBuffer("");
+                header.append("RestaurantID, TableNo, Capacity\n");
+                printWriter.write(header.toString());
+            }
+            csvData.append(restaurant.getRestaurantId());
+            csvData.append(",");
+
+            for (Table table: restaurant.getTables()){
+                csvData.append(table.getTableNum());
+                csvData.append(",");
+                csvData.append(table.getCanSeat());
+                csvData.append(",");
+            }
+
+            csvData.append(",\n");
+
+            printWriter.write(csvData.toString());
+            printWriter.close();
+
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
