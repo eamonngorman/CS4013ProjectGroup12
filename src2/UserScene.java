@@ -45,7 +45,7 @@ public class UserScene {
 
         String command = in.nextLine().toUpperCase();
 
-        if (user.getAccessLevel() == 0){
+        if (user.getAccessLevel() == 0){ //Customer Menu
             System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
             if(command.equals("A")){
                 makeReservation();
@@ -130,7 +130,7 @@ public class UserScene {
         }
     }
 
-    private Object getChoice(ArrayList<Object> choices) {
+    private Object getChoice(ArrayList<Table> choices) {
         if (choices.size() == 0)
             return null;
         while (true) {
@@ -146,6 +146,23 @@ public class UserScene {
         }
     }
 
+    private Object getChoice(Object[] choices)
+   {
+      while (true)
+      {
+         char c = 'A';
+         for (Object choice : choices)
+         {
+            System.out.println(c + ") " + choice); 
+            c++;
+         }
+         String input = in.nextLine();
+         int n = input.toUpperCase().charAt(0) - 'A';
+         if (0 <= n && n < choices.length)
+            return choices[n];
+      }      
+   }
+
     public void makeReservation() {
 
         String date = in.nextLine();
@@ -159,10 +176,10 @@ public class UserScene {
         int people = Integer.parseInt(in.nextLine());
         System.out.println("How many people are coming?");
 
-        Table table = (getChoice(
-                restaurant.getFreeTables(people, formattedDate, formattedDate.plusHours(1).plusMinutes(30))));
+        Table table =  (Table) getChoice(restaurant.getFreeTables(people, formattedDate));
 
-        Reservation r = new Reservation((Customer) user, people, formattedDate);
+        Reservation r = new Reservation((Customer) user, table, people, formattedDate);
+        restaurant.addReservation(r);
 
     }
     public void deleteOrder(){
