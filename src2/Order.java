@@ -54,6 +54,7 @@ public class Order {
         line.append(orderId + ",");
         line.append(itemsInOrder + ",");
         line.append(totalCost);
+        line.append("\n");
         fileWriter.write(line.toString());
     }
 
