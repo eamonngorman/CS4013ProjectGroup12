@@ -167,6 +167,30 @@ public class UserScene {
     }
 
     public void addItemToOrder(){
+        MenuItem item = selectItem();
+        Order selectedOrder = selectOrderFromTable()
+
+        for (Order order : restaurant.getOrders()){
+            if (order == selectedOrder){
+                order.addToOrder(item);
+            }
+        }
+    }
+
+    public void removeItemFromOrder(){
+        MenuItem item = selectItem();
+        Order selectedOrder = selectOrderFromTable();
+
+        for (Order order : restaurant.getOrders()){
+            if (order == selectedOrder){
+                order.removeFromOrder(item);
+            }
+        }
+
+
+    }
+
+    public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
         System.out.println("Select menu to add item from: ");
         Menu selectedMenu = getChoice(menus);
@@ -178,17 +202,15 @@ public class UserScene {
         ArrayList<MenuItem> menuItems = selectedCategory.getMenuItems();
         System.out.println(("Select item to add to order: "));
         MenuItem item = getChoice(menuItems);
+        return item;
+    }
 
+    public Order selectOrderFromTable(){
         ArrayList<Table> tables = restaurant.getTables();
         System.out.println("Select table to add item to it's order: ");
         Table table = getChoice(tables);
-        Order selectedOrder = table.getOrder();
 
-        for (Order order : restaurant.getOrders()){
-            if (order == selectedOrder){
-                order.addToOrder(item);
-            }
-        }
+        return table.getOrder();
     }
 
     public void deleteOrder(){
