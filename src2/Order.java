@@ -5,19 +5,25 @@ import java.util.ArrayList;
 
 public class Order {
 
+    private int count = 0;
     private int orderId;
     private ArrayList<MenuItem> itemsInOrder;
     private double totalCost;
     private double tip;
     private boolean isPaid;
+    private String orderStatus;
+    private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
+
 
     File ordersCSV = new File("Orders.csv");
     FileWriter fileWriter = new FileWriter(ordersCSV);
 
     Order() throws IOException {
-        this.orderId = 123; //need way to create unique id
+        this.orderId = ++count;
+        this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
+
     }
 
     public void setTip(double tip){
@@ -51,8 +57,12 @@ public class Order {
 
     public void addOrderToCSv() throws IOException {
         StringBuilder line = new StringBuilder();
+        String listString = "";
+        for (MenuItem m : itemsInOrder){
+            listString += m + "; ";
+        }
         line.append(orderId + ",");
-        line.append(itemsInOrder + ",");
+        line.append(listString + ",");
         line.append(totalCost);
         line.append("\n");
         fileWriter.write(line.toString());
