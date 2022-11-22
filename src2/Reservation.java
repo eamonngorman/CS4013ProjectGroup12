@@ -4,8 +4,9 @@ public class Reservation {
 
     private Customer customer;
     private Table table;
-    private int numOfPeople; //not needed?
+    private int numOfPeople; // not needed?
     private LocalDateTime startTime;
+    private static int reservationMinutes = 90;
     private LocalDateTime finishTime;
 
     Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime) {
@@ -13,14 +14,13 @@ public class Reservation {
         this.table = table;
         this.numOfPeople = numOfPeople;
         this.startTime = startTime;
+        this.finishTime = startTime.plusMinutes(reservationMinutes);
     }
 
-    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime, LocalDateTime finishTime) {
-        this.customer = customer;
+    Reservation(Table table, LocalDateTime startTime) {
         this.table = table;
-        this.numOfPeople = numOfPeople;
         this.startTime = startTime;
-        this.finishTime = finishTime;
+        this.finishTime = startTime.plusMinutes(reservationMinutes);
     }
 
     public Customer getCustomer() {
@@ -43,15 +43,26 @@ public class Reservation {
         return finishTime;
     }
 
+    public static int getReservationMinutes() {
+        return reservationMinutes;
+    }
+
+    public void setReservationMinutes(int minutes) {
+        this.reservationMinutes = minutes;
+    }
+
+    // true = is available
+    // false = not available
     public boolean isAvailable(Reservation r) {
 
-        if (r.startTime.compareTo(startTime) >= 0 && r.finishTime.compareTo(finishTime) <= 0) {
-            if (table.equals(r.table)) {
+        if (r.startTime.compareTo(this.startTime) >= 0 &&
+                r.startTime.compareTo(this.finishTime) <= 0) {
+            if (this.table.equals(r.table)) {
                 return false;
-            } else {
-                return true;
-            }
+            } 
         }
         return true;
     }
+
+    
 }
