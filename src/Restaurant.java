@@ -95,6 +95,7 @@ public class Restaurant {
     
     }
 
+
     public void addReservation(Reservation r) {
 
         //make boolean return so that it can throw an error
