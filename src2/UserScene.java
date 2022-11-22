@@ -77,7 +77,7 @@ public class UserScene {
                 addItemToOrder();
             }
             if(command.equals("B")){
-                removeItemFromOrder;
+                removeItemFromOrder();
             }
             if(command.equals("C")){
                 deleteOrder();
