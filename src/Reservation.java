@@ -63,7 +63,7 @@ public class Reservation {
     }
 
     public void setReservationMinutes(int minutes) {
-        this.reservationMinutes = minutes;
+        reservationMinutes = minutes;
     }
 
     // true = is available
