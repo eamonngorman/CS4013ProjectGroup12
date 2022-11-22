@@ -51,7 +51,7 @@ public class UserScene {
                 makeReservation();
             }
             if(command.equals("B")){
-                deleteReservation();
+                deleteReservationCustomer();
             }
             if(command.equals("Q")){
                 runStart();
@@ -64,7 +64,7 @@ public class UserScene {
                 makeReservation();
             }
             if(command.equals("B")){
-                deleteReservation();
+                deleteReservationStaff();
             }
             if(command.equals("Q")){
                 runStart();
@@ -130,12 +130,13 @@ public class UserScene {
         }
     }
 
-    private Object getChoice(ArrayList<Table> choices) {
+
+    private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
         if (choices.size() == 0)
             return null;
         while (true) {
             char c = 'A';
-            for (Object choice : choices) {
+            for (T choice : choices) {
                 System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
                 c++;
             }
@@ -145,23 +146,6 @@ public class UserScene {
                 return choices.get(n);
         }
     }
-
-    private Object getChoice(Object[] choices)
-   {
-      while (true)
-      {
-         char c = 'A';
-         for (Object choice : choices)
-         {
-            System.out.println(c + ") " + choice); 
-            c++;
-         }
-         String input = in.nextLine();
-         int n = input.toUpperCase().charAt(0) - 'A';
-         if (0 <= n && n < choices.length)
-            return choices[n];
-      }      
-   }
 
     public void makeReservation() {
 
@@ -175,23 +159,27 @@ public class UserScene {
 
         int people = Integer.parseInt(in.nextLine());
         System.out.println("How many people are coming?");
-
-        Table table =  (Table) getChoice(restaurant.getFreeTables(people, formattedDate));
+        Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
 
         Reservation r = new Reservation((Customer) user, table, people, formattedDate);
         restaurant.addReservation(r);
 
     }
+
     public void deleteOrder(){
         System.out.println("Enter order number: ");
         int orderNumber = in.nextInt();
         ArrayList<Order> orders = restaurant.getOrders();
         for (Order order: orders){
             if (order.getOrderId() == orderNumber){
-                restaurant.removeOrder(order);
                 order = null;
                 return;
             }
         }
+    }
+
+    public void deleteReservationCustomer(){
+        System.out.println("What reservation would you like to remove");
+        getChoice(re)
     }
 }
