@@ -17,7 +17,7 @@ public class MenuCategory {
         return categoryName;
     }
 
-    public ArrayList<MenuItem> getMenuItems(ArrayList<MenuItem> menuItems) {
+    public ArrayList<MenuItem> getMenuItems() {
         return menuItems;
     }
 
