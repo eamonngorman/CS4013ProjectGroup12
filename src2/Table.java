@@ -7,10 +7,11 @@ public class Table {
     private int canSeat;
     private boolean isAvailable;
     private Order currentOrder;
+
     File tablesCSV = new File("Tables.csv");
     FileWriter fileWriter = new FileWriter(tablesCSV);
 
-    Table(int tableNum, int canSeat) throws IOException{
+    Table(int tableNum, int canSeat){
         this.tableNum = tableNum;
         this.canSeat = canSeat;
         this.currentOrder = new Order();

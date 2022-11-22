@@ -18,7 +18,7 @@ public class Order {
     File ordersCSV = new File("Orders.csv");
     FileWriter fileWriter = new FileWriter(ordersCSV);
 
-    Order() throws IOException {
+    Order(){
         this.orderId = ++count;
         this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();

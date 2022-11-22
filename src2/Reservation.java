@@ -14,7 +14,7 @@ public class Reservation {
     File reservationsCSV = new File("Reservations.csv");
     FileWriter fileWriter = new FileWriter(reservationsCSV);
 
-    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime) throws IOException {
+    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime){
         this.customer = customer;
         this.table = table;
         this.numOfPeople = numOfPeople;
@@ -22,8 +22,6 @@ public class Reservation {
         this.finishTime = startTime.plusMinutes(reservationMinutes);
     }
 
-    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime, LocalDateTime finishTime) throws IOException{
-        this.customer = customer;
     Reservation(Table table, LocalDateTime startTime) {
         this.table = table;
         this.startTime = startTime;
