@@ -92,6 +92,7 @@ public class Restaurant {
 
     public void removeOrder(Order o) { 
         orders.remove(o);
+    
     }
 
     public void addReservation(Reservation r) {

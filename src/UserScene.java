@@ -168,7 +168,7 @@ public class UserScene {
 
     public void addItemToOrder(){
         MenuItem item = selectItem();
-        Order selectedOrder = selectOrderFromTable()
+        Order selectedOrder = selectOrderFromTable();
 
         for (Order order : restaurant.getOrders()){
             if (order == selectedOrder){
@@ -186,8 +186,6 @@ public class UserScene {
                 order.removeFromOrder(item);
             }
         }
-
-
     }
 
     public MenuItem selectItem(){
@@ -243,6 +241,13 @@ public class UserScene {
     }
 
     public void finishOrder(){
+        
+        System.out.println("Which order would you like to complete?:");
+        Order o = getChoice(resturant.getOrders());
+        //save to csv
+
+        restaurant.removeOrder(o);
+        table.changeAvailablity();
         
     }
 }
