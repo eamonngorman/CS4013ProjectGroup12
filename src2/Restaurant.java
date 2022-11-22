@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -59,6 +60,16 @@ public class Restaurant {
         }
         return resByCust;
     }
+
+    public ArrayList<Reservation> getReservationByDay(LocalDate day) {
+        ArrayList<Reservation> resByDay = new ArrayList<Reservation>();
+        for(Reservation r: reservations){
+            if(r.getStartTime().toLocalDate() == day){
+                resByDay.add(r);
+            }
+        }
+        return resByDay;
+    }    
 
     public ArrayList<Order> getOrders() {
         return orders;
