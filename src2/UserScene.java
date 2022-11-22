@@ -188,6 +188,7 @@ public class UserScene {
         ArrayList<Order> orders = restaurant.getOrders();
         for (Order order: orders){
             if (order.getOrderId() == orderNumber){
+                restaurant.removeOrder(order);
                 order = null;
                 return;
             }
