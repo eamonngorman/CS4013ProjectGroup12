@@ -147,6 +147,22 @@ public class UserScene {
         }
     }
 
+    private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
+        if (choices.length == 0)
+            return null;
+        while (true) {
+            char c = 'A';
+            for (String choice : choices) {
+                System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+                c++;
+            }
+            String input = in.nextLine();
+            int n = input.toUpperCase().charAt(0) - 'A';
+            if (0 <= n && n < choices.length)
+                return choices[n];
+        }
+    }
+
     public void makeReservation() {
 
         String date = in.nextLine();
@@ -223,6 +239,12 @@ public class UserScene {
                 return;
             }
         }
+    }
+
+    public void updateOrderStatus(){
+        Order selectedOrder = selectOrderFromTable();
+        String status = getChoice(selectedOrder.getStatuses());
+        selectedOrder.setOrderStatus(status);
     }
 
     public void deleteReservationCustomer(){
