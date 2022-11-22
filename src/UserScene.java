@@ -8,6 +8,7 @@ public class UserScene {
     private Scanner in;
     private Person user;
     private Restaurant restaurant;
+    private MenuCategory menuCategory;
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -130,6 +131,47 @@ public class UserScene {
         }
     }
 
+    private void editTables() {
+        System.out.println("A)dd R)emove");
+        String command = in.nextLine().toUpperCase();
+        if(command.equals("A")){
+            System.out.println("Enter number of seats");
+            int numSeats = in.nextInt();
+            System.out.println("Enter table number");
+            int tabNum = in.nextInt();
+            Table table = new Table(tabNum, numSeats);
+            restaurant.addTable(table);
+        }
+        if(command.equals("R")){
+            System.out.println("Enter number of seats");
+            int numSeats = in.nextInt();
+            System.out.println("Enter table number");
+            int tabNum = in.nextInt();
+            Table table = new Table(tabNum, numSeats);
+            restaurant.removeTable(table);
+        }
+    }
+
+    private void editMenus() {
+        System.out.println("A)dd Item R)emove Item");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals ("A")){
+            System.out.println("Enter dish name");
+            String dishName = in.nextLine();
+            System.out.println("Enter dish cost");
+            double dishCost = in.nextDouble();
+            MenuItem item = new MenuItem(dishName, dishCost);
+            menuCategory.addMenuItem(item);
+        }
+        if (command.equals ("R")){
+            System.out.println("Enter dish name");
+            String dishName = in.nextLine();
+            System.out.println("Enter dish cost");
+            double dishCost = in.nextLine();
+            MenuItem item = new MenuItem(dishName, dishCost);
+            menuCategory.removeMenuItem(item);
+        }
+    }
 
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
         if (choices.size() == 0)
