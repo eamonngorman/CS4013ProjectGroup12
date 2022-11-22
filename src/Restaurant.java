@@ -70,7 +70,7 @@ public class Restaurant {
         tables.remove(t);
     }
 
-    public void removeOrder(Order o) { orders.remove(o)}
+    public void removeOrder(Order o) { orders.remove(o);}
 
     public void addReservation(Reservation r) {
 
