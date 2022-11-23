@@ -1,9 +1,11 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Restaurant {
 
     private String name;
+    private int restaurantId;
     private ArrayList<Menu> menus;
     private ArrayList<Table> tables;
     private ArrayList<Reservation> reservations;
@@ -29,6 +31,10 @@ public class Restaurant {
 
     public ArrayList<Menu> getMenus() {
         return menus;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
     public ArrayList<Table> getTables() {
@@ -92,7 +98,9 @@ public class Restaurant {
 
     public void removeOrder(Order o) { 
         orders.remove(o);
+    
     }
+
 
     public void addReservation(Reservation r) {
 

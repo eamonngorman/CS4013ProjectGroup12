@@ -120,7 +120,7 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println("A)Edit Restaurants  Q)uit");
+            System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
             if(command.equals("A")){
                 editResturants();
             }
@@ -129,6 +129,37 @@ public class UserScene {
             }
         }
     }
+
+
+    private void editStaff() {
+
+
+    }
+
+    private void editResturants() {
+        System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
+        String command = in.nextLine().toUpperCase();
+        if(command.equals("A")){
+            addResturants(); ;
+        }
+        if(command.equals("B")){
+            System.out.print("Set Name");
+        }
+        if(command.equals("C")) {
+            System.out.print("Find Restaurant");
+            ArrayList<String> restaurant = new ArrayList<String>();
+        }
+        if(command.equals("D")){
+            System.out.println("Get Name");
+        }
+        if(command.equals("Q")){
+            runStart();
+        }
+
+
+
+        }
+
 
     private void editTables() {
         System.out.println("A)dd R)emove");
@@ -224,6 +255,7 @@ public class UserScene {
         }
     }
 
+
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
         if (choices.size() == 0)
             return null;
@@ -240,21 +272,21 @@ public class UserScene {
         }
     }
 
-    private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
-        if (choices.length == 0)
-            return null;
-        while (true) {
-            char c = 'A';
-            for (String choice : choices) {
-                System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
-                c++;
-            }
-            String input = in.nextLine();
-            int n = input.toUpperCase().charAt(0) - 'A';
-            if (0 <= n && n < choices.length)
-                return choices[n];
-        }
-    }
+    // private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
+    //     if (choices.length == 0)
+    //         return null;
+    //     while (true) {
+    //         char c = 'A';
+    //         for (String choice : choices) {
+    //             System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+    //             c++;
+    //         }
+    //         String input = in.nextLine();
+    //         int n = input.toUpperCase().charAt(0) - 'A';
+    //         if (0 <= n && n < choices.length)
+    //             return choices[n];
+    //     }
+    // }
 
     public void makeReservation() {
 
@@ -277,7 +309,7 @@ public class UserScene {
 
     public void addItemToOrder(){
         MenuItem item = selectItem();
-        Order selectedOrder = selectOrderFromTable()
+        Order selectedOrder = selectOrderFromTable();
 
         for (Order order : restaurant.getOrders()){
             if (order == selectedOrder){
@@ -295,8 +327,6 @@ public class UserScene {
                 order.removeFromOrder(item);
             }
         }
-
-
     }
 
     public MenuItem selectItem(){
@@ -340,6 +370,18 @@ public class UserScene {
         selectedOrder.setOrderStatus(status);
     }
 
+    public void seeOrders(){
+        ArrayList<Order> orders = restaurant.getOrders();
+        if (orders.size() == 0) {
+            return;
+        }
+        char c = 'A';
+        for (Object order : orders) {
+            System.out.println("\n" + c + ") \n" + orders.toString() + "\n");
+            c++;
+        }
+    }
+
     public void deleteReservationCustomer(){
         System.out.println("What reservation would you like to remove?");
         Reservation r = getChoice(restaurant.getReservationByCustomers((Customer)user));
@@ -358,6 +400,13 @@ public class UserScene {
     }
 
     public void finishOrder(){
+        
+        System.out.println("Which order would you like to complete?:");
+        Order o = getChoice(resturant.getOrders());
+        //save to csv
+
+        restaurant.removeOrder(o);
+        table.changeAvailablity();
         
     }
 }
