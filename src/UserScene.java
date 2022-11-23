@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class UserScene {
 
     private Scanner in;
-    private Person user = new Customer("liam");
+    private Person user ;
     private Restaurant restaurant;
     //private RestaurantChain yum = new RestaurantChain();
 
@@ -33,9 +33,9 @@ public class UserScene {
                 String userName = in.nextLine();
                 System.out.println("Password:");
                 String password = in.nextLine();
-
                 if (csvReader.signIn(userName, password)){
-                    login(userName);
+                    this.user = restaurant.getPerson(userName);
+                    login();
                 } else {
                     System.out.println("Username and password were not in the database");
                 }
