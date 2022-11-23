@@ -142,7 +142,7 @@ public class UserScene {
         System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
-            addRestaurants(); ;
+            addRestaurant(); ;
         }
         if(command.equals("B")){
             System.out.print("Set Name");
@@ -274,21 +274,22 @@ public class UserScene {
         }
     }
 
-    // private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
-    //     if (choices.length == 0)
-    //         return null;
-    //     while (true) {
-    //         char c = 'A';
-    //         for (String choice : choices) {
-    //             System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
-    //             c++;
-    //         }
-    //         String input = in.nextLine();
-    //         int n = input.toUpperCase().charAt(0) - 'A';
-    //         if (0 <= n && n < choices.length)
-    //             return choices[n];
-    //     }
-    // }
+    // ask Eamonn before commenting this out. This is needed for String Arrays
+    private String getChoice(String[] choices) {
+        if (choices.length == 0)
+             return null;
+         while (true) {
+             char c = 'A';
+             for (String choice : choices) {
+                 System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+                 c++;
+             }
+             String input = in.nextLine();
+             int n = input.toUpperCase().charAt(0) - 'A';
+             if (0 <= n && n < choices.length)
+                return choices[n];
+    }
+    }
 
     public void makeReservation() {
 
