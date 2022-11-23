@@ -49,8 +49,8 @@ public class UserScene {
         }
     }
 
-    CSVWriter w;
-    CSVReader csvReader;
+    CSVWriter w = new CSVWriter();
+    CSVReader csvReader = new CSVReader();
     private void register() {
         String[] details = new String[3];
 
@@ -376,6 +376,10 @@ public class UserScene {
 
 
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
+        if (choices == null){
+            return null;
+        }
+
         if (choices.size() == 0)
             return null;
         while (true) {
