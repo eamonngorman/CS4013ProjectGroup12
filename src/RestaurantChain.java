@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
 public class RestaurantChain {
-    ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+    private ArrayList<Restaurant> restaurants;
+    private String chainName;
 
-    public RestaurantChain(){
-        // ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-
+    public RestaurantChain(String name){
+        this.restaurants = new ArrayList<Restaurant>();
+        this.chainName = name;
     }
 
     public ArrayList<Restaurant> getRestaurants() {
