@@ -47,7 +47,7 @@ public class UserScene {
         }
     }
 
-    CSVWriter w;
+    CSVWriter w = new CSVWriter();
     private void register() {
         String[] details = new String[3];
 
@@ -55,6 +55,7 @@ public class UserScene {
         String name = in.nextLine();
         details[0] = name;
         Customer newCustomer = new Customer(name);
+        /* 
         System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
         if(command.equals("A")){
             ;
@@ -71,7 +72,7 @@ public class UserScene {
         if(command.equals("Q")){
             runStart();
         }
-
+*/
         System.out.println("Username: ");
         String username = in.nextLine();
         details[1] = username;
@@ -182,7 +183,6 @@ public class UserScene {
 
         String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
-        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addItemToOrder();
         }
