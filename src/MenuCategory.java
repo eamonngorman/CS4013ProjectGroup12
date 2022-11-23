@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class MenuCategory {
 
-    private ArrayList<MenuItem> menuItems;
+    private ArrayList<MenuItem> menuItems = new ArrayList<>();
     private String categoryName;
 
     MenuCategory(String categoryName) {
