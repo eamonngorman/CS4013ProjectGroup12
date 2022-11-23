@@ -6,17 +6,19 @@ public class CSVWriter {
     public void writeNewCustomerToCSV(String[] details){
         PrintWriter printWriter;
         try {
-            File file = new File("customerDetails.csv");
+            File file = new File("personDetails.csv");
             printWriter = new PrintWriter(new FileWriter(file, true));
             Scanner input = new Scanner(file);
             StringBuffer csvData = new StringBuffer("");
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("Name, Username, Password\n");
+                header.append("Name, Role, Username, Password\n");
                 printWriter.write(header.toString());
             }
             csvData.append(details[0]);
+            csvData.append(",");
+            csvData.append("Customer");
             csvData.append(",");
             csvData.append(details[1]);
             csvData.append(",");
@@ -33,7 +35,7 @@ public class CSVWriter {
     }
 
 
-    public void writeOrderToCSV(Order order){
+    public void writeOrderToCSV(Order order, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("orders.csv");
@@ -43,9 +45,12 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("Order Id,Items,Total Cost,Gratuity,Order Status,Date\n");
+                header.append("RestaurantId,Order Id,Items,Total Cost,Gratuity,Order Status,Date\n");
                 printWriter.write(header.toString());
             }
+
+            csvData.append(restaurant.getRestaurantId());
+            csvData.append(",");
             csvData.append(order.getOrderId());
             csvData.append(",");
             csvData.append(order.getItems().toString());
@@ -107,6 +112,7 @@ public class CSVWriter {
     }
 
     public void writeRestaurantToCSV(Restaurant restaurant){
+        // RestaurantName, RestaurantID, Tables, Reservations, People
         PrintWriter printWriter;
         try {
             File file = new File("restaurants.csv");
@@ -116,9 +122,11 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("RestaurantID, TableNo, Capacity\n");
+                header.append("RestaurantName, RestaurantID, Tables, Reservations, People\n");
                 printWriter.write(header.toString());
             }
+            csvData.append(restaurant.getName());
+            csvData.append(",");
             csvData.append(restaurant.getRestaurantId());
             csvData.append(",");
 
@@ -127,6 +135,9 @@ public class CSVWriter {
                 csvData.append(",");
                 csvData.append(table.getCanSeat());
                 csvData.append(",");
+            }
+            for (Reservation reservation: restaurant.getReservations()){
+
             }
 
             csvData.append(",\n");

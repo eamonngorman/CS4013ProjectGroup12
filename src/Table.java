@@ -8,8 +8,6 @@ public class Table {
     private boolean isAvailable;
     private Order currentOrder;
 
-    File tablesCSV = new File("Tables.csv");
-    FileWriter fileWriter = new FileWriter(tablesCSV);
 
     Table(int tableNum, int canSeat){
         this.tableNum = tableNum;
@@ -33,15 +31,8 @@ public class Table {
         return canSeat;
     }
 
-    public void addTableToCsv() throws IOException{
-        StringBuilder line = new StringBuilder();
-        line.append(tableNum + ",");
-        line.append(canSeat);
-        line.append("\n");
-        fileWriter.write(line.toString());
-    }
 
-    public void changeAvailablity(){
+    public void changeAvailability(){
         if(isAvailable){
             this.isAvailable = false;
         } else {
@@ -49,7 +40,7 @@ public class Table {
         }
     }
 
-    public boolean getAvailablity(){
+    public boolean getAvailability(){
         return isAvailable;
     }
 

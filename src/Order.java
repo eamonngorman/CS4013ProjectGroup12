@@ -3,10 +3,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Order {
 
-    private int count = 0;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private int orderId;
     private ArrayList<MenuItem> itemsInOrder;
     private double totalCost;
@@ -18,7 +19,7 @@ public class Order {
     private char paymentMethod;
 
     Order(){
-        this.orderId = ++count;
+        this.orderId = count.incrementAndGet();
         this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;

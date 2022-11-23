@@ -35,6 +35,31 @@ public class CSVReader {
         }
     }*/
 
+
+    public boolean signIn(String username, String password){
+        boolean signInSuccess = false;
+        try {
+            File file = new File("PersonDetails.csv");
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()){
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+
+                if (username.equals(dataFields[2])){
+                    if (password.equals(dataFields[3])){
+                        signInSuccess = true;
+                    }
+                }
+
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return signInSuccess;
+    }
+
     public ArrayList<Double> readPaymentsFromCSV() {
         ArrayList<Double> payments = new ArrayList<Double>();
         try {
@@ -101,5 +126,33 @@ public class CSVReader {
         return payments;
     }
 
+    public String getUserId(String userName){
 
+    }
+
+
+    public boolean isUsernameTaken(String username) {
+        boolean isTaken = false;
+        try {
+            File file = new File("PersonDetails.csv");
+
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()) {
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+
+                if (username.equals(dataFields[2])){
+                    isTaken = true;
+                }
+
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return isTaken;
+
+
+    }
 }

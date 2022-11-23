@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Restaurant {
 
@@ -10,7 +11,7 @@ public class Restaurant {
     private ArrayList<Table> tables;
     private ArrayList<Reservation> reservations;
     private ArrayList<Order> orders;
-    private ArrayList<Person> people;
+    private HashMap<String, Person> people;
 
     Restaurant(String name) {
         this.name = name;
@@ -18,7 +19,7 @@ public class Restaurant {
         this.tables = new ArrayList<Table>();
         this.reservations = new ArrayList<Reservation>();
         this.orders = new ArrayList<Order>();
-        this.people = new ArrayList<Person>();
+        this.people = new HashMap<String, Person>();
     }
 
     public void setName(String name) {
@@ -41,8 +42,13 @@ public class Restaurant {
         return tables;
     }
 
-    public ArrayList<Person> getPeople(){
+
+    public HashMap<String, Person> getPeople(){
         return people;
+    }
+
+    public Person getPerson(String userName){
+        return people.get(userName);
     }
 
     //not nessacary, created a general object.toArray instead
@@ -95,8 +101,8 @@ public class Restaurant {
     public void addTable(Table t) {
         tables.add(t);
     }
-    public void addPeople(Person p){
-        people.add(p);
+    public void addPeople(Person p, String s){
+        people.put(s,p);
     }
 
     public void removeTable(Table t) {
