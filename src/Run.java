@@ -8,10 +8,11 @@ public class Run
    public static void main(String[] args)
          throws IOException
    { 
-      RestaurantChain yum = new RestaurantChain("Yum");
-      
+
       SystemBoot systemBoot = new SystemBoot();
-      systemBoot.systemBoot();
+      //RestaurantChain yum = new RestaurantChain("Yum", systemBoot.giveRest);
+
+      systemBoot.boot();
       UserScene use = new UserScene();
       use.runStart();
   }

@@ -14,20 +14,23 @@ public class SystemBoot {
     private HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
     private HashMap<Integer, Table> tableMap = new HashMap<Integer, Table>(); 
 
-    public void systemBoot(){
-        RestaurantChain yum = new RestaurantChain("Yum");
+    public RestaurantChain boot(){
+        
         createRestaurant();
         createTables();
         createPeople();
         createReservation();
         createMenuItems();
-        for(Restaurant r: restaurants){
-            yum.addRestaurant(r);
-        }
-
+        
+        RestaurantChain yum = new RestaurantChain("Yum", restaurants);
+        return yum;
 
     }
     
+    public ArrayList<Restaurant> giveRest(){
+        //systemBoot();
+        return restaurants;
+    }
 
     public void createMenuItems() {
         //this should have been split into seperate methods, my bad
@@ -168,9 +171,10 @@ public class SystemBoot {
                 String username = dataFields[2];
                 int accessLevel = Integer.parseInt(dataFields[1]);
                 String restaurant = dataFields[4];
-                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                //alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
                 if (accessLevel == 0){
                     Customer customer = new Customer(name);
+                    customerMap.put(customer.getIdNum(), customer);
                 } else if (accessLevel == 1){
                     FOHStaff fohStaff = new FOHStaff(name);
                     person = fohStaff;
