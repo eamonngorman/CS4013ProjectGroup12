@@ -102,9 +102,9 @@ public class Order {
         System.out.println(itemsInOrder);
         System.out.println("Total: " + beforeTip);
         if (paymentMethod == 'C'){
-            System.out.println("Payment Method: Cash")
+            System.out.println("Payment Method: Cash");
         } else if(paymentMethod == 'D'){
-            System.out.println("Payment Method: Card")
+            System.out.println("Payment Method: Card");
         }
         System.out.println("Tip: " + gratuity);
         System.out.println("Grand Total: " + totalCost);
