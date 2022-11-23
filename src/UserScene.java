@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class UserScene {
 
     private Scanner in;
-    private Person user;
+    private Person user = new Customer("liam");
     private Restaurant restaurant;
-    private RestaurantChain yum = new RestaurantChain();
+    //private RestaurantChain yum = new RestaurantChain();
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -33,8 +33,8 @@ public class UserScene {
                 String userName = in.nextLine();
                 System.out.println("Password:");
                 String password = in.nextLine();
-                this.user = user.getIdNum();
-                login(userName);
+                this.user = restaurant.getPerson(userName);
+                login();
             } else if (command.equals("B")) {
                 register();
             } else if (command.equals("Q")) {
@@ -43,7 +43,8 @@ public class UserScene {
         }
     }
 
-    CSVWriter w;
+    CSVWriter w = new CSVWriter();
+
     private void register() {
         String[] details = new String[3];
 
@@ -58,10 +59,13 @@ public class UserScene {
         details[2] = password;
         w.writeNewCustomerToCSV(details);
 
+        Person newUser = new Customer(details[0]);
+        restaurant.addPeople(newUser);
         System.out.println("You have been registered with the username and password above.");
+        
     }
 
-    public void login(String userName){
+    public void login(){
 
         String command = in.nextLine().toUpperCase();
 
@@ -154,6 +158,8 @@ public class UserScene {
     }
 
     private void calculateRestaurantIncome() {
+
+        String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
         if(command.equals("A")){
             addItemToOrder();
