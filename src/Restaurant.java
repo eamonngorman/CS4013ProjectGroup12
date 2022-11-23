@@ -185,4 +185,9 @@ public class Restaurant {
 
         return freeTables;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
