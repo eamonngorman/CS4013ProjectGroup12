@@ -512,6 +512,7 @@ public class UserScene {
         
         System.out.println("Which order would you like to complete?:");
         Order o = getChoice(restaurant.getOrders());
+        o.printBill();
         //save to csv
         System.out.println("Would you like to add a tip Y)es N)o");
         String command = in.nextLine().toUpperCase();
@@ -538,5 +539,6 @@ public class UserScene {
         if(command.equals("D")){
             o.setPaymentMethod('D');
         }
+        o.setPaid(true);
     }
 }
