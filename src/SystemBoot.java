@@ -184,5 +184,21 @@ public class SystemBoot {
 
     public void createResturant() {
 
+        File fileRestaurant = new File("restaurant.csv");
+
+        try { // create list of all menus
+            Scanner in = new Scanner(fileRestaurant);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String restuarantName = dataFields[0];
+                Restaurant r = new Restaurant(restuarantName);
+                this.restaurants.add(r);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
