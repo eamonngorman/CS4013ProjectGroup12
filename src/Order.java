@@ -16,6 +16,7 @@ public class Order {
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
     private LocalDate date;
+    private char paymentMethod;
 
     Order(){
         this.orderId = count.incrementAndGet();
@@ -25,12 +26,19 @@ public class Order {
         this.date = LocalDate.now();
 
     }
+    public void setPaymentMethod(char method){
+        paymentMethod = method;
+    }
 
     public void setGratuity(double gratuity){
         this.gratuity = gratuity;
     }
     public void setPaid(boolean paid){
         isPaid = paid;
+    }
+
+    public char getPaymentMethod(){
+        return paymentMethod;
     }
 
     public int getOrderId() {
@@ -95,8 +103,11 @@ public class Order {
         System.out.println(itemsInOrder);
         System.out.println("Total: " + beforeTip);
         if (isPaid == true){
-            System.out.println("Tip: " + gratuity);
-            System.out.println("Grand Total: " + totalCost);
+            if (gratuity > 0){
+                System.out.println("Tip: " + gratuity);
+                System.out.println("Grand Total: " + totalCost);
+            }
+            System.out.println("Bill paid. Thank you for dining at Yum");
         }
     }
 }
