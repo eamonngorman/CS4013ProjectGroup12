@@ -31,4 +31,8 @@ public class Menu {
     public ArrayList<MenuCategory> getCategories() {
         return menuCategories;
     }
+    @Override
+    public String toString(){
+        return menuName;
+    }
 }

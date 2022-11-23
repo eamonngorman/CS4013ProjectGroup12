@@ -28,4 +28,8 @@ public class MenuCategory {
     public void removeMenuItem(MenuItem itemToAdd) {
         menuItems.remove(itemToAdd);
     }
+    @Override
+    public String toString(){
+        return categoryName;
+    }
 }
