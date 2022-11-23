@@ -16,11 +16,16 @@ public class SystemBoot {
 
     }
     public void systemBoot(){
+        RestaurantChain yum = new RestaurantChain("Yum");
         createRestaurant();
         createTables();
         createPeople();
         createReservation();
         createMenuItems();
+        for(Restaurant r: restaurants){
+            yum.addRestaurant(r);
+        }
+
     }
     private HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
     private HashMap<Integer, Table> tableMap = new HashMap<Integer, Table>(); 
