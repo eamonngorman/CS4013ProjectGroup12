@@ -167,29 +167,30 @@ public class SystemBoot {
                 String name = dataFields[0];
                 String username = dataFields[2];
                 int accessLevel = Integer.parseInt(dataFields[1]);
-                String restaurant = dataFields[4];
-                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
-                if (accessLevel == 0){
+                String restaurantName = dataFields[4];
+                // Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                Person person;
+                if (accessLevel == 0) {
                     Customer customer = new Customer(name);
-                } else if (accessLevel == 1){
+                    person = (Person) customer;
+                } else if (accessLevel == 1) {
                     FOHStaff fohStaff = new FOHStaff(name);
-                    person = fohStaff;
-                } else if (accessLevel == 2){
+                    person = (Person) fohStaff;
+                } else if (accessLevel == 2) {
                     Waiter waiter = new Waiter(name);
-                    person = waiter;
-                } else if (accessLevel == 3){
+                    person = (Person) waiter;
+                } else if (accessLevel == 3) {
                     Chef chef = new Chef(name);
-                    person = chef;
-                } else if (accessLevel == 4){
+                    person = (Person) chef;
+                } else {
                     Manager manager = new Manager(name);
-                    person = manager;
+                    person = (Person) manager;
                 }
-                for (Restaurant restaurant: restaurants){
-                    if (restaurant.getName() == restaurantName){
-                        restaurant.getPeople().put(username, person);
+                for (Restaurant r : restaurants) {
+                    if (r.getName() == restaurantName) {
+                        r.getPeople().put(username, person);
                     }
                 }
-
             }
         } catch (IOException e){
             e.printStackTrace();
@@ -203,7 +204,7 @@ public class SystemBoot {
         File fileReservation = new File("src/Reservations.csv");
 
         try { // create list of all menus
-            Scanner in = new Scanner(fileRestaurant);
+            Scanner in = new Scanner(fileReservation);
             if (in.hasNextLine()) {
                 in.nextLine();
             }
