@@ -32,7 +32,7 @@ public class Table {
     }
 
 
-    public void changeAvailablity(){
+    public void changeAvailability(){
         if(isAvailable){
             this.isAvailable = false;
         } else {
@@ -40,7 +40,7 @@ public class Table {
         }
     }
 
-    public boolean getAvailablity(){
+    public boolean getAvailability(){
         return isAvailable;
     }
 

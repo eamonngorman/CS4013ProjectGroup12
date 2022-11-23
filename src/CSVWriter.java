@@ -112,6 +112,7 @@ public class CSVWriter {
     }
 
     public void writeRestaurantToCSV(Restaurant restaurant){
+        // RestaurantName, RestaurantID, Tables, Reservations, People
         PrintWriter printWriter;
         try {
             File file = new File("restaurants.csv");
@@ -121,9 +122,11 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("RestaurantID, TableNo, Capacity\n");
+                header.append("RestaurantName, RestaurantID, Tables, Reservations, People\n");
                 printWriter.write(header.toString());
             }
+            csvData.append(restaurant.getName());
+            csvData.append(",");
             csvData.append(restaurant.getRestaurantId());
             csvData.append(",");
 
@@ -132,6 +135,9 @@ public class CSVWriter {
                 csvData.append(",");
                 csvData.append(table.getCanSeat());
                 csvData.append(",");
+            }
+            for (Reservation reservation: restaurant.getReservations()){
+
             }
 
             csvData.append(",\n");

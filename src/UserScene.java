@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class UserScene {
@@ -9,7 +10,7 @@ public class UserScene {
     private Scanner in;
     private Person user ;
     private Restaurant restaurant;
-    //private RestaurantChain yum = new RestaurantChain();
+    private RestaurantChain yum = new RestaurantChain();
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -25,6 +26,7 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
+            restaurant = getChoice(yum.getRestaurants());
             System.out.println("A)Login  B)Register  Q)uit");
             String command = in.nextLine().toUpperCase();
             CSVReader csvReader = new CSVReader();
@@ -48,6 +50,7 @@ public class UserScene {
     }
 
     CSVWriter w = new CSVWriter();
+    CSVReader csvReader;
     private void register() {
         String[] details = new String[3];
 
@@ -55,7 +58,6 @@ public class UserScene {
         String name = in.nextLine();
         details[0] = name;
         Customer newCustomer = new Customer(name);
-        /* 
         System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
         if(command.equals("A")){
             ;
@@ -72,19 +74,26 @@ public class UserScene {
         if(command.equals("Q")){
             runStart();
         }
-*/
+
         System.out.println("Username: ");
         String username = in.nextLine();
-        details[1] = username;
-        System.out.println("Password: ");
-        String password = in.nextLine();
-        details[2] = password;
-        w.writeNewCustomerToCSV(details);
 
-        Person newUser = new Customer(details[0]);
-        restaurant.addPeople(newUser);
-        System.out.println("You have been registered with the username and password above.");
-        
+        boolean isTaken = csvReader.isUsernameTaken(username);
+        if (isTaken){
+            System.out.println("Username already in database");
+        } else {
+            details[1] = username;
+            System.out.println("Password: ");
+            String password = in.nextLine();
+            details[2] = password;
+            w.writeNewCustomerToCSV(details);
+
+            Person newUser = new Customer(details[0]);
+            restaurant.addPeople(newUser, username);
+            System.out.println("You have been registered with the username and password above.");
+
+        }
+
     }
 
     public void login(){
@@ -183,6 +192,7 @@ public class UserScene {
 
         String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addItemToOrder();
         }
@@ -207,10 +217,12 @@ public class UserScene {
         if (command.equals("A")){
             System.out.println("Enter Name");
             String name = in.nextLine();
+            System.out.println("Enter Username");
+            String username = in.nextLine();
             System.out.println("Enter Access Level");
             int accessLevel = in.nextInt();
             Person person = new Person(name, accessLevel);
-            restaurant.addPeople(person);
+            restaurant.addPeople(person, username);
         }
         if (command.equals("E")){
             System.out.println("Select a Staff Member to edit");
@@ -396,6 +408,22 @@ public class UserScene {
         }
     }
 
+    private Person getChoice(HashMap<String, Person> hashMap) { //getChoice can now work for all arrayList types
+        if (hashMap.size() == 0)
+            return null;
+        while (true) {
+            char c = 'A';
+            for (String s : hashMap.keySet()) {
+                System.out.println("\n" + c + ") \n" + hashMap.entrySet().toString() + "\n");
+                c++;
+            }
+            String input = in.nextLine();
+            int n = input.toUpperCase().charAt(0) - 'A';
+            if (0 <= n && n < hashMap.size())
+                return hashMap.get(n);
+        }
+    }
+
     // ask Eamonn before commenting this out. This is needed for String Arrays
     private String getChoice(String[] choices) {
         if (choices.length == 0)
@@ -537,12 +565,38 @@ public class UserScene {
 
     public void finishOrder(){
         
-        System.out.println("Which order would you like to complete?:");
-        Order o = getChoice(restaurant.getOrders());
-        //save to csv
-
+        System.out.println("Which table's order would you like to complete?:");
+        Table t = getChoice(restaurant.getTables());
+        Order o = t.getOrder();
+        o.printBill();
+        System.out.println("Would you like to add a tip Y)es N)o");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("Y")){
+            System.out.println("How much would you like to tip?");
+            double tip = in.nextDouble();
+            o.setGratuity(tip);
+        }
+        if (command.equals("N")){
+            o.setGratuity(0);
+        }
+        printBill(o);
+        CSVWriter csvWriter = new CSVWriter();
+        csvWriter.writeOrderToCSV(o, restaurant);
         restaurant.removeOrder(o);
-        table.changeAvailablity();
+        t.changeAvailability();
         
+    }
+
+    public void printBill(Order o){
+        System.out.println("Would you like to pay by C)ash or D)ebit Card");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("C")){
+            o.setPaymentMethod('C');
+        }
+        if(command.equals("D")){
+            o.setPaymentMethod('D');
+        }
+        o.setPaid(true);
+        o.printBill();
     }
 }

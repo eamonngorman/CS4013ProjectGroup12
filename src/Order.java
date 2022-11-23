@@ -3,10 +3,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Order {
 
-    private int count = 0;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private int orderId;
     private ArrayList<MenuItem> itemsInOrder;
     private double totalCost;
@@ -15,14 +16,18 @@ public class Order {
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
     private LocalDate date;
+    private char paymentMethod;
 
     Order(){
-        this.orderId = ++count;
+        this.orderId = count.incrementAndGet();
         this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
         this.date = LocalDate.now();
 
+    }
+    public void setPaymentMethod(char method){
+        paymentMethod = method;
     }
 
     public void setGratuity(double gratuity){
@@ -30,6 +35,10 @@ public class Order {
     }
     public void setPaid(boolean paid){
         isPaid = paid;
+    }
+
+    public char getPaymentMethod(){
+        return paymentMethod;
     }
 
     public int getOrderId() {
@@ -94,8 +103,11 @@ public class Order {
         System.out.println(itemsInOrder);
         System.out.println("Total: " + beforeTip);
         if (isPaid == true){
-            System.out.println("Tip: " + gratuity);
-            System.out.println("Grand Total: " + totalCost);
+            if (gratuity > 0){
+                System.out.println("Tip: " + gratuity);
+                System.out.println("Grand Total: " + totalCost);
+            }
+            System.out.println("Bill paid. Thank you for dining at Yum");
         }
     }
 }
