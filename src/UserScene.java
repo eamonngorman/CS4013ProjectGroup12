@@ -540,5 +540,6 @@ public class UserScene {
             o.setPaymentMethod('D');
         }
         o.setPaid(true);
+        o.printBill();
     }
 }
