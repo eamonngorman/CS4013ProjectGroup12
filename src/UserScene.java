@@ -335,7 +335,7 @@ public class UserScene {
     }
 
     private void editItems(MenuItem menuItem){
-        System.out.println("Change N)ame P)rice");
+        System.out.println("Change N)ame P)rice Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("N")){
             System.out.println("Enter New Name");
@@ -346,6 +346,9 @@ public class UserScene {
             System.out.println("Enter New Price");
             Double price = in.nextDouble();
             menuItem.setItemCost(price);
+        }
+        if (command.equals("Q")){
+            runStart();
         }
     }
 
