@@ -13,6 +13,9 @@ public class Restaurant {
     private ArrayList<Order> orders;
     private HashMap<String, Person> people;
 
+    Restaurant(){
+    }
+
     Restaurant(String name) {
         this.name = name;
         this.menus = new ArrayList<Menu>();
