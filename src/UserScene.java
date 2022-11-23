@@ -244,7 +244,7 @@ public class UserScene {
 
 
     private void editTables() {
-        System.out.println("A)dd R)emove");
+        System.out.println("A)dd R)emove Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             System.out.println("Enter number of seats");
@@ -258,6 +258,9 @@ public class UserScene {
             System.out.println("Select a table to remove");
             Table table = getChoice(restaurant.getTables());
             restaurant.removeTable(table);
+        }
+        if (command.equals("Q")){
+            runStart();
         }
     }
 
