@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Reservation {
 
     private Customer customer;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private int reservationId;
     private Table table;
     private int numOfPeople; // not needed?
@@ -18,6 +20,7 @@ public class Reservation {
     private LocalDateTime finishTime;
 
     Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime){
+        this.reservationId = count.incrementAndGet();
         this.customer = customer;
         this.table = table;
         this.numOfPeople = numOfPeople;
