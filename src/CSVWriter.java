@@ -6,7 +6,7 @@ public class CSVWriter {
     public void writeNewCustomerToCSV(String[] details){
         PrintWriter printWriter;
         try {
-            File file = new File("personDetails.csv");
+            File file = new File("src/PersonDetails.csv");
             printWriter = new PrintWriter(new FileWriter(file, true));
             Scanner input = new Scanner(file);
             StringBuffer csvData = new StringBuffer("");
@@ -38,7 +38,7 @@ public class CSVWriter {
     public void writeOrderToCSV(Order order, Restaurant restaurant){
         PrintWriter printWriter;
         try {
-            File file = new File("orders.csv");
+            File file = new File("src/Orders.csv");
             printWriter = new PrintWriter(new FileWriter(file, true));
             Scanner input = new Scanner(file);
             StringBuffer csvData = new StringBuffer("");
@@ -77,7 +77,7 @@ public class CSVWriter {
     public void writeReservationToCSV(Reservation reservation){
         PrintWriter printWriter;
         try {
-            File file = new File("reservations.csv");
+            File file = new File("src/Reservations.csv");
             printWriter = new PrintWriter(new FileWriter(file, true));
             Scanner input = new Scanner(file);
             StringBuffer csvData = new StringBuffer("");
@@ -115,7 +115,7 @@ public class CSVWriter {
         // RestaurantName, RestaurantID, Tables, Reservations, People
         PrintWriter printWriter;
         try {
-            File file = new File("restaurants.csv");
+            File file = new File("src/Restaurants.csv");
             printWriter = new PrintWriter(new FileWriter(file, true));
             Scanner input = new Scanner(file);
             StringBuffer csvData = new StringBuffer("");
