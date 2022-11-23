@@ -10,7 +10,18 @@ import java.util.Scanner;
 
 public class SystemBoot {
 
-    private ArrayList<Restaurant> restaurants;
+    private ArrayList<Restaurant> restaurants = new ArrayList<>();
+
+    public SystemBoot(){
+
+    }
+    public void systemBoot(){
+        createRestaurant();
+        createTables();
+        createPeople();
+        createReservation();
+        createMenuItems();
+    }
     private HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
     private HashMap<Integer, Table> tableMap = new HashMap<Integer, Table>(); 
 
@@ -19,9 +30,9 @@ public class SystemBoot {
         HashMap<String, MenuItem> items = new HashMap<String, MenuItem>();
         HashMap<String, MenuCategory> cats = new HashMap<String, MenuCategory>();
         HashMap<String, Menu> menus = new HashMap<String, Menu>();
-        File fileItems = new File("items.csv");
-        File fileCats = new File("cats.csv");
-        File fileMenus = new File("menus.csv");
+        File fileItems = new File("src/MenuItems.csv");
+        File fileCats = new File("src/MenuCategories.csv");
+        File fileMenus = new File("src/Menus.csv");
 
         try { // create list of all menus
             Scanner in = new Scanner(fileMenus);
@@ -126,6 +137,11 @@ public class SystemBoot {
                 Table table = new Table(tableNum, tableCapacity);
                 tableMap.put(table.getTableNum(), table);
                 // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
+                for (Restaurant restaurant: restaurants){
+                    if (restaurant.getRestaurantId() == restaurantId){
+                        restaurant.getTables().add(table);
+                    }
+                }
             }
             } catch (IOException e){
                 e.printStackTrace();
@@ -136,7 +152,7 @@ public class SystemBoot {
 
     public void createPeople() {
         try {
-            File file = new File("src/PeopleDetails.csv");
+            File file = new File("src/PersonDetails.csv");
             Scanner input = new Scanner(file);
             if (input.hasNextLine()){
                 input.nextLine();
@@ -145,21 +161,29 @@ public class SystemBoot {
                 String[] dataFields = input.nextLine().split(",");
 
                 String name = dataFields[0];
+                String username = dataFields[2];
                 int accessLevel = Integer.parseInt(dataFields[1]);
                 String restaurant = dataFields[4];
-                int custId = Integer.parseInt(dataFields[5]);
-                //alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
                 if (accessLevel == 0){
                     Customer customer = new Customer(name);
-                    this.customerMap.put(customer.getIdNum(), customer);
                 } else if (accessLevel == 1){
                     FOHStaff fohStaff = new FOHStaff(name);
+                    person = fohStaff;
                 } else if (accessLevel == 2){
                     Waiter waiter = new Waiter(name);
+                    person = waiter;
                 } else if (accessLevel == 3){
                     Chef chef = new Chef(name);
+                    person = chef;
                 } else if (accessLevel == 4){
                     Manager manager = new Manager(name);
+                    person = manager;
+                }
+                for (Restaurant restaurant: restaurants){
+                    if (restaurant.getName() == restaurantName){
+                        restaurant.getPeople().put(username, person);
+                    }
                 }
 
             }
@@ -172,10 +196,10 @@ public class SystemBoot {
 
     public void createReservation() {
 
-        File fileReservation = new File("reservation.csv");
+        File fileReservation = new File("src/Reservations.csv");
 
         try { // create list of all menus
-            Scanner in = new Scanner(fileReservation);
+            Scanner in = new Scanner(fileRestaurant);
             if (in.hasNextLine()) {
                 in.nextLine();
             }
@@ -193,9 +217,9 @@ public class SystemBoot {
         }
     }
 
-    public void createResturant() {
+    public void createRestaurant() {
 
-        File fileRestaurant = new File("restaurant.csv");
+        File fileRestaurant = new File("src/Restaurants.csv");
 
         try {
             Scanner in = new Scanner(fileRestaurant);

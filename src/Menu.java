@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Menu {
-    private ArrayList<MenuCategory> menuCategories;
+    private ArrayList<MenuCategory> menuCategories = new ArrayList<>();
     private String menuName;
 
     Menu() {

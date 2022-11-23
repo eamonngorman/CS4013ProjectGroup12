@@ -1,3 +1,2 @@
 ReservationId, numPeople, date, time, tableNo, customerId
-1, 2, 01/01/2023, 12:00, 1, 4
-0  1    2         3      4   5
+1,2,01/01/2023,12:00,1,4
