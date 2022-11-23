@@ -13,6 +13,9 @@ public class Restaurant {
     private ArrayList<Order> orders;
     private HashMap<String, Person> people;
 
+    Restaurant(){
+    }
+
     Restaurant(String name) {
         this.name = name;
         this.menus = new ArrayList<Menu>();
@@ -181,5 +184,10 @@ public class Restaurant {
         }
 
         return freeTables;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
