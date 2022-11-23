@@ -27,14 +27,18 @@ public class UserScene {
         while (more) {
             System.out.println("A)Login  B)Register  Q)uit");
             String command = in.nextLine().toUpperCase();
-
+            CSVReader csvReader = new CSVReader();
             if (command.equals("A")) {
                 System.out.println("Username:");
                 String userName = in.nextLine();
                 System.out.println("Password:");
                 String password = in.nextLine();
-                this.user = user.getIdNum();
-                login(userName);
+
+                if (csvReader.signIn(userName, password)){
+                    login(userName);
+                } else {
+                    System.out.println("Username and password were not in the database");
+                }
             } else if (command.equals("B")) {
                 register();
             } else if (command.equals("Q")) {
