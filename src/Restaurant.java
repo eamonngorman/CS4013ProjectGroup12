@@ -46,6 +46,10 @@ public class Restaurant {
         return people;
     }
 
+    public Person getPerson(String userName){
+        return people.get(userName);
+    }
+
     //not nessacary, created a general object.toArray instead
     // public Table[] getTablesArr() {
     //     ArrayList<Table> temp = this.tables;
