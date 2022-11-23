@@ -100,15 +100,13 @@ public class Order {
         totalCost += gratuity;
         System.out.println("Yum Restaurant");
         System.out.println(itemsInOrder);
-        if (paymentMethod == 'C'){
-            System.out.println("Payment Method: Cash");
-        } else if(paymentMethod == 'D'){
-            System.out.println("Payment Method: Card");
-        }
         System.out.println("Total: " + beforeTip);
-        if (gratuity > 0){
-            System.out.println("Tip: " + gratuity);
-            System.out.println("Grand Total: " + totalCost);
+        if (isPaid == true){
+            if (gratuity > 0){
+                System.out.println("Tip: " + gratuity);
+                System.out.println("Grand Total: " + totalCost);
+            }
+            System.out.println("Bill paid. Thank you for dining at Yum");
         }
     }
 }
