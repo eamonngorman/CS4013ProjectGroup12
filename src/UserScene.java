@@ -604,4 +604,8 @@ public class UserScene {
         o.setPaid(true);
         o.printBill();
     }
+
+    public RestaurantChain getYum() {
+        return yum;
+    }
 }

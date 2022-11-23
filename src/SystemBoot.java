@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -88,8 +89,26 @@ public class SystemBoot {
     }
 
     public void createTables() {
-        
-    }
+        try {
+            File file = new File("src/Tables.csv");
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()){
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+                int restaurantId = Integer.parseInt(dataFields[0]);
+                int tableNum = Integer.parseInt(dataFields[1]);
+                int tableCapacity = Integer.parseInt(dataFields[2]);
+                Table table = new Table(tableNum, tableCapacity);
+                // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
+            }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+            ;
+        }
+
 
     public void createPeople() {
 
@@ -99,7 +118,7 @@ public class SystemBoot {
 
     }
 
-    public void createResturant() {
+    public void createRestaurant() {
 
     }
 }
