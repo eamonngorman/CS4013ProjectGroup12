@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 public class SystemBoot {
 
-    private ArrayList<Restaurant> restaurants;
+    private ArrayList<Restaurant> restaurants = new ArrayList<>();
 
     public void createMenuItems() {
         //this should have been split into seperate methods, my bad
         HashMap<String, MenuItem> items = new HashMap<String, MenuItem>();
         HashMap<String, MenuCategory> cats = new HashMap<String, MenuCategory>();
         HashMap<String, Menu> menus = new HashMap<String, Menu>();
-        File fileItems = new File("items.csv");
-        File fileCats = new File("cats.csv");
-        File fileMenus = new File("menus.csv");
+        File fileItems = new File("src/MenuItems.csv");
+        File fileCats = new File("src/cats.csv");
+        File fileMenus = new File("src/menus.csv");
 
         try { // create list of all menus
             Scanner in = new Scanner(fileMenus);
@@ -120,6 +120,11 @@ public class SystemBoot {
                 int tableCapacity = Integer.parseInt(dataFields[2]);
                 Table table = new Table(tableNum, tableCapacity);
                 // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
+                for (Restaurant restaurant: restaurants){
+                    if (restaurant.getRestaurantId() == restaurantId){
+                        restaurant.getTables().add(table);
+                    }
+                }
             }
             } catch (IOException e){
                 e.printStackTrace();
@@ -139,19 +144,31 @@ public class SystemBoot {
                 String[] dataFields = input.nextLine().split(",");
 
                 String name = dataFields[0];
+                String username = dataFields[2];
                 int accessLevel = Integer.parseInt(dataFields[1]);
-                String restaurant = dataFields[4];
-                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                String restaurantName = dataFields[4];
+                // Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                Person person = new Person(null, -1);
                 if (accessLevel == 0){
                     Customer customer = new Customer(name);
+                    person = customer;
                 } else if (accessLevel == 1){
                     FOHStaff fohStaff = new FOHStaff(name);
+                    person = fohStaff;
                 } else if (accessLevel == 2){
                     Waiter waiter = new Waiter(name);
+                    person = waiter;
                 } else if (accessLevel == 3){
                     Chef chef = new Chef(name);
+                    person = chef;
                 } else if (accessLevel == 4){
                     Manager manager = new Manager(name);
+                    person = manager;
+                }
+                for (Restaurant restaurant: restaurants){
+                    if (restaurant.getName() == restaurantName){
+                        restaurant.getPeople().put(username, person);
+                    }
                 }
 
             }
@@ -164,10 +181,10 @@ public class SystemBoot {
 
     public void createReservation() {
 
-        File fileReservation = new File("reservation.csv");
+        File fileReservation = new File("src/Reservations.csv");
 
         try { // create list of all menus
-            Scanner in = new Scanner(fileRestaurant);
+            Scanner in = new Scanner(fileReservation);
             if (in.hasNextLine()) {
                 in.nextLine();
             }
@@ -184,7 +201,7 @@ public class SystemBoot {
 
     public void createResturant() {
 
-        File fileRestaurant = new File("restaurant.csv");
+        File fileRestaurant = new File("src/Restaurants.csv");
 
         try { // create list of all menus
             Scanner in = new Scanner(fileRestaurant);
