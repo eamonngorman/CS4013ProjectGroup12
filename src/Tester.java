@@ -6,6 +6,6 @@ public class Tester {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime after = now.plusMinutes(10);
         
-        System.out.println(now.compareTo(after));
+        System.out.println(now);
     }
 }

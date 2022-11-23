@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class UserScene {
 
     private Scanner in;
-    private Person user ;
-    private Restaurant restaurant;
+    private Person user;
+    private Restaurant restaurant = new Restaurant();
     private RestaurantChain yum = new RestaurantChain();
 
     public UserScene() {
@@ -54,12 +54,12 @@ public class UserScene {
 
     private void register() {
         String[] details = new String[3];
-
         System.out.println("Name: ");
         String name = in.nextLine();
         details[0] = name;
         Customer newCustomer = new Customer(name);
-        System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
+        /*System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
+        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             ;
         }
@@ -74,7 +74,7 @@ public class UserScene {
         }
         if(command.equals("Q")){
             runStart();
-        }
+        }*/
 
         System.out.println("Username: ");
         String username = in.nextLine();
@@ -193,7 +193,6 @@ public class UserScene {
 
         String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
-        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addItemToOrder();
         }
@@ -603,5 +602,9 @@ public class UserScene {
         }
         o.setPaid(true);
         o.printBill();
+    }
+
+    public RestaurantChain getYum() {
+        return yum;
     }
 }
