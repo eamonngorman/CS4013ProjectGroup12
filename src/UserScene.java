@@ -284,7 +284,7 @@ public class UserScene {
 
     private void editMenu(Menu menus){
         ArrayList<MenuCategory> menuCategories = menus.getCategories();
-        System.out.println("E)dit category A)dd category R)emove category");
+        System.out.println("E)dit category A)dd category R)emove category Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("E")){
             System.out.println("Select a category to edit");
@@ -301,6 +301,9 @@ public class UserScene {
             System.out.println("Select a category to remove");
             MenuCategory menuCat = getChoice(menuCategories);
             menus.removeCategory(menuCat);
+        }
+        if (command.equals("Q")){
+            runStart();
         }
     }
 
