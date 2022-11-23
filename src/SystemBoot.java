@@ -7,7 +7,10 @@ import java.util.Scanner;
 
 public class SystemBoot {
 
+    private ArrayList<Restaurant> restaurants;
+
     public void createMenuItems() {
+        //this should have been split into seperate methods, my bad
         HashMap<String, MenuItem> items = new HashMap<String, MenuItem>();
         HashMap<String, MenuCategory> cats = new HashMap<String, MenuCategory>();
         HashMap<String, Menu> menus = new HashMap<String, Menu>();
@@ -20,10 +23,11 @@ public class SystemBoot {
             if (in.hasNextLine()) {
                 in.nextLine();
             }
+            int i = 0;
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
                 String menuName = dataFields[0];
-                String restaurantName = dataFields[1];
+                String restaurantName = dataFields[1] + i;
                 Menu m = new Menu(menuName);
                 menus.put(restaurantName, m);
             }
@@ -36,10 +40,11 @@ public class SystemBoot {
             if (in.hasNextLine()) {
                 in.nextLine();
             }
+            int i = 0;
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
                 String catName = dataFields[0];
-                String menuName = dataFields[1];
+                String menuName = dataFields[1] + i;
                 MenuCategory c = new MenuCategory(catName);
                 cats.put(menuName, c);
             }
@@ -53,11 +58,12 @@ public class SystemBoot {
             if (in.hasNextLine()) {
                 in.nextLine();
             }
+            int i = 0;
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
                 String itemName = dataFields[0];
                 double cost = Double.parseDouble(dataFields[1]);
-                String catName = dataFields[2];
+                String catName = dataFields[2] + i;
                 MenuItem item = new MenuItem(itemName, cost);
                 items.put(catName, item);
             }
@@ -69,26 +75,38 @@ public class SystemBoot {
             String catName = cat.getValue().getCategoryName();
             for (Map.Entry<String, MenuItem> item : items.entrySet()) {
                 String keyCatName = item.getKey();
-                if(catName.equals(keyCatName)){
+                keyCatName = keyCatName.substring(0, keyCatName.length() - 1);
+                if (catName.equals(keyCatName)) {
                     cat.getValue().addMenuItem(item.getValue());
                 }
             }
         }
 
-        for(Map.Entry<String, Menu> m: menus.entrySet()){
+        for (Map.Entry<String, Menu> m : menus.entrySet()) {
             String menuName = m.getValue().getMenuName();
             for (Map.Entry<String, MenuCategory> cat : cats.entrySet()) {
                 String keyMenuName = cat.getKey();
-                if(menuName.equals(keyMenuName)){
+                keyMenuName = keyMenuName.substring(0, keyMenuName.length() - 1);
+                if (menuName.equals(keyMenuName)) {
                     m.getValue().addCategory(cat.getValue());
                 }
             }
         }
-        Restaurant.addMenu 
+
+        for (Restaurant r : restaurants) {
+            String restName = r.getName();
+            for (Map.Entry<String, Menu> m : menus.entrySet()) {
+                String keyRestName = m.getKey();
+                keyRestName = keyRestName.substring(0, keyRestName.length() - 1);
+                if (restName.equals(keyRestName)) {
+                    r.addMenu(m.getValue());
+                }
+            }
+        }
     }
 
     public void createTables() {
-        
+
     }
 
     public void createPeople() {
@@ -97,9 +115,42 @@ public class SystemBoot {
 
     public void createReservation() {
 
+        File fileReservation = new File("reservation.csv");
+
+        try { // create list of all menus
+            Scanner in = new Scanner(fileRestaurant);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String restuarantName = dataFields[0];
+                Restaurant r = new Restaurant(restuarantName);
+                this.restaurants.add(r);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void createResturant() {
+    public void createRestaurant() {
+
+        File fileRestaurant = new File("restaurant.csv");
+
+        try { // create list of all menus
+            Scanner in = new Scanner(fileRestaurant);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String restuarantName = dataFields[0];
+                Restaurant r = new Restaurant(restuarantName);
+                this.restaurants.add(r);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 }
