@@ -41,6 +41,10 @@ public class Restaurant {
         return tables;
     }
 
+    public ArrayList<Person> getPeople(){
+        return people;
+    }
+
     //not nessacary, created a general object.toArray instead
     // public Table[] getTablesArr() {
     //     ArrayList<Table> temp = this.tables;
@@ -91,6 +95,9 @@ public class Restaurant {
     public void addTable(Table t) {
         tables.add(t);
     }
+    public void addPeople(Person p){
+        people.add(p);
+    }
 
     public void removeTable(Table t) {
         tables.remove(t);
@@ -99,6 +106,9 @@ public class Restaurant {
     public void removeOrder(Order o) { 
         orders.remove(o);
     
+    }
+    public void removePeople(Person p){
+        people.remove(p);
     }
 
 
