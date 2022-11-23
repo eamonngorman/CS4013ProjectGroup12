@@ -106,11 +106,41 @@ public class SystemBoot {
             } catch (IOException e){
                 e.printStackTrace();
             }
-            ;
+
         }
 
 
     public void createPeople() {
+        try {
+            File file = new File("src/PeopleDetails.csv");
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()){
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+
+                String name = dataFields[0];
+                int accessLevel = Integer.parseInt(dataFields[1]);
+                String restaurant = dataFields[4];
+                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                if (accessLevel == 0){
+                    Customer customer = new Customer(name);
+                } else if (accessLevel == 1){
+                    FOHStaff fohStaff = new FOHStaff(name);
+                } else if (accessLevel == 2){
+                    Waiter waiter = new Waiter(name);
+                } else if (accessLevel == 3){
+                    Chef chef = new Chef(name);
+                } else if (accessLevel == 4){
+                    Manager manager = new Manager(name);
+                }
+
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
 
     }
 

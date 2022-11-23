@@ -1,5 +1,5 @@
-Name, Role, Username, Password, Restaurant, idNum
-Liam Murray,Manager,liammurray,password1,Ardee,1
-Eamonn Gorman, Chef, eamonngorman, password2, Ardee, 2
-James Pelham-Burn, FOHSTaff, jamespelhamburn, password3, Ardee, 3
-Conor Cusack, Customer, conorcusack, password4, Ardee, 4
+Name, Access Level, Username, Password, Restaurant, idNum
+Liam Murray,5,liammurray,password1,Ardee,1
+Eamonn Gorman,3, eamonngorman, password2, Ardee, 2
+James Pelham-Burn, 1, jamespelhamburn, password3, Ardee, 3
+Conor Cusack, 0, conorcusack, password4, Ardee, 4
