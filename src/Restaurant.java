@@ -42,7 +42,8 @@ public class Restaurant {
         return tables;
     }
 
-    public ArrayList<Person> getPeople(){
+
+    public HashMap<String, Person> getPeople(){
         return people;
     }
 
@@ -100,8 +101,8 @@ public class Restaurant {
     public void addTable(Table t) {
         tables.add(t);
     }
-    public void addPeople(Person p){
-        people.add(p);
+    public void addPeople(Person p, String s){
+        people.put(s,p);
     }
 
     public void removeTable(Table t) {
