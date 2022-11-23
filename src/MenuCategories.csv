@@ -1,13 +1,13 @@
-catName, menuName, restaurantName
-starter, menu1, Ardee
-starter, menu1, Athleague
-starter, menu1, Cavan
-starter, menu1, Westport
-mainCourse, menu1, Ardee
-mainCourse, menu1, Athleague
-mainCourse, menu1, Cavan
-mainCourse, menu1, Westport
-dessert, menu1, Ardee
-dessert, menu1, Athleague
-dessert, menu1, Cavan
-dessert, menu1, Westport
+catName,menuName,restaurantName
+starter,menu1,Ardee
+starter,menu1,Athleague
+starter,menu1,Cavan
+starter,menu1,Westport
+mainCourse,menu1,Ardee
+mainCourse,menu1,Athleague
+mainCourse,menu1,Cavan
+mainCourse,menu1,Westport
+dessert,menu1,Ardee
+dessert,menu1,Athleague
+dessert,menu1,Cavan
+dessert,menu1,Westport
