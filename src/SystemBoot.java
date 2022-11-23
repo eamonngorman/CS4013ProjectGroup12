@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -106,10 +107,58 @@ public class SystemBoot {
     }
 
     public void createTables() {
+        try {
+            File file = new File("src/Tables.csv");
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()){
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+                int restaurantId = Integer.parseInt(dataFields[0]);
+                int tableNum = Integer.parseInt(dataFields[1]);
+                int tableCapacity = Integer.parseInt(dataFields[2]);
+                Table table = new Table(tableNum, tableCapacity);
+                // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
+            }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
 
-    }
+        }
+
 
     public void createPeople() {
+        try {
+            File file = new File("src/PeopleDetails.csv");
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()){
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+
+                String name = dataFields[0];
+                int accessLevel = Integer.parseInt(dataFields[1]);
+                String restaurant = dataFields[4];
+                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                if (accessLevel == 0){
+                    Customer customer = new Customer(name);
+                } else if (accessLevel == 1){
+                    FOHStaff fohStaff = new FOHStaff(name);
+                } else if (accessLevel == 2){
+                    Waiter waiter = new Waiter(name);
+                } else if (accessLevel == 3){
+                    Chef chef = new Chef(name);
+                } else if (accessLevel == 4){
+                    Manager manager = new Manager(name);
+                }
+
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -133,24 +182,7 @@ public class SystemBoot {
         }
     }
 
-    public void createRestaurant() {
-
-        File fileRestaurant = new File("restaurant.csv");
-
-        try { // create list of all menus
-            Scanner in = new Scanner(fileRestaurant);
-            if (in.hasNextLine()) {
-                in.nextLine();
-            }
-            while (in.hasNextLine()) {
-                String[] dataFields = in.nextLine().split(",");
-                String restuarantName = dataFields[0];
-                Restaurant r = new Restaurant(restuarantName);
-                this.restaurants.add(r);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void createResturant() {
 
     }
 }
