@@ -219,7 +219,7 @@ public class SystemBoot {
                 int tableNum = Integer.parseInt(dataFields[4]);
                 Table t = tableMap.get(tableNum);
 
-                this.restaurants.add();
+                //this.restaurants.add();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
