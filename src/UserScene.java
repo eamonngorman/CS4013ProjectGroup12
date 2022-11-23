@@ -50,6 +50,7 @@ public class UserScene {
     }
 
     CSVWriter w;
+    CSVReader csvReader;
     private void register() {
         String[] details = new String[3];
 
@@ -60,16 +61,23 @@ public class UserScene {
 
         System.out.println("Username: ");
         String username = in.nextLine();
-        details[1] = username;
-        System.out.println("Password: ");
-        String password = in.nextLine();
-        details[2] = password;
-        w.writeNewCustomerToCSV(details);
 
-        Person newUser = new Customer(details[0]);
-        restaurant.addPeople(newUser, username);
-        System.out.println("You have been registered with the username and password above.");
-        
+        boolean isTaken = csvReader.isUsernameTaken(username);
+        if (isTaken){
+            System.out.println("Username already in database");
+        } else {
+            details[1] = username;
+            System.out.println("Password: ");
+            String password = in.nextLine();
+            details[2] = password;
+            w.writeNewCustomerToCSV(details);
+
+            Person newUser = new Customer(details[0]);
+            restaurant.addPeople(newUser, username);
+            System.out.println("You have been registered with the username and password above.");
+
+        }
+
     }
 
     public void login(){
