@@ -8,6 +8,9 @@ public class RestaurantChain {
         this.restaurants = new ArrayList<Restaurant>();
         this.chainName = name;
     }
+    public RestaurantChain(){
+
+    }
 
     public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
