@@ -155,6 +155,7 @@ public class UserScene {
 
     private void calculateRestaurantIncome() {
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addItemToOrder();
         }
