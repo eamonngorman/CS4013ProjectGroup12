@@ -49,8 +49,9 @@ public class UserScene {
         }
     }
 
-    CSVWriter w;
-    CSVReader csvReader;
+    CSVWriter w = new CSVWriter();
+    CSVReader csvReader = new CSVReader();
+
     private void register() {
         String[] details = new String[3];
 
@@ -58,6 +59,22 @@ public class UserScene {
         String name = in.nextLine();
         details[0] = name;
         Customer newCustomer = new Customer(name);
+        System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
+        if(command.equals("A")){
+            ;
+        }
+        if(command.equals("B")){
+            ;
+        }
+        if(command.equals("C")){
+            ;
+        }
+        if(command.equals("D")){
+            ;
+        }
+        if(command.equals("Q")){
+            runStart();
+        }
 
         System.out.println("Username: ");
         String username = in.nextLine();
@@ -176,6 +193,7 @@ public class UserScene {
 
         String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addItemToOrder();
         }
@@ -376,6 +394,10 @@ public class UserScene {
 
 
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
+        if (choices == null){
+            return null;
+        }
+
         if (choices.size() == 0)
             return null;
         while (true) {

@@ -39,7 +39,7 @@ public class CSVReader {
     public boolean signIn(String username, String password){
         boolean signInSuccess = false;
         try {
-            File file = new File("PersonDetails.csv");
+            File file = new File("src/PersonDetails.csv");
             Scanner input = new Scanner(file);
             if (input.hasNextLine()){
                 input.nextLine();
@@ -126,15 +126,11 @@ public class CSVReader {
         return payments;
     }
 
-    public String getUserId(String userName){
-
-    }
-
 
     public boolean isUsernameTaken(String username) {
         boolean isTaken = false;
         try {
-            File file = new File("PersonDetails.csv");
+            File file = new File("src/PersonDetails.csv");
 
             Scanner input = new Scanner(file);
             if (input.hasNextLine()) {
