@@ -25,6 +25,7 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
+            restaurant = getChoice(yum.getRestaurants());
             System.out.println("A)Login  B)Register  Q)uit");
             String command = in.nextLine().toUpperCase();
             CSVReader csvReader = new CSVReader();
@@ -55,22 +56,6 @@ public class UserScene {
         String name = in.nextLine();
         details[0] = name;
         Customer newCustomer = new Customer(name);
-        System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
-        if(command.equals("A")){
-            ;
-        }
-        if(command.equals("B")){
-            ;
-        }
-        if(command.equals("C")){
-            ;
-        }
-        if(command.equals("D")){
-            ;
-        }
-        if(command.equals("Q")){
-            runStart();
-        }
 
         System.out.println("Username: ");
         String username = in.nextLine();
@@ -537,12 +522,14 @@ public class UserScene {
 
     public void finishOrder(){
         
-        System.out.println("Which order would you like to complete?:");
-        Order o = getChoice(restaurant.getOrders());
+        System.out.println("Which table's order would you like to complete?:");
+        Table t = getChoice(restaurant.getTables());
+        Order o = t.getOrder();
         //save to csv
-
+        CSVWriter csvWriter = new CSVWriter();
+        csvWriter.writeOrderToCSV(o, restaurant);
         restaurant.removeOrder(o);
-        table.changeAvailablity();
+        t.changeAvailability();
         
     }
 }
