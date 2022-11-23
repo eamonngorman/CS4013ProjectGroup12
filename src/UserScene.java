@@ -12,8 +12,9 @@ public class UserScene {
     private Restaurant restaurant = new Restaurant();
     private RestaurantChain yum = new RestaurantChain();
 
-    public UserScene() {
+    public UserScene(RestaurantChain yum) {
         in = new Scanner(System.in);
+        this.yum = yum;
     }
 
     /*
@@ -402,7 +403,7 @@ public class UserScene {
         while (true) {
             char c = 'A';
             for (T choice : choices) {
-                System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+                System.out.println(c + ")" + choice.toString());
                 c++;
             }
             String input = in.nextLine();
