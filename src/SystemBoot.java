@@ -14,11 +14,16 @@ public class SystemBoot {
 
     }
     public void systemBoot(){
+        RestaurantChain yum = new RestaurantChain("Yum");
         createRestaurant();
         createTables();
         createPeople();
         createReservation();
         createMenuItems();
+        for(Restaurant r: restaurants){
+            yum.addRestaurant(r);
+        }
+
     }
 
     public void createMenuItems() {
