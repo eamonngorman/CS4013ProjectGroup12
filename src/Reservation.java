@@ -16,8 +16,6 @@ public class Reservation {
     private LocalDateTime startTime;
     private static int reservationMinutes = 90;
     private LocalDateTime finishTime;
-    File reservationsCSV = new File("Reservations.csv");
-    FileWriter fileWriter = new FileWriter(reservationsCSV);
 
     Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime){
         this.customer = customer;
@@ -61,6 +59,8 @@ public class Reservation {
     public LocalDateTime getFinishTime() {
         return finishTime;
     }
+
+    /* 
     public void addReservationToCsv() throws IOException{
         StringBuilder line = new StringBuilder();
         line.append(customer + ",");
@@ -71,6 +71,7 @@ public class Reservation {
         line.append("\n");
         fileWriter.write(line.toString());
     }
+    */
 
     public static int getReservationMinutes() {
         return reservationMinutes;

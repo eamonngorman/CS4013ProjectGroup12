@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ public class UserScene {
     private Scanner in;
     private Person user;
     private Restaurant restaurant;
+    private RestaurantChain yum = new RestaurantChain();
 
     public UserScene() {
         in = new Scanner(System.in);
@@ -39,6 +41,24 @@ public class UserScene {
                 more = false;
             }
         }
+    }
+
+    CSVWriter w;
+    private void register() {
+        String[] details = new String[3];
+
+        System.out.println("Name: ");
+        String name = in.nextLine();
+        details[0] = name;
+        System.out.println("Username: ");
+        String username = in.nextLine();
+        details[1] = username;
+        System.out.println("Password: ");
+        String password = in.nextLine();
+        details[2] = password;
+        w.writeNewCustomerToCSV(details);
+
+        System.out.println("You have been registered with the username and password above.");
     }
 
     public void login(String userName){
@@ -104,7 +124,7 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 4){
-            System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff  Q)uit");
+            System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
             if(command.equals("A")){
                 editTables();
             }
@@ -114,6 +134,9 @@ public class UserScene {
             if(command.equals("C")){
                 editStaff();
             }
+            if(command.equals("D")){
+                calculateRestaurantIncome();
+            }
             if(command.equals("Q")){
                 runStart();
             }
@@ -122,11 +145,30 @@ public class UserScene {
         if (user.getAccessLevel() == 5){
             System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
             if(command.equals("A")){
-                editResturants();
+                editRestaurants();
             }
             if(command.equals("Q")){
                 runStart();
             }
+        }
+    }
+
+    private void calculateRestaurantIncome() {
+        System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        if(command.equals("A")){
+            addItemToOrder();
+        }
+        if(command.equals("B")){
+            removeItemFromOrder();
+        }
+        if(command.equals("C")){
+            deleteOrder();
+        }
+        if(command.equals("D")){
+            finishOrder();
+        }
+        if(command.equals("Q")){
+            runStart();
         }
     }
 
@@ -175,11 +217,11 @@ public class UserScene {
 
     }
 
-    private void editResturants() {
+    private void editRestaurants() {
         System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
-            addResturants(); ;
+            addRestaurant(); ;
         }
         if(command.equals("B")){
             System.out.print("Set Name");
@@ -212,8 +254,8 @@ public class UserScene {
             restaurant.addTable(table);
         }
         if(command.equals("R")){
-            System.out.println("Select a table to remove")
-            Table table = getChoice(restaurant.getTables())
+            System.out.println("Select a table to remove");
+            Table table = getChoice(restaurant.getTables());
             restaurant.removeTable(table);
         }
     }
@@ -311,21 +353,22 @@ public class UserScene {
         }
     }
 
-    // private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
-    //     if (choices.length == 0)
-    //         return null;
-    //     while (true) {
-    //         char c = 'A';
-    //         for (String choice : choices) {
-    //             System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
-    //             c++;
-    //         }
-    //         String input = in.nextLine();
-    //         int n = input.toUpperCase().charAt(0) - 'A';
-    //         if (0 <= n && n < choices.length)
-    //             return choices[n];
-    //     }
-    // }
+    // ask Eamonn before commenting this out. This is needed for String Arrays
+    private String getChoice(String[] choices) {
+        if (choices.length == 0)
+             return null;
+         while (true) {
+             char c = 'A';
+             for (String choice : choices) {
+                 System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+                 c++;
+             }
+             String input = in.nextLine();
+             int n = input.toUpperCase().charAt(0) - 'A';
+             if (0 <= n && n < choices.length)
+                return choices[n];
+    }
+    }
 
     public void makeReservation() {
 
@@ -355,6 +398,17 @@ public class UserScene {
                 order.addToOrder(item);
             }
         }
+    }
+
+    public void addRestaurant(){
+
+
+
+        System.out.println("What is the name of the new restaurant?: ");
+        String name = in.nextLine();
+        Restaurant newRestaurant = new Restaurant(name);
+
+        yum.getRestaurants().add(newRestaurant);
     }
 
     public void removeItemFromOrder(){
@@ -441,7 +495,7 @@ public class UserScene {
     public void finishOrder(){
         
         System.out.println("Which order would you like to complete?:");
-        Order o = getChoice(resturant.getOrders());
+        Order o = getChoice(restaurant.getOrders());
         //save to csv
 
         restaurant.removeOrder(o);
