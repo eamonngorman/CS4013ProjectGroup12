@@ -126,9 +126,7 @@ public class CSVReader {
         return payments;
     }
 
-    public String getUserId(String userName){
 
-    }
 
 
 }
