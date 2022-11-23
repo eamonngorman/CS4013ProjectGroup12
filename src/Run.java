@@ -12,8 +12,8 @@ public class Run
       SystemBoot systemBoot = new SystemBoot();
       //RestaurantChain yum = new RestaurantChain("Yum", systemBoot.giveRest);
 
-      systemBoot.boot();
-      UserScene use = new UserScene();
+      RestaurantChain yum = systemBoot.boot();
+      UserScene use = new UserScene(yum);
       use.runStart();
   }
 
