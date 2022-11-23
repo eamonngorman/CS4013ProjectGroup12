@@ -101,9 +101,12 @@ public class Order {
         System.out.println("Yum Restaurant");
         System.out.println(itemsInOrder);
         System.out.println("Total: " + beforeTip);
-        if (isPaid == true){
-            System.out.println("Tip: " + gratuity);
-            System.out.println("Grand Total: " + totalCost);
+        if (paymentMethod == 'C'){
+            System.out.println("Payment Method: Cash")
+        } else if(paymentMethod == 'D'){
+            System.out.println("Payment Method: Card")
         }
+        System.out.println("Tip: " + gratuity);
+        System.out.println("Grand Total: " + totalCost);
     }
 }
