@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +11,8 @@ import java.util.Scanner;
 public class SystemBoot {
 
     private ArrayList<Restaurant> restaurants;
+    private HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
+    private HashMap<Integer, Table> tableMap = new HashMap<Integer, Table>(); 
 
     public void createMenuItems() {
         //this should have been split into seperate methods, my bad
@@ -31,6 +35,7 @@ public class SystemBoot {
                 String restaurantName = dataFields[1] + i;
                 Menu m = new Menu(menuName);
                 menus.put(restaurantName, m);
+                
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -119,6 +124,7 @@ public class SystemBoot {
                 int tableNum = Integer.parseInt(dataFields[1]);
                 int tableCapacity = Integer.parseInt(dataFields[2]);
                 Table table = new Table(tableNum, tableCapacity);
+                tableMap.put(table.getTableNum(), table);
                 // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
             }
             } catch (IOException e){
@@ -141,9 +147,11 @@ public class SystemBoot {
                 String name = dataFields[0];
                 int accessLevel = Integer.parseInt(dataFields[1]);
                 String restaurant = dataFields[4];
-                alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
+                int custId = Integer.parseInt(dataFields[5]);
+                //alert// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
                 if (accessLevel == 0){
                     Customer customer = new Customer(name);
+                    this.customerMap.put(customer.getIdNum(), customer);
                 } else if (accessLevel == 1){
                     FOHStaff fohStaff = new FOHStaff(name);
                 } else if (accessLevel == 2){
@@ -167,6 +175,29 @@ public class SystemBoot {
         File fileReservation = new File("reservation.csv");
 
         try { // create list of all menus
+            Scanner in = new Scanner(fileReservation);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                int custId = Integer.parseInt(dataFields[5]);
+                Customer c = customerMap.get(custId);
+                int tableNum = Integer.parseInt(dataFields[4]);
+                Table t = tableMap.get(tableNum);
+
+                this.restaurants.add();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createResturant() {
+
+        File fileRestaurant = new File("restaurant.csv");
+
+        try {
             Scanner in = new Scanner(fileRestaurant);
             if (in.hasNextLine()) {
                 in.nextLine();
@@ -182,23 +213,11 @@ public class SystemBoot {
         }
     }
 
-    public void createResturant() {
+    public LocalDateTime stringToDate(String date){
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime formattedDate = LocalDateTime.parse(date, formatter);
 
-        File fileRestaurant = new File("restaurant.csv");
-
-        try { // create list of all menus
-            Scanner in = new Scanner(fileRestaurant);
-            if (in.hasNextLine()) {
-                in.nextLine();
-            }
-            while (in.hasNextLine()) {
-                String[] dataFields = in.nextLine().split(",");
-                String restuarantName = dataFields[0];
-                Restaurant r = new Restaurant(restuarantName);
-                this.restaurants.add(r);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        return formattedDate;
     }
 }
