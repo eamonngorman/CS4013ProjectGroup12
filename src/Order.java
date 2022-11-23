@@ -15,6 +15,7 @@ public class Order {
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
     private LocalDate date;
+    private char paymentMethod;
 
     Order(){
         this.orderId = ++count;
@@ -24,12 +25,19 @@ public class Order {
         this.date = LocalDate.now();
 
     }
+    public void setPaymentMethod(char method){
+        paymentMethod = method;
+    }
 
     public void setGratuity(double gratuity){
         this.gratuity = gratuity;
     }
     public void setPaid(boolean paid){
         isPaid = paid;
+    }
+
+    public char getPaymentMethod(){
+        return paymentMethod;
     }
 
     public int getOrderId() {

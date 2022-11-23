@@ -513,9 +513,30 @@ public class UserScene {
         System.out.println("Which order would you like to complete?:");
         Order o = getChoice(restaurant.getOrders());
         //save to csv
-
+        System.out.println("Would you like to add a tip Y)es N)o");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("Y")){
+            System.out.println("How much would you like to tip?");
+            double tip = in.nextDouble();
+            o.setGratuity(tip);
+        }
+        if (command.equals("N")){
+            o.setGratuity(0);
+        }
+        printBill(o);
         restaurant.removeOrder(o);
         table.changeAvailablity();
         
+    }
+
+    public void printBill(Order o){
+        System.out.println("Would you like to pay by C)ash or D)ebit Card");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("C")){
+            o.setPaymentMethod('C');
+        }
+        if(command.equals("D")){
+            o.setPaymentMethod('D');
+        }
     }
 }
