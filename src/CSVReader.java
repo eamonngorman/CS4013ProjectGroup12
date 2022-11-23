@@ -47,8 +47,8 @@ public class CSVReader {
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
 
-                if (username == dataFields[2]){
-                    if (password == dataFields[3]){
+                if (username.equals(dataFields[2])){
+                    if (password.equals(dataFields[3])){
                         signInSuccess = true;
                     }
                 }
