@@ -44,12 +44,32 @@ public class UserScene {
     }
 
     CSVWriter w;
-    private void register() {
-        String[] details = new String[3];
+     void register() {
+         String command = in.nextLine().toUpperCase();
+
+         String[] details = new String[3];
 
         System.out.println("Name: ");
         String name = in.nextLine();
         details[0] = name;
+        Customer newCustomer = new Customer(name);
+        System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
+        if(command.equals("A")){
+            ;
+        }
+        if(command.equals("B")){
+            ;
+        }
+        if(command.equals("C")){
+            ;
+        }
+        if(command.equals("D")){
+            ;
+        }
+        if(command.equals("Q")){
+            runStart();
+        }
+
         System.out.println("Username: ");
         String username = in.nextLine();
         details[1] = username;
