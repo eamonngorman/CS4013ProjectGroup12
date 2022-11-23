@@ -244,7 +244,7 @@ public class UserScene {
 
 
     private void editTables() {
-        System.out.println("A)dd R)emove");
+        System.out.println("A)dd R)emove Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             System.out.println("Enter number of seats");
@@ -259,10 +259,13 @@ public class UserScene {
             Table table = getChoice(restaurant.getTables());
             restaurant.removeTable(table);
         }
+        if (command.equals("Q")){
+            runStart();
+        }
     }
 
     private void editMenus() {
-        System.out.println("E)dit menu R)emove menu");
+        System.out.println("E)dit menu R)emove menu Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals ("E")){
             System.out.println("Select a menu to edit");
@@ -274,11 +277,14 @@ public class UserScene {
             Menu menus = getChoice(restaurant.getMenus());
             restaurant.removeMenu(menus);
         }
+        if (command.equals("Q")){
+            runStart();
+        }
     }
 
     private void editMenu(Menu menus){
         ArrayList<MenuCategory> menuCategories = menus.getCategories();
-        System.out.println("E)dit category A)dd category R)emove category");
+        System.out.println("E)dit category A)dd category R)emove category Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("E")){
             System.out.println("Select a category to edit");
@@ -296,11 +302,14 @@ public class UserScene {
             MenuCategory menuCat = getChoice(menuCategories);
             menus.removeCategory(menuCat);
         }
+        if (command.equals("Q")){
+            runStart();
+        }
     }
 
     private void editCats(MenuCategory menuCat){
         ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
-        System.out.println("E)dit Item A)dd Item R)emove Item");
+        System.out.println("E)dit Item A)dd Item R)emove Item Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("E")){
             System.out.println("Select an item to edit");
@@ -320,10 +329,13 @@ public class UserScene {
             MenuItem menuItem = getChoice(menuItems);
             menuCat.removeMenuItem(menuItem);
         }
+        if (command.equals("Q")){
+            runStart();
+        }
     }
 
     private void editItems(MenuItem menuItem){
-        System.out.println("Change N)ame P)rice");
+        System.out.println("Change N)ame P)rice Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("N")){
             System.out.println("Enter New Name");
@@ -334,6 +346,9 @@ public class UserScene {
             System.out.println("Enter New Price");
             Double price = in.nextDouble();
             menuItem.setItemCost(price);
+        }
+        if (command.equals("Q")){
+            runStart();
         }
     }
 
