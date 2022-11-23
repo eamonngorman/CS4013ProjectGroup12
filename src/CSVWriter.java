@@ -35,7 +35,7 @@ public class CSVWriter {
     }
 
 
-    public void writeOrderToCSV(Order order){
+    public void writeOrderToCSV(Order order, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("orders.csv");
@@ -49,9 +49,8 @@ public class CSVWriter {
                 printWriter.write(header.toString());
             }
 
-            need to figure out how to add RestaurantId with order;
-
-
+            csvData.append(restaurant.getRestaurantId());
+            csvData.append(",");
             csvData.append(order.getOrderId());
             csvData.append(",");
             csvData.append(order.getItems().toString());
