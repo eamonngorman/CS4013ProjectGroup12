@@ -54,7 +54,7 @@ public class UserScene {
 
     private void register() {
         String[] details = new String[3];
-
+        String command = in.nextLine().toUpperCase();
         System.out.println("Name: ");
         String name = in.nextLine();
         details[0] = name;
@@ -193,7 +193,6 @@ public class UserScene {
 
         String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
-        String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addItemToOrder();
         }
