@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Order {
@@ -13,21 +14,19 @@ public class Order {
     private boolean isPaid;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
-
-
-    File ordersCSV = new File("Orders.csv");
-    FileWriter fileWriter = new FileWriter(ordersCSV);
+    private LocalDate date;
 
     Order(){
         this.orderId = ++count;
         this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
+        this.date = LocalDate.now();
 
     }
 
-    public void setTip(double tip){
-        this.tip = tip;
+    public void setGratuity(double gratuity){
+        this.gratuity = gratuity;
     }
     public void setPaid(boolean paid){
         isPaid = paid;
@@ -55,7 +54,7 @@ public class Order {
         totalCost -= item.getItemCost();
     }
 
-    public void addOrderToCSv() throws IOException {
+    /*public void addOrderToCSv() throws IOException {
         StringBuilder line = new StringBuilder();
         String listString = "";
         for (MenuItem m : itemsInOrder){
@@ -66,10 +65,14 @@ public class Order {
         line.append(totalCost);
         line.append("\n");
         fileWriter.write(line.toString());
-    }
+    }*/
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public String[] getStatuses() {
@@ -86,12 +89,12 @@ public class Order {
 
     public void printBill(){  //method to print the bill. will only show tip after the bill has been paid
         double beforeTip = totalCost;
-        totalCost += tip;
+        totalCost += gratuity;
         System.out.println("Yum Restaurant");
         System.out.println(itemsInOrder);
         System.out.println("Total: " + beforeTip);
         if (isPaid == true){
-            System.out.println("Tip: " + tip);
+            System.out.println("Tip: " + gratuity);
             System.out.println("Grand Total: " + totalCost);
         }
     }
