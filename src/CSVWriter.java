@@ -13,17 +13,17 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("Name, Role, Username, Password\n");
+                header.append("Name, Access Level, Username, Password\n");
                 printWriter.write(header.toString());
             }
-            csvData.append(details[0]);
+            csvData.append("\n" + details[0]);
             csvData.append(",");
-            csvData.append("Customer");
+            csvData.append("0");
             csvData.append(",");
             csvData.append(details[1]);
             csvData.append(",");
             csvData.append(details[2]);
-            csvData.append(",\n");
+            csvData.append(",");
 
             printWriter.write(csvData.toString());
             printWriter.close();
