@@ -19,4 +19,8 @@ public class RestaurantChain {
     public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
     }
+
+    public void addRestaurant(Restaurant r){
+        restaurants.add(r);
+    }
 }
