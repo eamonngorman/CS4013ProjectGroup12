@@ -43,6 +43,24 @@ public class UserScene {
         }
     }
 
+    CSVWriter w;
+    private void register() {
+        String[] details = new String[3];
+
+        System.out.println("Name: ");
+        String name = in.nextLine();
+        details[0] = name;
+        System.out.println("Username: ");
+        String username = in.nextLine();
+        details[1] = username;
+        System.out.println("Password: ");
+        String password = in.nextLine();
+        details[2] = password;
+        w.writeNewCustomerToCSV(details);
+
+        System.out.println("You have been registered with the username and password above.");
+    }
+
     public void login(String userName){
 
         String command = in.nextLine().toUpperCase();
@@ -106,7 +124,7 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 4){
-            System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff  Q)uit");
+            System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
             if(command.equals("A")){
                 editTables();
             }
@@ -115,6 +133,9 @@ public class UserScene {
             }
             if(command.equals("C")){
                 editStaff();
+            }
+            if(command.equals("D")){
+                calculateRestaurantIncome();
             }
             if(command.equals("Q")){
                 runStart();
@@ -129,6 +150,25 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+        }
+    }
+
+    private void calculateRestaurantIncome() {
+        System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        if(command.equals("A")){
+            addItemToOrder();
+        }
+        if(command.equals("B")){
+            removeItemFromOrder();
+        }
+        if(command.equals("C")){
+            deleteOrder();
+        }
+        if(command.equals("D")){
+            finishOrder();
+        }
+        if(command.equals("Q")){
+            runStart();
         }
     }
 
@@ -181,7 +221,7 @@ public class UserScene {
         System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
-            addRestaurants(); ;
+            addRestaurant(); ;
         }
         if(command.equals("B")){
             System.out.print("Set Name");
@@ -313,21 +353,22 @@ public class UserScene {
         }
     }
 
-    // private String getChoice(String[] choices) { //getChoice can now work for all arrayList types
-    //     if (choices.length == 0)
-    //         return null;
-    //     while (true) {
-    //         char c = 'A';
-    //         for (String choice : choices) {
-    //             System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
-    //             c++;
-    //         }
-    //         String input = in.nextLine();
-    //         int n = input.toUpperCase().charAt(0) - 'A';
-    //         if (0 <= n && n < choices.length)
-    //             return choices[n];
-    //     }
-    // }
+    // ask Eamonn before commenting this out. This is needed for String Arrays
+    private String getChoice(String[] choices) {
+        if (choices.length == 0)
+             return null;
+         while (true) {
+             char c = 'A';
+             for (String choice : choices) {
+                 System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
+                 c++;
+             }
+             String input = in.nextLine();
+             int n = input.toUpperCase().charAt(0) - 'A';
+             if (0 <= n && n < choices.length)
+                return choices[n];
+    }
+    }
 
     public void makeReservation() {
 

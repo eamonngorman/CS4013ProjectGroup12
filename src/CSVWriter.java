@@ -3,6 +3,36 @@ import java.util.Scanner;
 
 public class CSVWriter {
 
+    public void writeNewCustomerToCSV(String[] details){
+        PrintWriter printWriter;
+        try {
+            File file = new File("customerDetails.csv");
+            printWriter = new PrintWriter(new FileWriter(file, true));
+            Scanner input = new Scanner(file);
+            StringBuffer csvData = new StringBuffer("");
+
+            if (!input.hasNext()){
+                StringBuffer header = new StringBuffer("");
+                header.append("Name, Username, Password\n");
+                printWriter.write(header.toString());
+            }
+            csvData.append(details[0]);
+            csvData.append(",");
+            csvData.append(details[1]);
+            csvData.append(",");
+            csvData.append(details[2]);
+            csvData.append(",\n");
+
+            printWriter.write(csvData.toString());
+            printWriter.close();
+
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
     public void writeOrderToCSV(Order order){
         PrintWriter printWriter;
         try {
