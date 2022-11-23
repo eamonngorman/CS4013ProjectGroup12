@@ -106,7 +106,9 @@ public class Order {
             System.out.println("Payment Method: Card");
         }
         System.out.println("Total: " + beforeTip);
-        System.out.println("Tip: " + gratuity);
-        System.out.println("Grand Total: " + totalCost);
+        if (gratuity > 0){
+            System.out.println("Tip: " + gratuity);
+            System.out.println("Grand Total: " + totalCost);
+        }
     }
 }
