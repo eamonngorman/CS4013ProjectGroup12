@@ -13,7 +13,7 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("Order Id,Items,Total Cost,Gratuity,Order Status\n");
+                header.append("Order Id,Items,Total Cost,Gratuity,Order Status,Date\n");
                 printWriter.write(header.toString());
             }
             csvData.append(order.getOrderId());
@@ -25,6 +25,8 @@ public class CSVWriter {
             csvData.append(order.getGratuity());
             csvData.append(",");
             csvData.append(order.getOrderStatus());
+            csvData.append(",");
+            csvData.append(order.getDate().toString());
             csvData.append(",\n");
 
             printWriter.write(csvData.toString());
