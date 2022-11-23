@@ -265,7 +265,7 @@ public class UserScene {
     }
 
     private void editMenus() {
-        System.out.println("E)dit menu R)emove menu");
+        System.out.println("E)dit menu R)emove menu Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals ("E")){
             System.out.println("Select a menu to edit");
@@ -276,6 +276,9 @@ public class UserScene {
             System.out.println("Select a menu to remove");
             Menu menus = getChoice(restaurant.getMenus());
             restaurant.removeMenu(menus);
+        }
+        if (command.equals("Q")){
+            runStart();
         }
     }
 
