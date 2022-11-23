@@ -10,14 +10,25 @@ public class SystemBoot {
 
     private ArrayList<Restaurant> restaurants = new ArrayList<>();
 
+    public SystemBoot(){
+
+    }
+    public void systemBoot(){
+        createRestaurant();
+        createTables();
+        createPeople();
+        createReservation();
+        createMenuItems();
+    }
+
     public void createMenuItems() {
         //this should have been split into seperate methods, my bad
         HashMap<String, MenuItem> items = new HashMap<String, MenuItem>();
         HashMap<String, MenuCategory> cats = new HashMap<String, MenuCategory>();
         HashMap<String, Menu> menus = new HashMap<String, Menu>();
         File fileItems = new File("src/MenuItems.csv");
-        File fileCats = new File("src/cats.csv");
-        File fileMenus = new File("src/menus.csv");
+        File fileCats = new File("src/MenuCategories.csv");
+        File fileMenus = new File("src/Menus.csv");
 
         try { // create list of all menus
             Scanner in = new Scanner(fileMenus);
@@ -135,7 +146,7 @@ public class SystemBoot {
 
     public void createPeople() {
         try {
-            File file = new File("src/PeopleDetails.csv");
+            File file = new File("src/PersonDetails.csv");
             Scanner input = new Scanner(file);
             if (input.hasNextLine()){
                 input.nextLine();
@@ -199,7 +210,7 @@ public class SystemBoot {
         }
     }
 
-    public void createResturant() {
+    public void createRestaurant() {
 
         File fileRestaurant = new File("src/Restaurants.csv");
 
