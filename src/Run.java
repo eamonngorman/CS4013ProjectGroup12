@@ -9,6 +9,7 @@ public class Run
          throws IOException
    { 
       RestaurantChain yum = new RestaurantChain("Yum");
+      
       SystemBoot systemBoot = new SystemBoot();
       systemBoot.systemBoot();
       UserScene use = new UserScene();

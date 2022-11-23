@@ -11,19 +11,18 @@ import java.util.Scanner;
 public class SystemBoot {
 
     private ArrayList<Restaurant> restaurants = new ArrayList<>();
+    private HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
+    private HashMap<Integer, Table> tableMap = new HashMap<Integer, Table>(); 
 
-    public SystemBoot(){
-
-    }
     public void systemBoot(){
         createRestaurant();
         createTables();
         createPeople();
         createReservation();
         createMenuItems();
+
     }
-    private HashMap<Integer, Customer> customerMap = new HashMap<Integer, Customer>();
-    private HashMap<Integer, Table> tableMap = new HashMap<Integer, Table>(); 
+    
 
     public void createMenuItems() {
         //this should have been split into seperate methods, my bad

@@ -12,6 +12,10 @@ public class RestaurantChain {
 
     }
 
+    public RestaurantChain(String name, ArrayList<Restaurant> restaurants){
+        this.chainName = name;
+        this.restaurants = restaurants;
+    }
     public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
     }
