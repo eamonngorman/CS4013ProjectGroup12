@@ -224,7 +224,7 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("ReservationId, numPeople, date, time, tableNo, customerId, Restaurant\n");
+                header.append("ReservationId, numPeople, date, time, tableNo, customerId, Restaurant, phoneNumber\n");
                 printWriter.write(header.toString());
             }
             csvData.append("\n");
@@ -241,6 +241,8 @@ public class CSVWriter {
             csvData.append(restaurant.getName());
             csvData.append(",");
             csvData.append(user.getName());
+            csvData.append(",");
+            csvData.append(reservation.getPhoneNumber());
             csvData.append(",");
 
             printWriter.write(csvData.toString());
