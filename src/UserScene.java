@@ -30,7 +30,9 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
+            System.out.println("Welcome to the Yum restaurant management system");
             if(restaurant == null) {
+                System.out.println("What Yum restaurant do you wish to access?");
                 restaurant = getChoice(yum.getRestaurants());
             }
             System.out.println("A)Login  B)Register  Q)uit");
@@ -57,27 +59,51 @@ public class UserScene {
 
 
     private void register() {
-        String[] details = new String[3];
-        System.out.println("Name: ");
-        String name = in.nextLine();
-        details[0] = name;
-        Customer newCustomer = new Customer(name);
+        Person newPerson = new Person("NOname", 0);
+
+        if(user.getAccessLevel() == 0){
+            System.out.println("Enter Your Name: ");
+            String name = in.nextLine();
+            newPerson = new Customer(name);
+        } else {
+            System.out.println("Enter New Employee Name: ");
+            String name = in.nextLine();
+            System.out.println("What Kind of Employee is being hired?");
+            System.out.println("A)Front of House  B)Waiter  C)Chef  D)Manager  Q)uit");
+            
+            String command = in.next().toUpperCase();
+            if(command.equals("A")){
+                newPerson = new FOHStaff(name);
+
+            } else if(command.equals("B")){
+                newPerson = new Waiter(name);
+
+            } else if(command.equals("C")){
+                newPerson = new Chef(name);
+
+            } else if(command.equals("D")){
+                newPerson = new Manager(name);
+
+            } else if(command.equals("Q")){
+                login();
+            }
+        }
         
-        System.out.println("Username: ");
+        System.out.println("Enter Username: ");
         String username = in.nextLine();
+
+        System.out.println("Enter Password:");
+        String password = in.nextLine();
+        
 
         boolean isTaken = csvReader.isUsernameTaken(username);
         if (isTaken){
             System.out.println("Username already in database");
         } else {
-            details[1] = username;
-            System.out.println("Password: ");
-            String password = in.nextLine();
-            details[2] = password;
-            csvWriter.writeNewCustomerToCSV(details, restaurant);
 
-            Person newUser = new Customer(details[0]);
-            restaurant.addPeople(newUser, username);
+            csvWriter.writeNewPersonToCSV(username, password, (Person)newPerson, restaurant);;
+
+            restaurant.addPeople(newPerson, username);
             System.out.println("You have been registered with the username and password above.");
 
         }

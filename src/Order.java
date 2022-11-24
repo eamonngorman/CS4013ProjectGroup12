@@ -56,8 +56,8 @@ public class Order {
     }
 
     public void removeFromOrder(MenuItem item) {
-        itemsInOrder.remove(item);
         totalCost -= item.getItemCost();
+        itemsInOrder.remove(item);
     }
 
     /*public void addOrderToCSv() throws IOException {
