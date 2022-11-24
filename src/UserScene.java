@@ -498,7 +498,6 @@ public class UserScene {
         }
 
         restaurant.addReservation(r);
-        
         csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
@@ -604,8 +603,9 @@ public class UserScene {
     }
 
     public void deleteReservationStaff(){
-        String date = in.nextLine();
+
         System.out.println("What day is the reservation? (dd/mm/yyyy)");
+        String date = in.next();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate formattedDate = LocalDate.parse(date, formatter);
 

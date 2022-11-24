@@ -82,7 +82,7 @@ public class Restaurant {
     public ArrayList<Reservation> getReservationByDay(LocalDate day) {
         ArrayList<Reservation> resByDay = new ArrayList<Reservation>();
         for(Reservation r: reservations){
-            if(r.getStartTime().toLocalDate() == day){
+            if(r.getStartTime()..gday){
                 resByDay.add(r);
             }
         }
