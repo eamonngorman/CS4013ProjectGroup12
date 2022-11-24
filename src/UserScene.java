@@ -106,7 +106,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 0){ //Customer Menu
             System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next().toUpperCase();
 
             if(command.equals("A")){
                 makeReservation();
@@ -121,7 +121,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 1){
             System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next().toUpperCase();
 
             if(command.equals("A")){
                 makeReservation();
@@ -136,7 +136,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 2){
             System.out.println("A)Add to Order  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next().toUpperCase();
             if(command.equals("A")){
                 addItemToOrder();
             }
@@ -156,7 +156,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 3){
             System.out.println("A)Update Order  B)See Current Orders  Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next().toUpperCase();
             if(command.equals("A")){
                 updateOrderStatus();
             }
@@ -170,7 +170,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 4){
             System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next().toUpperCase();
             if(command.equals("A")){
                 editTables();
             }
@@ -190,7 +190,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 5){
             System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next().toUpperCase();
             if(command.equals("A")){
                 editRestaurants();
             }
@@ -473,7 +473,7 @@ public class UserScene {
 
         Reservation r = new Reservation((Customer) user, table, people, formattedDate);
         restaurant.addReservation(r);
-
+        login();
     }
 
     public void addItemToOrder(){

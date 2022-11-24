@@ -112,7 +112,7 @@ public class Order {
     public String toString(){
         String str = "";
         for (MenuItem item : itemsInOrder){
-            str += (item.toString() + ",");
+            str += (item.toString() + ", ");
         }
         str += ("Total cost: " + totalCost);
         return str;
