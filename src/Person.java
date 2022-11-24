@@ -33,4 +33,9 @@ public class Person {
     public int getIdNum() {
         return idNum;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

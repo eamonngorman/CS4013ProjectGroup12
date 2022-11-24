@@ -1,14 +1,20 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Restaurant {
 
     private String name;
+    private int restaurantId;
     private ArrayList<Menu> menus;
     private ArrayList<Table> tables;
     private ArrayList<Reservation> reservations;
     private ArrayList<Order> orders;
-    private ArrayList<Person> people;
+    private HashMap<String, Person> people;
+
+    Restaurant(){
+    }
 
     Restaurant(String name) {
         this.name = name;
@@ -16,7 +22,7 @@ public class Restaurant {
         this.tables = new ArrayList<Table>();
         this.reservations = new ArrayList<Reservation>();
         this.orders = new ArrayList<Order>();
-        this.people = new ArrayList<Person>();
+        this.people = new HashMap<String, Person>();
     }
 
     public void setName(String name) {
@@ -31,8 +37,21 @@ public class Restaurant {
         return menus;
     }
 
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
     public ArrayList<Table> getTables() {
         return tables;
+    }
+
+
+    public HashMap<String, Person> getPeople(){
+        return people;
+    }
+
+    public Person getPerson(String userName){
+        return people.get(userName);
     }
 
     //not nessacary, created a general object.toArray instead
@@ -85,6 +104,9 @@ public class Restaurant {
     public void addTable(Table t) {
         tables.add(t);
     }
+    public void addPeople(Person p, String s){
+        people.put(s,p);
+    }
 
     public void removeTable(Table t) {
         tables.remove(t);
@@ -94,6 +116,10 @@ public class Restaurant {
         orders.remove(o);
     
     }
+    public void removePeople(Person p){
+        people.remove(p);
+    }
+
 
     public void addReservation(Reservation r) {
 
@@ -158,5 +184,10 @@ public class Restaurant {
         }
 
         return freeTables;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

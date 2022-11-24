@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class MenuCategory {
 
-    private ArrayList<MenuItem> menuItems;
+    private ArrayList<MenuItem> menuItems = new ArrayList<>();
     private String categoryName;
 
     MenuCategory(String categoryName) {
@@ -17,7 +17,7 @@ public class MenuCategory {
         return categoryName;
     }
 
-    public ArrayList<MenuItem> getMenuItems(ArrayList<MenuItem> menuItems) {
+    public ArrayList<MenuItem> getMenuItems() {
         return menuItems;
     }
 
@@ -27,5 +27,9 @@ public class MenuCategory {
 
     public void removeMenuItem(MenuItem itemToAdd) {
         menuItems.remove(itemToAdd);
+    }
+    @Override
+    public String toString(){
+        return categoryName;
     }
 }

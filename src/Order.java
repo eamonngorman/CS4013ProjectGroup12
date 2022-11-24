@@ -1,36 +1,44 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Order {
 
-    private int count = 0;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private int orderId;
     private ArrayList<MenuItem> itemsInOrder;
     private double totalCost;
-    private double tip;
+    private double gratuity;
     private boolean isPaid;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
-
-
-    File ordersCSV = new File("Orders.csv");
-    FileWriter fileWriter = new FileWriter(ordersCSV);
+    private LocalDate date;
+    private char paymentMethod;
 
     Order(){
-        this.orderId = ++count;
+        this.orderId = count.incrementAndGet();
         this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
+        this.date = LocalDate.now();
 
     }
+    public void setPaymentMethod(char method){
+        paymentMethod = method;
+    }
 
-    public void setTip(double tip){
-        this.tip = tip;
+    public void setGratuity(double gratuity){
+        this.gratuity = gratuity;
     }
     public void setPaid(boolean paid){
         isPaid = paid;
+    }
+
+    public char getPaymentMethod(){
+        return paymentMethod;
     }
 
     public int getOrderId() {
@@ -55,7 +63,7 @@ public class Order {
         totalCost -= item.getItemCost();
     }
 
-    public void addOrderToCSv() throws IOException {
+    /*public void addOrderToCSv() throws IOException {
         StringBuilder line = new StringBuilder();
         String listString = "";
         for (MenuItem m : itemsInOrder){
@@ -66,25 +74,50 @@ public class Order {
         line.append(totalCost);
         line.append("\n");
         fileWriter.write(line.toString());
-    }
+    }*/
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public String[] getStatuses() {
         return statuses;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public double getGratuity() {
+        return gratuity;
+    }
+
     public void printBill(){  //method to print the bill. will only show tip after the bill has been paid
         double beforeTip = totalCost;
-        totalCost += tip;
+        totalCost += gratuity;
         System.out.println("Yum Restaurant");
         System.out.println(itemsInOrder);
         System.out.println("Total: " + beforeTip);
         if (isPaid == true){
-            System.out.println("Tip: " + tip);
-            System.out.println("Grand Total: " + totalCost);
+            if (gratuity > 0){
+                System.out.println("Tip: " + gratuity);
+                System.out.println("Grand Total: " + totalCost);
+            }
+            System.out.println("Bill paid. Thank you for dining at Yum");
         }
+    }
+
+    @Override
+    public String toString(){
+        String str = "";
+        for (MenuItem item : itemsInOrder){
+            str += (item.toString() + ", ");
+        }
+        str += ("Total cost: " + totalCost);
+        return str;
     }
 }

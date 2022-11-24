@@ -3,6 +3,7 @@ public class MenuItem {
     private String itemName;
     private double itemCost;
 
+
     MenuItem(String itemName, double itemCost) {
         this.itemName = itemName;
         this.itemCost = itemCost;
@@ -22,5 +23,9 @@ public class MenuItem {
 
     public double getItemCost() {
         return itemCost;
+    }
+    @Override
+    public String toString(){
+        return ("Dish Name: "+ itemName+ " Dish Cost: "+ itemCost);
     }
 }

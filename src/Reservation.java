@@ -1,25 +1,32 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Reservation {
 
     private Customer customer;
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private int reservationId;
     private Table table;
     private int numOfPeople; // not needed?
+    private LocalDate date;
+    private LocalTime start;
     private LocalDateTime startTime;
     private static int reservationMinutes = 90;
     private LocalDateTime finishTime;
-    File reservationsCSV = new File("Reservations.csv");
-    FileWriter fileWriter = new FileWriter(reservationsCSV);
 
     Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime){
+        this.reservationId = count.incrementAndGet();
         this.customer = customer;
         this.table = table;
         this.numOfPeople = numOfPeople;
         this.startTime = startTime;
         this.finishTime = startTime.plusMinutes(reservationMinutes);
+        this.date = startTime.toLocalDate();
     }
 
     Reservation(Table table, LocalDateTime startTime) {
@@ -36,8 +43,16 @@ public class Reservation {
         return table;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public int getNumOfPeople() {
         return numOfPeople;
+    }
+
+    public LocalTime getStart() {
+        return start;
     }
 
     public LocalDateTime getStartTime() {
@@ -47,6 +62,8 @@ public class Reservation {
     public LocalDateTime getFinishTime() {
         return finishTime;
     }
+
+    /* 
     public void addReservationToCsv() throws IOException{
         StringBuilder line = new StringBuilder();
         line.append(customer + ",");
@@ -57,9 +74,14 @@ public class Reservation {
         line.append("\n");
         fileWriter.write(line.toString());
     }
+    */
 
     public static int getReservationMinutes() {
         return reservationMinutes;
+    }
+
+    public int getReservationId() {
+        return reservationId;
     }
 
     public void setReservationMinutes(int minutes) {
@@ -77,6 +99,10 @@ public class Reservation {
             } 
         }
         return true;
+    }
+    @Override
+    public String toString(){
+        return (customer.getName() + ", " + table.toString() + ", Number of People: " + numOfPeople + ", Date: " + date + ", "+startTime +" - "+finishTime);
     }
 
     

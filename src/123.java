@@ -1,4 +1,4 @@
-public class 123 {
+/*public class 123 {
     
 }
 import java.util.Scanner;
@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 /**
    A menu for the appointment calendar system.
-*/
+
 public class AppointmentMenu
 {
    private Scanner in;
 
    /**
       Constructs an AppointmentMenu object.
-   */
+
    public AppointmentMenu()
    {
        in = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class AppointmentMenu
    
    /**
       Runs the system.
-   */
+
    public void run()
    {         
       boolean more = true;
@@ -88,3 +88,4 @@ public class AppointmentMenu
       }      
    }
 }
+*/
