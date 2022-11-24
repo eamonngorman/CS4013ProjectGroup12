@@ -169,13 +169,13 @@ public class CSVWriter {
     public String timeToString(LocalDateTime t) {
 
         String time = "";
-        String day = Integer.toString(t.getDayOfMonth());
-        String month = Integer.toString(t.getMonthValue());
-        String year = Integer.toString(t.getYear());
-        String hour = Integer.toString(t.getHour());
-        String min = Integer.toString(t.getMinute());
+        int day = t.getDayOfMonth();
+        int month = t.getMonthValue();
+        int year = t.getYear();
+        int hour = t.getHour();
+        int min = t.getMinute();
         
-        time = day + "/" + month + "/" + year + " " + hour + ":" + min; 
+        time = String.format("%02d/%02d/%d %02d:%02d", day, month, year, hour, min);
 
         return time;
     }
