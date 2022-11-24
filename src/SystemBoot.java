@@ -53,7 +53,7 @@ public class SystemBoot {
                 String restaurantName = dataFields[1] + i;
                 Menu m = new Menu(menuName);
                 menus.put(restaurantName, m);
-                
+                i++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -71,6 +71,7 @@ public class SystemBoot {
                 String menuName = dataFields[1] + i;
                 MenuCategory c = new MenuCategory(catName);
                 cats.put(menuName, c);
+                i++;
             }
 
         } catch (FileNotFoundException e) {
@@ -90,6 +91,7 @@ public class SystemBoot {
                 String catName = dataFields[2] + i;
                 MenuItem item = new MenuItem(itemName, cost);
                 items.put(catName, item);
+                i++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -224,7 +226,7 @@ public class SystemBoot {
 
                 Reservation res = new Reservation(c, t, numOfPeople, time);
 
-                String restName = dataFields[6]
+                String restName = dataFields[6];
                 for (Restaurant r : restaurants) {
                     if(restName.equals(r.getName())){
                         r.addReservation(res);
