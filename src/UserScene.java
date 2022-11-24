@@ -216,7 +216,6 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println(user.getAccessLevel());
             System.out.println("A)Edit Restaurants Q)uit");
             command = in.next().toUpperCase();
             if(command.equals("A")){
@@ -231,7 +230,7 @@ public class UserScene {
 
     private void calculateRestaurantIncome() {
 
-        System.out.println("A)Calculate income from each restaurant  B)Calculate total income between two dates C)Calculate income on a given day of the week  Q)uit");
+        System.out.println("A)Calculate income from each restaurant  B)Calculate total income between two dates C)Calculate income on a given day of the week D) Calculate income each day over period  Q)uit");
         String command = in.nextLine().toUpperCase();
 
         if(command.equals("A")){
@@ -242,6 +241,9 @@ public class UserScene {
         }
         if(command.equals("C")){
             CalculateIncomeOnDayOfTheWeek();
+        }
+        if(command.equals("D")){
+            CalculateIncomeEachDayOverPeriod();
         }
         if(command.equals("D")){
             CalculateIncomeOnDayOfTheWeek();
@@ -264,11 +266,28 @@ public class UserScene {
         System.out.println("€" + sum);
     }
 
-    private void CalculateTotalIncomeBetWeenTwoDates() {
+
+    private void CalculateIncomeEachDayOverPeriod(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Start date: (dd/mm/yyyy)");
-        LocalDate startDate = LocalDate.parse(in.nextLine());
+        LocalDate startDate = LocalDate.parse(in.nextLine(), formatter);
         System.out.println(("End date: (dd/mm/yyyy"));
-        LocalDate endDate = LocalDate.parse(in.nextLine());
+        LocalDate endDate = LocalDate.parse(in.nextLine(), formatter);
+
+        CSVReader csvReader = new CSVReader();
+        Double[] incomeOverPeriod = csvReader.createArrayForIncome(startDate, endDate);
+        for (int i = 0; i < incomeOverPeriod.length; i++){
+            LocalDate date = startDate.plusDays(i);
+            System.out.println("Income for " + date.toString() + ": €" + incomeOverPeriod[i]);
+        }
+    }
+
+    private void CalculateTotalIncomeBetWeenTwoDates() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Start date: (dd/mm/yyyy)");
+        LocalDate startDate = LocalDate.parse(in.nextLine(), formatter);
+        System.out.println(("End date: (dd/mm/yyyy"));
+        LocalDate endDate = LocalDate.parse(in.nextLine(), formatter);
 
         CSVReader csvReader = new CSVReader();
         ArrayList<Double> income = csvReader.readPaymentsFromCSV(startDate, endDate);
@@ -313,8 +332,8 @@ public class UserScene {
     }
 
     private void editRestaurants() {
-        System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
-        String command = in.nextLine().toUpperCase();
+        System.out.println("A)Add Restaurant  Q)uit");
+        String command = in.next().toUpperCase();
         if(command.equals("A")){
             addRestaurant();
         }
@@ -525,7 +544,7 @@ public class UserScene {
 
     public void addRestaurant(){
         System.out.println("What is the name of the new restaurant?: ");
-        String name = in.nextLine();
+        String name = in.next();
         Restaurant newRestaurant = new Restaurant(name);
         yum.getRestaurants().add(newRestaurant);
         csvWriter.writeRestaurantToCSV(newRestaurant);

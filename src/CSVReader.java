@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class CSVReader {
 
 
@@ -42,25 +44,25 @@ public class CSVReader {
     }*/
 
 
-    public boolean signIn(String username, String password){
+    public boolean signIn(String username, String password) {
         boolean signInSuccess = false;
         try {
             File file = new File("src/PersonDetails.csv");
             Scanner input = new Scanner(file);
-            if (input.hasNextLine()){
+            if (input.hasNextLine()) {
                 input.nextLine();
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
 
-                if (username.equals(dataFields[2])){
-                    if (password.equals(dataFields[3])){
+                if (username.equals(dataFields[2])) {
+                    if (password.equals(dataFields[3])) {
                         signInSuccess = true;
                     }
                 }
 
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return signInSuccess;
@@ -69,7 +71,7 @@ public class CSVReader {
     public double[] readPaymentsFromCSV(RestaurantChain yum) {
         double[] array = new double[4];
 
-        for (Double d: array){
+        for (Double d : array) {
             d = 0.00;
         }
 
@@ -77,7 +79,7 @@ public class CSVReader {
         try {
             File file = new File("src/Orders.csv");
             Scanner input = new Scanner(file);
-            if (input.hasNextLine()){
+            if (input.hasNextLine()) {
                 input.nextLine();
             }
             while (input.hasNext()) {
@@ -88,11 +90,12 @@ public class CSVReader {
                 array[restaurantID - 1] += payment;
 
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return array;
     }
+
 
     public ArrayList<Double> readPaymentsFromCSV(LocalDate startDate, LocalDate endDate) {
         ArrayList<Double> payments = new ArrayList<Double>();
@@ -105,13 +108,21 @@ public class CSVReader {
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
-                LocalDate csvDate = LocalDate.parse(dataFields[5]);
+                DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                Date date = sourceFormat.parse(dataFields[6]);
+
+                LocalDate csvDate = convertToLocalDateViaInstant(date);
+
+
                 if (csvDate.isAfter(startDate) && csvDate.isBefore(endDate)) {
                     Double payment = Double.parseDouble(dataFields[3]);
                     payments.add(payment);
                 }
             }
-        }catch (IOException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return payments;
@@ -122,7 +133,7 @@ public class CSVReader {
         try {
             File file = new File("src/Orders.csv");
             Scanner input = new Scanner(file);
-            if (input.hasNextLine()){
+            if (input.hasNextLine()) {
                 input.nextLine();
             }
             while (input.hasNext()) {
@@ -135,13 +146,12 @@ public class CSVReader {
                 DayOfWeek weekDay = csvDate.getDayOfWeek();
 
 
-
                 if (weekDay == day) {
                     Double payment = Double.parseDouble(dataFields[3]);
                     payments.add(payment);
                 }
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -168,12 +178,12 @@ public class CSVReader {
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
 
-                if (username.equals(dataFields[2])){
+                if (username.equals(dataFields[2])) {
                     isTaken = true;
                 }
 
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return isTaken;
@@ -199,11 +209,11 @@ public class CSVReader {
                 double money = Double.parseDouble(moneyString);
                 LocalDateTime time = stringToTime(dateString);
 
-                if(restaurant.getName().equals(restName)
-                    && time.getDayOfWeek().equals(day)){
-                    if(time.toLocalTime().isAfter(startTime) && 
-                        time.toLocalTime().isBefore(finishTime)){
-                            total += money;
+                if (restaurant.getName().equals(restName)
+                        && time.getDayOfWeek().equals(day)) {
+                    if (time.toLocalTime().isAfter(startTime) &&
+                            time.toLocalTime().isBefore(finishTime)) {
+                        total += money;
                     }
                 }
 
@@ -217,7 +227,7 @@ public class CSVReader {
 
     }
 
-    public LocalDateTime stringToTime(String stringTime){
+    public LocalDateTime stringToTime(String stringTime) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime formattedDate = LocalDateTime.parse(stringTime, formatter);
@@ -252,8 +262,45 @@ public class CSVReader {
                     
                         total += money;
                     }
-                }
                 
+    public Double[] createArrayForIncome(LocalDate startDate, LocalDate endDate) {
+
+        int days = (int) DAYS.between(startDate, endDate);
+        Double[] array = new Double[days];
+        for(int i = 0; i < days; i++){
+            array[i] = 0.00;
+        }
+        try {
+            File file = new File("src/Orders.csv");
+            Scanner input = new Scanner(file);
+            if (input.hasNextLine()) {
+                input.nextLine();
+            }
+            while (input.hasNext()) {
+                String[] dataFields = input.nextLine().split(",");
+                Double payment = Double.parseDouble(dataFields[3]);
+
+                DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                Date date = sourceFormat.parse(dataFields[6]);
+
+                LocalDate csvDate = convertToLocalDateViaInstant(date);
+                int i = 0;
+                if (csvDate.isAfter(startDate.minusDays(1)) && csvDate.isBefore(endDate.plusDays(1))) {
+                    int daysBetween = (int) DAYS.between(startDate,csvDate);
+                    array[daysBetween] += payment;
+
+
+                }
+            }
+        } catch (FileNotFoundException | ParseException e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+}
+                
+
             }
          catch (FileNotFoundException e) {
             e.printStackTrace();
