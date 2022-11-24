@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class CSVReader {
@@ -62,10 +63,16 @@ public class CSVReader {
         return signInSuccess;
     }
 
-    public ArrayList<Double> readPaymentsFromCSV() {
-        ArrayList<Double> payments = new ArrayList<Double>();
+    public double[] readPaymentsFromCSV(RestaurantChain yum) {
+        double[] array = new double[4];
+
+        for (Double d: array){
+            d = 0.00;
+        }
+
+
         try {
-            File file = new File("Orders.csv");
+            File file = new File("src/Orders.csv");
             Scanner input = new Scanner(file);
             if (input.hasNextLine()){
                 input.nextLine();
@@ -73,20 +80,22 @@ public class CSVReader {
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
 
-                Double payment = Double.parseDouble(dataFields[2]);
-                payments.add(payment);
+                double payment = Double.parseDouble(dataFields[3]);
+                int restaurantID = Integer.parseInt(dataFields[0]);
+                array[restaurantID - 1] += payment;
+
             }
         } catch (IOException e){
             e.printStackTrace();
         }
-        return payments;
+        return array;
     }
 
     public ArrayList<Double> readPaymentsFromCSV(LocalDate startDate, LocalDate endDate) {
         ArrayList<Double> payments = new ArrayList<Double>();
 
         try {
-            File file = new File("Orders.csv");
+            File file = new File("src/Orders.csv");
             Scanner input = new Scanner(file);
             if (input.hasNextLine()) {
                 input.nextLine();
@@ -95,7 +104,7 @@ public class CSVReader {
                 String[] dataFields = input.nextLine().split(",");
                 LocalDate csvDate = LocalDate.parse(dataFields[5]);
                 if (csvDate.isAfter(startDate) && csvDate.isBefore(endDate)) {
-                    Double payment = Double.parseDouble(dataFields[2]);
+                    Double payment = Double.parseDouble(dataFields[3]);
                     payments.add(payment);
                 }
             }
@@ -108,7 +117,7 @@ public class CSVReader {
     public ArrayList<Double> readPaymentsFromCSV(DayOfWeek day) {
         ArrayList<Double> payments = new ArrayList<Double>();
         try {
-            File file = new File("Orders.csv");
+            File file = new File("src/Orders.csv");
             Scanner input = new Scanner(file);
             if (input.hasNextLine()){
                 input.nextLine();
@@ -118,7 +127,7 @@ public class CSVReader {
                 LocalDate csvDate = LocalDate.parse(dataFields[5]);
                 DayOfWeek weekDay = csvDate.getDayOfWeek();
                 if (weekDay == day) {
-                    Double payment = Double.parseDouble(dataFields[2]);
+                    Double payment = Double.parseDouble(dataFields[3]);
                     payments.add(payment);
                 }
             }

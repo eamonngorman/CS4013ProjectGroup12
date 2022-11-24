@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,9 +41,9 @@ public class UserScene {
             CSVReader csvReader = new CSVReader();
             if (command.equals("A")) {
                 System.out.println("Username:");
-                String userName = in.nextLine();
+                String userName = in.next();
                 System.out.println("Password:");
-                String password = in.nextLine();
+                String password = in.next();
                 if (csvReader.signIn(userName, password)){
                     this.user = restaurant.getPerson(userName);
                     login();
@@ -218,24 +219,58 @@ public class UserScene {
 
     private void calculateRestaurantIncome() {
 
-        System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        System.out.println("A)Calculate income from each restaurant  B)Calculate total income between two dates C)Calculate income on a given day of the week  Q)uit");
         String command = in.nextLine().toUpperCase();
 
         if(command.equals("A")){
-            addItemToOrder();
+            calculateIncomeFromEachRestaurant();
         }
         if(command.equals("B")){
-            removeItemFromOrder();
+            CalculateTotalIncomeBetWeenTwoDates();
         }
         if(command.equals("C")){
-            deleteOrder();
-        }
-        if(command.equals("D")){
-            finishOrder();
+            CalculateIncomeOnDayOfTheWeek();
         }
         if(command.equals("Q")){
             runStart();
         }
+    }
+
+    private void CalculateIncomeOnDayOfTheWeek() {
+        System.out.println("Day: ");
+        DayOfWeek day = DayOfWeek.valueOf(in.nextLine());
+        CSVReader csvReader = new CSVReader();
+        ArrayList<Double> income = csvReader.readPaymentsFromCSV(day);
+        Double sum = 0.00;
+        for (Double payment : income){
+            sum += payment;
+        }
+        System.out.println("€" + sum);
+    }
+
+    private void CalculateTotalIncomeBetWeenTwoDates() {
+        System.out.println("Start date: (dd/mm/yyyy)");
+        LocalDate startDate = LocalDate.parse(in.nextLine());
+        System.out.println(("End date: (dd/mm/yyyy"));
+        LocalDate endDate = LocalDate.parse(in.nextLine());
+
+        CSVReader csvReader = new CSVReader();
+        ArrayList<Double> income = csvReader.readPaymentsFromCSV(startDate, endDate);
+        Double sum = 0.00;
+        for (Double payment : income){
+            sum += payment;
+        }
+        System.out.println("€" + sum);
+
+    }
+
+    private void calculateIncomeFromEachRestaurant() {
+        CSVReader csvReader = new CSVReader();
+        double[] income = csvReader.readPaymentsFromCSV(yum);
+        System.out.println("Ardee income:" + income[0]);
+        System.out.println("Athleague income:" + income[1]);
+        System.out.println("Cavan income:" + income[2]);
+        System.out.println("Westport income:" + income[3]);
     }
 
 
