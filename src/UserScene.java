@@ -188,7 +188,6 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 4){
-            System.out.println(user.getAccessLevel());
             System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
             command = in.nextLine().toUpperCase();
             if(command.equals("A")){
@@ -406,10 +405,7 @@ public class UserScene {
 
 
     
-    /** 
-     * @param (true
-     * @return T
-     */
+
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
 
         if (choices.size() == 0)
@@ -428,10 +424,7 @@ public class UserScene {
     }
 
     
-    /** 
-     * @param (true
-     * @return Person
-     */
+
     private Person getChoice(HashMap<String, Person> hashMap) { //getChoice can now work for all arrayList types
         if (hashMap.size() == 0)
             return null;
