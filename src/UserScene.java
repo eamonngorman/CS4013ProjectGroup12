@@ -31,8 +31,9 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
-            System.out.println("Welcome to the Yum restaurant management system");
+            
             if(restaurant == null) {
+                System.out.println("Welcome to the Yum restaurant management system\n");
                 System.out.println("What Yum restaurant do you wish to access?");
                 restaurant = getChoice(yum.getRestaurants());
             }
@@ -61,40 +62,42 @@ public class UserScene {
 
     private void register() {
         Person newPerson = new Person("NOname", 0);
-
-        if(user.getAccessLevel() == 0){
+        
+        if(user == null){
             System.out.println("Enter Your Name: ");
-            String name = in.nextLine();
+            String name = in.next();
             newPerson = new Customer(name);
         } else {
-            System.out.println("Enter New Employee Name: ");
-            String name = in.nextLine();
-            System.out.println("What Kind of Employee is being hired?");
-            System.out.println("A)Front of House  B)Waiter  C)Chef  D)Manager  Q)uit");
-            
-            String command = in.next().toUpperCase();
-            if(command.equals("A")){
-                newPerson = new FOHStaff(name);
-
-            } else if(command.equals("B")){
-                newPerson = new Waiter(name);
-
-            } else if(command.equals("C")){
-                newPerson = new Chef(name);
-
-            } else if(command.equals("D")){
-                newPerson = new Manager(name);
-
-            } else if(command.equals("Q")){
-                login();
-            }
+            {
+                System.out.println("Enter New Employee Name: ");
+                String name = in.nextLine();
+                System.out.println("What Kind of Employee is being hired?");
+                System.out.println("A)Front of House  B)Waiter  C)Chef  D)Manager  Q)uit");
+                
+                String command = in.next().toUpperCase();
+                if(command.equals("A")){
+                    newPerson = new FOHStaff(name);
+    
+                } else if(command.equals("B")){
+                    newPerson = new Waiter(name);
+    
+                } else if(command.equals("C")){
+                    newPerson = new Chef(name);
+    
+                } else if(command.equals("D")){
+                    newPerson = new Manager(name);
+    
+                } else if(command.equals("Q")){
+                    login();
+                }
         }
+    }
         
         System.out.println("Enter Username: ");
-        String username = in.nextLine();
+        String username = in.next();
 
         System.out.println("Enter Password:");
-        String password = in.nextLine();
+        String password = in.next();
         
 
         boolean isTaken = csvReader.isUsernameTaken(username);
@@ -238,6 +241,9 @@ public class UserScene {
             CalculateTotalIncomeBetWeenTwoDates();
         }
         if(command.equals("C")){
+            CalculateIncomeOnDayOfTheWeek();
+        }
+        if(command.equals("D")){
             CalculateIncomeOnDayOfTheWeek();
         }
         if(command.equals("Q")){
@@ -391,7 +397,6 @@ public class UserScene {
      * @param menuCat
      */
     private void editCats(MenuCategory menuCat, Menu menus){
-        ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
         System.out.println("A)dd Item Q)uit");
         String command = in.next().toUpperCase();
         if (command.equals("A")){

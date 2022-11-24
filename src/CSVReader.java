@@ -224,4 +224,42 @@ public class CSVReader {
 
         return formattedDate;
     }
+
+    public double payDayBetweenDates(Restaurant restaurant, int day, LocalDateTime startDate, LocalDateTime finishDate) {
+
+        double total = 0;
+
+        try {
+            File orderFile = new File("src/Orders.csv");
+            Scanner in = new Scanner(orderFile);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String dateString = dataFields[6];
+                String restName = dataFields[8];
+                String moneyString = dataFields[3];
+                double money = Double.parseDouble(moneyString);
+                LocalDateTime time = stringToTime(dateString);
+                int day1 = startDate.getDayOfYear();
+                int day2 = finishDate.getDayOfYear();
+
+                if(restaurant.getName().equals(restName) &&
+                    day == time.getDayOfWeek().getValue() &&
+                    time.getDayOfYear() >= day1 &&
+                    time.getDayOfYear() <= day2 ){
+                    
+                        total += money;
+                    }
+                }
+                
+            }
+         catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return total;
+
+    }
 }
