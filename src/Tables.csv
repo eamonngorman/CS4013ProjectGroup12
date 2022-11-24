@@ -1,17 +1,17 @@
-RestaurantID, TableNo, Capacity
-1,1,2
-1,2,4
-1,3,2
-1,4,6
-2,1,4
-2,2,2
-2,3,6
-2,4,2
-3,1,4
-3,2,2
-3,3,6
-3,4,2
-4,1,4
-4,2,2
-4,3,6
-4,4,2
+RestaurantName, TableNo, Capacity
+Ardee,1,2
+Ardee,2,4
+Ardee,3,2
+Ardee,4,6
+Athleague,1,4
+Athleague,2,2
+Athleague,3,6
+Athleague,4,2
+Cavan,1,4
+Cavan,2,2
+Cavan,3,6
+Cavan,4,2
+Westport,1,4
+Westport,2,2
+Westport,3,6
+Westport,4,2
