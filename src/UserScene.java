@@ -590,7 +590,7 @@ public class UserScene {
         }
         char c = 'A';
         for (Object order : orders) {
-            System.out.println("\n" + c + ") \n" + orders.toString() + "\n");
+            System.out.println("\n" + c + ") \n" + order.toString() + "\n");
             c++;
         }
         login();
