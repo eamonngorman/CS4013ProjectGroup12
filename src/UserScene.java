@@ -490,7 +490,7 @@ public class UserScene {
         int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
         System.out.println("Please enter your phone number");
-        String phoneNumber = in.next()
+        String phoneNumber = in.next();
         r = new Reservation((Customer) user, table, people, formattedDate, phoneNumber);
         } else {
 
