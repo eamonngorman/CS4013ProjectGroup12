@@ -219,6 +219,7 @@ public class SystemBoot {
             }
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
+                String phoneNumber = dataFields[5];
                 int custId = Integer.parseInt(dataFields[4]);
                 Customer c = customerMap.get(custId);
                 int tableNum = Integer.parseInt(dataFields[3]);
@@ -227,7 +228,7 @@ public class SystemBoot {
                 String dateString = dataFields[2];
                 LocalDateTime time = stringToDate(dateString);
 
-                Reservation res = new Reservation(c, t, numOfPeople, time);
+                Reservation res = new Reservation(c, t, numOfPeople, time, phoneNumber);
 
                 String restName = dataFields[5];
                 for (Restaurant r : restaurants) {
