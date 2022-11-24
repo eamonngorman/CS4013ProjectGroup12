@@ -321,17 +321,12 @@ public class UserScene {
     }
 
     private void editMenus() {
-        System.out.println("E)dit menu R)emove menu Q)uit");
+        System.out.println("E)dit menu Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals ("E")){
             System.out.println("Select a menu to edit");
             Menu menus = getChoice(restaurant.getMenus());
             editMenu(menus);
-        }
-        if (command.equals ("R")){
-            System.out.println("Select a menu to remove");
-            Menu menus = getChoice(restaurant.getMenus());
-            restaurant.removeMenu(menus);
         }
         if (command.equals("Q")){
             runStart();
