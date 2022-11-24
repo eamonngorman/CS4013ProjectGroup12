@@ -304,8 +304,15 @@ public class UserScene {
     }
 
     private void editMenus() {
-        System.out.println("E)dit menu Q)uit");
+        System.out.println("A)dd new menu E)dit menu Q)uit");
         String command = in.nextLine().toUpperCase();
+        if (command.equals("A")){
+            System.out.println("Enter Menu Name: ");
+            String name = in.next();
+            Menu newMenu = new Menu(name)
+            restaurant.addMenu(newMenu);
+            csvWriter.writeMenusToCSV(newMenu, restaurant);
+        }
         if (command.equals ("E")){
             System.out.println("Select a menu to edit");
             Menu menus = getChoice(restaurant.getMenus());
@@ -320,17 +327,18 @@ public class UserScene {
     private void editMenu(Menu menus){
         ArrayList<MenuCategory> menuCategories = menus.getCategories();
         System.out.println("E)dit category A)dd category Q)uit");
-        String command = in.nextLine().toUpperCase();
+        String command = in.next().toUpperCase();
         if (command.equals("E")){
             System.out.println("Select a category to edit");
             MenuCategory menuCat = getChoice(menuCategories);
-            editCats(menuCat);
+            editCats(menuCat, menus);
         }
         if (command.equals("A")){
             System.out.println("Enter Category Name");
-            String cat = in.nextLine();
+            String cat = in.next();
             MenuCategory menuCat = new MenuCategory(cat);
             menus.addCategory(menuCat);
+            csvWriter.writeMenuCategoryToCSV(menuCat, restaurant, menus);
         }
         if (command.equals("Q")){
             runStart();
@@ -338,41 +346,18 @@ public class UserScene {
         login();
     }
 
-    private void editCats(MenuCategory menuCat){
+    private void editCats(MenuCategory menuCat, Menu menus){
         ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
-        System.out.println("E)dit Item A)dd Item Q)uit");
-        String command = in.nextLine().toUpperCase();
-        if (command.equals("E")){
-            System.out.println("Select an item to edit");
-            MenuItem menuItem = getChoice(menuItems);
-            editItems(menuItem);
-        }
+        System.out.println("A)dd Item Q)uit");
+        String command = in.next().toUpperCase();
         if (command.equals("A")){
             System.out.println("Enter Item Name");
-            String item = in.nextLine();
+            String item = in.next();
             System.out.println("Enter Item Price");
             Double price = in.nextDouble();
             MenuItem menuItem = new MenuItem(item, price);
             menuCat.addMenuItem(menuItem);
-        }
-        if (command.equals("Q")){
-            runStart();
-        }
-        login();
-    }
-
-    private void editItems(MenuItem menuItem){
-        System.out.println("Change N)ame P)rice Q)uit");
-        String command = in.nextLine().toUpperCase();
-        if (command.equals("N")){
-            System.out.println("Enter New Name");
-            String name = in.nextLine();
-            menuItem.setItemName(name);
-        }
-        if (command.equals("P")){
-            System.out.println("Enter New Price");
-            Double price = in.nextDouble();
-            menuItem.setItemCost(price);
+            csvWriter.writeMenuItemToCSV(menuItem, menuCat, restaurant, menus);
         }
         if (command.equals("Q")){
             runStart();
