@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class CSVWriter {
@@ -74,7 +75,7 @@ public class CSVWriter {
             e.printStackTrace();
         }
     }
-    public void writeReservationToCSV(Reservation reservation){
+    public void writeReservationToCSV(Reservation reservation, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("src/Reservations.csv");
@@ -84,7 +85,7 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("ReservationId, numPeople, date, time, tableNo, customerId\n");
+                header.append("ReservationId, numPeople, date, time, tableNo, customerId, Restuarant\n");
                 printWriter.write(header.toString());
             }
             csvData.append(reservation.getReservationId());
@@ -93,11 +94,13 @@ public class CSVWriter {
             csvData.append(",");
             csvData.append(reservation.getDate().toString());
             csvData.append(",");
-            csvData.append(reservation.getStart());
+            csvData.append(timeToString(reservation.getStartTime()));
             csvData.append(",");
             csvData.append(reservation.getTable().getTableNum());
             csvData.append(",");
             csvData.append(reservation.getCustomer().getIdNum());
+            csvData.append(",");
+            csvData.append(restaurant.getName());
             csvData.append(",\n");
 
             printWriter.write(csvData.toString());
@@ -151,5 +154,19 @@ public class CSVWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String timeToString(LocalDateTime t) {
+
+        String time = "";
+        String day = Integer.toString(t.getDayOfMonth());
+        String month = Integer.toString(t.getMonthValue());
+        String year = Integer.toString(t.getYear());
+        String hour = Integer.toString(t.getHour());
+        String min = Integer.toString(t.getMinute());
+        
+        time = day + "/" + month + "/" + year + " " + hour + ":" + min; 
+
+        return time;
     }
 }
