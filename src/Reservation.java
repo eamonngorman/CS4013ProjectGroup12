@@ -34,26 +34,52 @@ public class Reservation {
         this.customer = walkIn;
     }
 
+    
+    /**  
+     * <h1>getCustomer()</h1>
+     * returns Customer
+     * @return Customer
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    
+    /** 
+     * @return Table
+     */
     public Table getTable() {
         return table;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getNumOfPeople() {
         return numOfPeople;
     }
 
+    
+    /** 
+     * @return LocalDateTime
+     */
     public LocalDateTime getStartTime() {
         return startTime;
     }
 
+    
+    /** 
+     * @return LocalDateTime
+     */
     public LocalDateTime getFinishTime() {
         return finishTime;
     }
 
+    
+    /** 
+     * @return int
+     */
     /* 
     public void addReservationToCsv() throws IOException{
         StringBuilder line = new StringBuilder();
@@ -71,14 +97,31 @@ public class Reservation {
         return reservationMinutes;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getReservationId() {
         return reservationId;
     }
 
+    
+    /** 
+     * 
+     * @param minutes
+     */
     public void setReservationMinutes(int minutes) {
         reservationMinutes = minutes;
     }
 
+    
+    /** 
+     * <h1>isAvailable()</h1>
+     * returns true if a reservation can be created
+     * take time and table into account
+     * @param r
+     * @return boolean
+     */
     // true = is available
     // false = not available
     public boolean isAvailable(Reservation r) {
@@ -91,6 +134,10 @@ public class Reservation {
         }
         return true;
     }
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return (customer.getName() + ", " + table.toString() + ", Number of People: " + numOfPeople + ", Date: " + ", "+startTime +" - "+finishTime);
