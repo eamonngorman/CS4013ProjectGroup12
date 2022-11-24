@@ -473,6 +473,8 @@ public class UserScene {
 
         Reservation r = new Reservation((Customer) user, table, people, formattedDate);
         restaurant.addReservation(r);
+        CSVWriter csvWriter = new CSVWriter();
+        csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
 
