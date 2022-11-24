@@ -532,7 +532,7 @@ public class UserScene {
         Order selectedOrder = selectOrderFromTable();
 
         for (Order order : restaurant.getOrders()){
-            if (order == selectedOrder){
+            if (order.equals(selectedOrder)){
                 order.removeFromOrder(item);
             }
         }
@@ -541,22 +541,22 @@ public class UserScene {
 
     public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
-        System.out.println("Select menu to add item to: ");
+        System.out.println("Select menu: ");
         Menu selectedMenu = getChoice(menus);
 
         ArrayList<MenuCategory> menuCategories = selectedMenu.getCategories();
-        System.out.println(("Select category to add item from: "));
+        System.out.println(("Select category: "));
         MenuCategory selectedCategory = getChoice(menuCategories);
 
         ArrayList<MenuItem> menuItems = selectedCategory.getMenuItems();
-        System.out.println(("Select item to add to order: "));
+        System.out.println(("Select item: "));
         MenuItem item = getChoice(menuItems);
         return item;
     }
 
     public Order selectOrderFromTable(){
         ArrayList<Table> tables = restaurant.getTables();
-        System.out.println("Select table to add item to it's order: ");
+        System.out.println("Select table: ");
         Table table = getChoice(tables);
 
         return table.getOrder();
