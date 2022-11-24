@@ -459,7 +459,10 @@ public class UserScene {
 
     public void makeReservation() {
 
-        
+        Reservation r;
+
+        if(user.getAccessLevel() == 0){
+
         System.out.println("What day would you like a reservation? (dd/mm/yyyy)");
         String date = in.next();
         System.out.println("What time would you like your reservation? (hh:mm)");
@@ -472,8 +475,18 @@ public class UserScene {
         System.out.println("How many people are coming?");
         int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
-        
-        Reservation r = new Reservation((Customer) user, table, people, formattedDate);
+
+        r = new Reservation((Customer) user, table, people, formattedDate);
+        } else {
+
+        System.out.println("How many seats are needed?");
+        LocalDateTime time = LocalDateTime.now();
+        int people = in.nextInt();
+        Table table =  getChoice(restaurant.getFreeTables(people, time));
+
+            r = new Reservation(table);
+        }
+
         restaurant.addReservation(r);
         login();
     }
@@ -621,4 +634,6 @@ public class UserScene {
     public RestaurantChain getYum() {
         return yum;
     }
+
+    
 }
