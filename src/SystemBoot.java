@@ -191,7 +191,7 @@ public class SystemBoot {
                     person = (Person) manager;
                 }
                 for (Restaurant r : restaurants) {
-                    if (r.getName() == restaurantName) {
+                    if (r.getName().equals(restaurantName)) {
                         r.getPeople().put(username, person);
                     }
                 }
@@ -224,7 +224,7 @@ public class SystemBoot {
 
                 Reservation res = new Reservation(c, t, numOfPeople, time);
 
-                String restName = dataFields[6]
+                String restName = dataFields[6];
                 for (Restaurant r : restaurants) {
                     if(restName.equals(r.getName())){
                         r.addReservation(res);
@@ -247,8 +247,8 @@ public class SystemBoot {
             }
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
-                String restuarantName = dataFields[0];
-                Restaurant r = new Restaurant(restuarantName);
+                String restaurantName = dataFields[0];
+                Restaurant r = new Restaurant(restaurantName);
                 this.restaurants.add(r);
             }
         } catch (FileNotFoundException e) {
