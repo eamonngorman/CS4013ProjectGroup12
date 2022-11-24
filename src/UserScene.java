@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class UserScene {
@@ -438,25 +437,6 @@ public class UserScene {
                 return choices.get(n);
         }
     }
-
-    
-
-    private Person getChoice(HashMap<String, Person> hashMap) { //getChoice can now work for all arrayList types
-        if (hashMap.size() == 0)
-            return null;
-        while (true) {
-            char c = 'A';
-            for (String s : hashMap.keySet()) {
-                System.out.println("\n" + c + ") \n" + hashMap.entrySet().toString() + "\n");
-                c++;
-            }
-            String input = in.nextLine();
-            int n = input.toUpperCase().charAt(0) - 'A';
-            if (0 <= n && n < hashMap.size())
-                return hashMap.get(n);
-        }
-    }
-
     
     /** 
      * @param choices
