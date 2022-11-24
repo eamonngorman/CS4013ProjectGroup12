@@ -335,7 +335,7 @@ public class UserScene {
         if (command.equals("A")){
             System.out.println("Enter Menu Name: ");
             String name = in.next();
-            Menu newMenu = new Menu(name)
+            Menu newMenu = new Menu(name);
             restaurant.addMenu(newMenu);
             csvWriter.writeMenusToCSV(newMenu, restaurant);
         }
