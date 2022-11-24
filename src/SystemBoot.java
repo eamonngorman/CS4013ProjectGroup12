@@ -140,14 +140,14 @@ public class SystemBoot {
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
-                int restaurantId = Integer.parseInt(dataFields[0]);
+                String restaurantName = dataFields[0];
                 int tableNum = Integer.parseInt(dataFields[1]);
                 int tableCapacity = Integer.parseInt(dataFields[2]);
                 Table table = new Table(tableNum, tableCapacity);
                 tableMap.put(table.getTableNum(), table);
                 // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
                 for (Restaurant restaurant: restaurants){
-                    if (restaurant.getRestaurantId() == restaurantId){
+                    if (restaurant.getName().equals(restaurantName)){
                         restaurant.getTables().add(table);
                     }
                 }
@@ -216,17 +216,17 @@ public class SystemBoot {
             }
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
-                int custId = Integer.parseInt(dataFields[5]);
+                int custId = Integer.parseInt(dataFields[4]);
                 Customer c = customerMap.get(custId);
-                int tableNum = Integer.parseInt(dataFields[4]);
+                int tableNum = Integer.parseInt(dataFields[3]);
                 Table t = tableMap.get(tableNum);
                 int numOfPeople = Integer.parseInt(dataFields[1]);
-                String dateString = dataFields[3];
+                String dateString = dataFields[2];
                 LocalDateTime time = stringToDate(dateString);
 
                 Reservation res = new Reservation(c, t, numOfPeople, time);
 
-                String restName = dataFields[6];
+                String restName = dataFields[5];
                 for (Restaurant r : restaurants) {
                     if(restName.equals(r.getName())){
                         r.addReservation(res);

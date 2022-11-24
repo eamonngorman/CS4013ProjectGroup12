@@ -11,6 +11,7 @@ public class UserScene {
     private Person user;
     private Restaurant restaurant;
     private RestaurantChain yum = new RestaurantChain();
+    private CSVWriter csvWriter = new CSVWriter();
 
     public UserScene(RestaurantChain yum) {
         in = new Scanner(System.in);
@@ -163,7 +164,7 @@ public class UserScene {
             if(command.equals("A")){
                 updateOrderStatus();
             }
-            if(command.equals("A")){
+            if(command.equals("B")){
                 seeOrders();
             }
             if(command.equals("Q")){
@@ -174,7 +175,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 4){
             System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
-            command = in.next().toUpperCase();
+            command = in.nextLine().toUpperCase();
             if(command.equals("A")){
                 editTables();
             }
@@ -471,7 +472,10 @@ public class UserScene {
 
     public void makeReservation() {
 
-        
+        Reservation r;
+
+        if(user.getAccessLevel() == 0){
+
         System.out.println("What day would you like a reservation? (dd/mm/yyyy)");
         String date = in.next();
         System.out.println("What time would you like your reservation? (hh:mm)");
@@ -485,20 +489,25 @@ public class UserScene {
         int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
 
+        r = new Reservation((Customer) user, table, people, formattedDate);
+        } else {
 
-        Reservation r;
-        if (user.getAccessLevel() == 1){
-            r = new Reservation(table, formattedDate);
-        } else{
-            r = new Reservation((Customer) user, table, people, formattedDate);
+        System.out.println("How many seats are needed?");
+        LocalDateTime time = LocalDateTime.now();
+        int people = in.nextInt();
+        Table table =  getChoice(restaurant.getFreeTables(people, time));
+
+            r = new Reservation(table);
         }
+
         restaurant.addReservation(r);
-        CSVWriter csvWriter = new CSVWriter();
+        
         csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
 
     public void addItemToOrder(){
+
         MenuItem item = selectItem();
         Order selectedOrder = selectOrderFromTable();
 
@@ -536,7 +545,7 @@ public class UserScene {
 
     public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
-        System.out.println("Select menu to add item from: ");
+        System.out.println("Select menu to add item to: ");
         Menu selectedMenu = getChoice(menus);
 
         ArrayList<MenuCategory> menuCategories = selectedMenu.getCategories();
@@ -647,4 +656,6 @@ public class UserScene {
     public RestaurantChain getYum() {
         return yum;
     }
+
+    
 }
