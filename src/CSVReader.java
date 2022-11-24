@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -160,6 +161,42 @@ public class CSVReader {
         }
         return isTaken;
 
+
+    }
+
+    public double readPayFor(Restaurant restaurant, DayOfWeek day, LocalTime startTime, LocalTime finishTime) {
+
+        double total = 0;
+
+        try {
+            File orderFile = new File("src/Orders.csv");
+            Scanner in = new Scanner(orderFile);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String dateString = dataFields[6];
+                String restName = dataFields[8];
+                String moneyString = dataFields[3];
+                double money = Double.parseDouble(moneyString);
+                LocalDateTime time = stringToTime(dateString);
+
+                if(restaurant.getName().equals(restName)
+                    && time.getDayOfWeek().equals(day)){
+                    if(time.toLocalTime().isAfter(startTime) && 
+                        time.toLocalTime().isBefore(finishTime)){
+                            total += money;
+                    }
+                }
+
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return total;
 
     }
 

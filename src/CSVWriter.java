@@ -214,7 +214,7 @@ public class CSVWriter {
             e.printStackTrace();
         }
     }
-    public void writeReservationToCSV(Reservation reservation, Restaurant restaurant, , Person user){
+    public void writeReservationToCSV(Reservation reservation, Restaurant restaurant, Person user){
         PrintWriter printWriter;
         try {
             File file = new File("src/Reservations.csv");
