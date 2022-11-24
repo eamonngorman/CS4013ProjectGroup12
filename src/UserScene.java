@@ -30,7 +30,9 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
+            System.out.println("Welcome to the Yum restaurant management system");
             if(restaurant == null) {
+                System.out.println("What Yum restaurant do you wish to access?");
                 restaurant = getChoice(yum.getRestaurants());
             }
             System.out.println("A)Login  B)Register  Q)uit");
