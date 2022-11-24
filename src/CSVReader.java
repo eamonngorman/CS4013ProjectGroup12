@@ -262,6 +262,9 @@ public class CSVReader {
                     
                         total += money;
                     }
+                }
+            }
+        }
                 
     public Double[] createArrayForIncome(LocalDate startDate, LocalDate endDate) {
 
@@ -300,13 +303,3 @@ public class CSVReader {
     }
 }
                 
-
-            }
-         catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return total;
-
-    }
-}

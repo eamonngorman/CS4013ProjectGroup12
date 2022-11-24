@@ -245,9 +245,6 @@ public class UserScene {
         if(command.equals("D")){
             CalculateIncomeEachDayOverPeriod();
         }
-        if(command.equals("D")){
-            CalculateIncomeOnDayOfTheWeek();
-        }
         if(command.equals("Q")){
             runStart();
         }
@@ -257,7 +254,6 @@ public class UserScene {
         System.out.println("Day: ");
         String day = in.nextLine().toUpperCase();
         DayOfWeek weekDay = DayOfWeek.valueOf(day);
-        CSVReader csvReader = new CSVReader();
         ArrayList<Double> income = csvReader.readPaymentsFromCSV(weekDay);
         Double sum = 0.00;
         for (Double payment : income){
@@ -274,7 +270,6 @@ public class UserScene {
         System.out.println(("End date: (dd/mm/yyyy"));
         LocalDate endDate = LocalDate.parse(in.nextLine(), formatter);
 
-        CSVReader csvReader = new CSVReader();
         Double[] incomeOverPeriod = csvReader.createArrayForIncome(startDate, endDate);
         for (int i = 0; i < incomeOverPeriod.length; i++){
             LocalDate date = startDate.plusDays(i);
@@ -289,7 +284,6 @@ public class UserScene {
         System.out.println(("End date: (dd/mm/yyyy"));
         LocalDate endDate = LocalDate.parse(in.nextLine(), formatter);
 
-        CSVReader csvReader = new CSVReader();
         ArrayList<Double> income = csvReader.readPaymentsFromCSV(startDate, endDate);
         Double sum = 0.00;
         for (Double payment : income){
@@ -300,7 +294,6 @@ public class UserScene {
     }
 
     private void calculateIncomeFromEachRestaurant() {
-        CSVReader csvReader = new CSVReader();
         double[] income = csvReader.readPaymentsFromCSV(yum);
         System.out.println("Ardee income:" + income[0]);
         System.out.println("Athleague income:" + income[1]);
