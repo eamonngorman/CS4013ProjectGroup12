@@ -50,7 +50,7 @@ public class Table {
 
     @Override
     public String toString(){
-        return ("Table Number: " + tableNum + "Can Seat: " + canSeat);
+        return ("Table Number: " + tableNum + " Can Seat: " + canSeat);
     }
 
 
