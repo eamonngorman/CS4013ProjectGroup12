@@ -164,7 +164,7 @@ public class UserScene {
             if(command.equals("A")){
                 updateOrderStatus();
             }
-            if(command.equals("A")){
+            if(command.equals("B")){
                 seeOrders();
             }
             if(command.equals("Q")){
@@ -175,7 +175,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 4){
             System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
-            command = in.next().toUpperCase();
+            command = in.nextLine().toUpperCase();
             if(command.equals("A")){
                 editTables();
             }
