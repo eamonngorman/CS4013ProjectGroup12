@@ -216,17 +216,17 @@ public class SystemBoot {
             }
             while (in.hasNextLine()) {
                 String[] dataFields = in.nextLine().split(",");
-                int custId = Integer.parseInt(dataFields[5]);
+                int custId = Integer.parseInt(dataFields[4]);
                 Customer c = customerMap.get(custId);
-                int tableNum = Integer.parseInt(dataFields[4]);
+                int tableNum = Integer.parseInt(dataFields[3]);
                 Table t = tableMap.get(tableNum);
                 int numOfPeople = Integer.parseInt(dataFields[1]);
-                String dateString = dataFields[3];
+                String dateString = dataFields[2];
                 LocalDateTime time = stringToDate(dateString);
 
                 Reservation res = new Reservation(c, t, numOfPeople, time);
 
-                String restName = dataFields[6];
+                String restName = dataFields[5];
                 for (Restaurant r : restaurants) {
                     if(restName.equals(r.getName())){
                         r.addReservation(res);

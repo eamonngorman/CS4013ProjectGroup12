@@ -11,6 +11,7 @@ public class UserScene {
     private Person user;
     private Restaurant restaurant;
     private RestaurantChain yum = new RestaurantChain();
+    private CSVWriter csvWriter = new CSVWriter();
 
     public UserScene(RestaurantChain yum) {
         in = new Scanner(System.in);
@@ -500,12 +501,13 @@ public class UserScene {
         }
 
         restaurant.addReservation(r);
-        CSVWriter csvWriter = new CSVWriter();
+        
         csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
 
     public void addItemToOrder(){
+
         MenuItem item = selectItem();
         Order selectedOrder = selectOrderFromTable();
 
@@ -543,7 +545,7 @@ public class UserScene {
 
     public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
-        System.out.println("Select menu to add item from: ");
+        System.out.println("Select menu to add item to: ");
         Menu selectedMenu = getChoice(menus);
 
         ArrayList<MenuCategory> menuCategories = selectedMenu.getCategories();

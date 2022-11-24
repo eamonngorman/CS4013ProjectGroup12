@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -150,5 +152,13 @@ public class CSVReader {
         return isTaken;
 
 
+    }
+
+    public LocalDateTime stringToTime(String stringTime){
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime formattedDate = LocalDateTime.parse(stringTime, formatter);
+
+        return formattedDate;
     }
 }
