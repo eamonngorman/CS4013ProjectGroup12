@@ -9,7 +9,7 @@ public class UserScene {
 
     private Scanner in;
     private Person user;
-    private Restaurant restaurant = new Restaurant();
+    private Restaurant restaurant;
     private RestaurantChain yum = new RestaurantChain();
 
     public UserScene(RestaurantChain yum) {
@@ -27,7 +27,9 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
-            restaurant = getChoice(yum.getRestaurants());
+            if(restaurant == null) {
+                restaurant = getChoice(yum.getRestaurants());
+            }
             System.out.println("A)Login  B)Register  Q)uit");
             String command = in.nextLine().toUpperCase();
             CSVReader csvReader = new CSVReader();
@@ -88,7 +90,7 @@ public class UserScene {
             System.out.println("Password: ");
             String password = in.nextLine();
             details[2] = password;
-            w.writeNewCustomerToCSV(details);
+            w.writeNewCustomerToCSV(details, restaurant);
 
             Person newUser = new Customer(details[0]);
             restaurant.addPeople(newUser, username);
