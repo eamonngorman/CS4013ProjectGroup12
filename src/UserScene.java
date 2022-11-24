@@ -184,6 +184,7 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 4){
+            System.out.println(user.getAccessLevel())
             System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
             command = in.nextLine().toUpperCase();
             if(command.equals("A")){
@@ -205,7 +206,8 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
+            System.out.println(user.getAccessLevel());
+            System.out.println("A)Edit Restaurants Q)uit");
             command = in.next().toUpperCase();
             if(command.equals("A")){
                 editRestaurants();
@@ -237,11 +239,10 @@ public class UserScene {
     }
 
     private void CalculateIncomeOnDayOfTheWeek() {
-        System.out.println("Day: ");
-        String day = in.nextLine().toUpperCase();
-        DayOfWeek weekDay = DayOfWeek.valueOf(day);
+        System.out.println("Day: (ALL CAPITALS) ");
+        DayOfWeek day = DayOfWeek.valueOf(in.nextLine());
         CSVReader csvReader = new CSVReader();
-        ArrayList<Double> income = csvReader.readPaymentsFromCSV(weekDay);
+        ArrayList<Double> income = csvReader.readPaymentsFromCSV(day);
         Double sum = 0.00;
         for (Double payment : income){
             sum += payment;
@@ -302,16 +303,6 @@ public class UserScene {
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             addRestaurant(); ;
-        }
-        if(command.equals("B")){
-            System.out.print("Set Name");
-        }
-        if(command.equals("C")) {
-            System.out.print("Find Restaurant");
-            ArrayList<String> restaurant = new ArrayList<String>();
-        }
-        if(command.equals("D")){
-            System.out.println("Get Name");
         }
         if(command.equals("Q")){
             runStart();
@@ -402,29 +393,6 @@ public class UserScene {
             Double price = in.nextDouble();
             MenuItem menuItem = new MenuItem(item, price);
             menuCat.addMenuItem(menuItem);
-        }
-        if (command.equals("Q")){
-            runStart();
-        }
-        login();
-    }
-
-    
-    /** 
-     * @param menuItem
-     */
-    private void editItems(MenuItem menuItem){
-        System.out.println("Change N)ame P)rice Q)uit");
-        String command = in.nextLine().toUpperCase();
-        if (command.equals("N")){
-            System.out.println("Enter New Name");
-            String name = in.nextLine();
-            menuItem.setItemName(name);
-        }
-        if (command.equals("P")){
-            System.out.println("Enter New Price");
-            Double price = in.nextDouble();
-            menuItem.setItemCost(price);
         }
         if (command.equals("Q")){
             runStart();
@@ -530,7 +498,7 @@ public class UserScene {
         }
 
         restaurant.addReservation(r);
-        csvWriter.writeReservationToCSV(r, restaurant);
+        csvWriter.writeReservationToCSV(r, restaurant, user);
         login();
     }
 
@@ -548,14 +516,11 @@ public class UserScene {
     }
 
     public void addRestaurant(){
-
-
-
         System.out.println("What is the name of the new restaurant?: ");
         String name = in.nextLine();
         Restaurant newRestaurant = new Restaurant(name);
-
         yum.getRestaurants().add(newRestaurant);
+        csvWriter.writeRestaurantToCSV(newRestaurant);
         login();
     }
 
