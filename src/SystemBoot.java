@@ -140,14 +140,14 @@ public class SystemBoot {
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
-                int restaurantId = Integer.parseInt(dataFields[0]);
+                String restaurantName = dataFields[0];
                 int tableNum = Integer.parseInt(dataFields[1]);
                 int tableCapacity = Integer.parseInt(dataFields[2]);
                 Table table = new Table(tableNum, tableCapacity);
                 tableMap.put(table.getTableNum(), table);
                 // Have to add these tables to their restaurants!!!!!!!!!!!!!!!!!!!!
                 for (Restaurant restaurant: restaurants){
-                    if (restaurant.getRestaurantId() == restaurantId){
+                    if (restaurant.getName().equals(restaurantName)){
                         restaurant.getTables().add(table);
                     }
                 }
