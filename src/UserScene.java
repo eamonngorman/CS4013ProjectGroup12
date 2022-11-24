@@ -473,7 +473,7 @@ public class UserScene {
 
         Reservation r = new Reservation((Customer) user, table, people, formattedDate);
         restaurant.addReservation(r);
-
+        login();
     }
 
     public void addItemToOrder(){
