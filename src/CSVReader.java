@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -125,7 +126,7 @@ public class CSVReader {
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
-                LocalDate csvDate = LocalDate.parse(dataFields[5]);
+                LocalDate csvDate = LocalDate.parse(dataFields[6]);
                 DayOfWeek weekDay = csvDate.getDayOfWeek();
                 if (weekDay == day) {
                     Double payment = Double.parseDouble(dataFields[3]);
