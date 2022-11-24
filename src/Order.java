@@ -110,4 +110,14 @@ public class Order {
             System.out.println("Bill paid. Thank you for dining at Yum");
         }
     }
+
+    @Override
+    public String toString(){
+        String str = "";
+        for (MenuItem item : itemsInOrder){
+            str += (item.toString() + ",");
+        }
+        str += ("Total cost: " + totalCost);
+        return str;
+    }
 }
