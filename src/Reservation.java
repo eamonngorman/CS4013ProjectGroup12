@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Reservation {
 
     private Customer customer;
+    private Customer walkIn = new Customer("Walkin");
     private static final AtomicInteger count = new AtomicInteger(0);
     private int reservationId;
     private Table table;
@@ -30,6 +31,7 @@ public class Reservation {
         this.table = table;
         this.startTime = LocalDateTime.now();
         this.finishTime = startTime.plusMinutes(reservationMinutes);
+        this.customer = walkIn;
     }
 
     public Customer getCustomer() {

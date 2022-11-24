@@ -418,9 +418,6 @@ public class UserScene {
 
 
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
-        if (choices == null){
-            return null;
-        }
 
         if (choices.size() == 0)
             return null;
@@ -431,7 +428,6 @@ public class UserScene {
                 c++;
             }
             String input = in.next();
-
             int n = input.toUpperCase().charAt(0) - 'A';
             if (0 <= n && n < choices.size())
                 return choices.get(n);
