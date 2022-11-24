@@ -530,7 +530,7 @@ public class UserScene {
         }
 
         restaurant.addReservation(r);
-        csvWriter.writeReservationToCSV(r, restaurant);
+        csvWriter.writeReservationToCSV(r, restaurant, user);
         login();
     }
 
