@@ -485,8 +485,9 @@ public class UserScene {
         System.out.println("How many people are coming?");
         int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
-
-        r = new Reservation((Customer) user, table, people, formattedDate);
+        System.out.println("Please enter your phone number");
+        String phoneNumber = in.next()
+        r = new Reservation((Customer) user, table, people, formattedDate, phoneNumber);
         } else {
 
         System.out.println("How many seats are needed?");

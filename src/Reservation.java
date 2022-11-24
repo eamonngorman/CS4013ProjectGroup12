@@ -16,14 +16,16 @@ public class Reservation {
     private LocalDateTime startTime;
     private static int reservationMinutes = 90;
     private LocalDateTime finishTime;
+    private String phoneNumber;
 
-    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime){
+    Reservation(Customer customer, Table table, int numOfPeople, LocalDateTime startTime, String phoneNumber){
         this.reservationId = count.incrementAndGet();
         this.customer = customer;
         this.table = table;
         this.numOfPeople = numOfPeople;
         this.startTime = startTime;
         this.finishTime = startTime.plusMinutes(reservationMinutes);
+        this.phoneNumber = phoneNumber;
     }
 
     Reservation(Table table) {
@@ -76,6 +78,10 @@ public class Reservation {
      */
     public LocalDateTime getFinishTime() {
         return finishTime;
+    }
+    
+    public String getPhoneNumber(){
+        return phoneNumber;
     }
 
     
