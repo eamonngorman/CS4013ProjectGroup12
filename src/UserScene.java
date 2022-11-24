@@ -116,7 +116,11 @@ public class UserScene {
         String command;
 
         if (user.getAccessLevel() == 0){ //Customer Menu
-            System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
+            System.out.println("Hello " + user.getName() + " :) good to have you back");
+            if(hasRes((Customer)user)){
+                System.out.println("Here is a list of your current reservations: ");
+            }
+            System.out.println("\nA)Make Reservation  B)Cancel Reservation  Q)uit");
             command = in.next().toUpperCase();
 
             if(command.equals("A")){
@@ -300,7 +304,7 @@ public class UserScene {
         System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
-            addRestaurant(); ;
+            addRestaurant();
         }
         if(command.equals("B")){
             System.out.print("Set Name");
@@ -698,6 +702,20 @@ public class UserScene {
      */
     public RestaurantChain getYum() {
         return yum;
+    }
+
+    public boolean hasRes(Customer user){
+        if(restaurant.getReservations() == null){
+            return false;
+        }
+
+        for(Reservation r: restaurant.getReservations()){
+            if(r.getCustomer() == user){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     

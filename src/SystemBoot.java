@@ -175,23 +175,25 @@ public class SystemBoot {
                 int accessLevel = Integer.parseInt(dataFields[1]);
                 String restaurantName = dataFields[4];
                 //// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
-                Person person;
-                if (accessLevel == 0) {
+                Person person = new Person(name, accessLevel);
+                if (accessLevel == 0){
                     Customer customer = new Customer(name);
                     customerMap.put(customer.getIdNum(), customer);
-                    person = (Person) customer;
-                } else if (accessLevel == 1) {
+                    person = customer;
+                } else if (accessLevel == 1){
                     FOHStaff fohStaff = new FOHStaff(name);
-                    person = (Person) fohStaff;
-                } else if (accessLevel == 2) {
+                    person = fohStaff;
+                } else if (accessLevel == 2){
                     Waiter waiter = new Waiter(name);
-                    person = (Person) waiter;
-                } else if (accessLevel == 3) {
+                    person = waiter;
+                } else if (accessLevel == 3){
                     Chef chef = new Chef(name);
-                    person = (Person) chef;
-                } else {
+                    person = chef;
+                } else if (accessLevel == 4){
                     Manager manager = new Manager(name);
-                    person = (Person) manager;
+                    person = manager;
+                } else if (accessLevel == 5){
+                    
                 }
                 for (Restaurant r : restaurants) {
                     if (r.getName().equals(restaurantName)) {
