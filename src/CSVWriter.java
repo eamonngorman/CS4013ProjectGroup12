@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CSVWriter {
 
-    public void writeNewCustomerToCSV(String userName, String password, Person person, Restaurant restaurant){
+    public void writeNewPersonToCSV(String userName, String password, Person person, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("src/PersonDetails.csv");
