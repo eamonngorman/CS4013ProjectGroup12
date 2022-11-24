@@ -213,7 +213,6 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println(user.getAccessLevel());
             System.out.println("A)Edit Restaurants Q)uit");
             command = in.next().toUpperCase();
             if(command.equals("A")){
