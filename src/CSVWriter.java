@@ -87,7 +87,7 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("ReservationId, numPeople, date, time, tableNo, customerId, Restuarant\n");
+                header.append("ReservationId, numPeople, date, time, tableNo, customerId, Restaurant\n");
                 printWriter.write(header.toString());
             }
             csvData.append(reservation.getReservationId());
@@ -103,7 +103,7 @@ public class CSVWriter {
             csvData.append(reservation.getCustomer().getIdNum());
             csvData.append(",");
             csvData.append(restaurant.getName());
-            csvData.append(",\n");
+            csvData.append(",");
 
             printWriter.write(csvData.toString());
             printWriter.close();
@@ -127,7 +127,7 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("RestaurantName, RestaurantID, Tables, Reservations, People\n");
+                header.append("RestaurantName, RestaurantID, Tables, Reservations, People,\n");
                 printWriter.write(header.toString());
             }
             csvData.append(restaurant.getName());
