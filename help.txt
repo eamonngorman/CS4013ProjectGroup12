@@ -1,4 +1,5 @@
-To run the program run.java. 
+To run the program run run.java. 
 When you run this you will be met with a series of prompts on the screen. 
 Follow these prompts until you reach your desired outcome.
 You can then press Q to quit back to login screen.
+If an input format is given it must be followed. e.g. DD/MM/YYYY must be inputted as 03/06/2022 and not 3/6/2022
