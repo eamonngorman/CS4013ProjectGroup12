@@ -100,6 +100,10 @@ public class Reservation {
         }
         return true;
     }
+    @Override
+    public String toString(){
+        return (customer.getName() + ", " + table.toString() + ", Number of People: " + numOfPeople + ", Date: " + date + ", "+startTime +" - "+finishTime);
+    }
 
     
 }
