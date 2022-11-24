@@ -116,9 +116,10 @@ public class UserScene {
         String command;
 
         if (user.getAccessLevel() == 0){ //Customer Menu
-            System.out.println("Hello " + user.getName() + " :) good to have you back");
+            System.out.println("Hello " + user.getName() + " :), good to have you back");
             if(hasRes((Customer)user)){
                 System.out.println("Here is a list of your current reservations: ");
+                printCurrentRes();
             }
             System.out.println("\nA)Make Reservation  B)Cancel Reservation  Q)uit");
             command = in.next().toUpperCase();
@@ -127,6 +128,9 @@ public class UserScene {
                 makeReservation();
             }
             if(command.equals("B")){
+                if(!hasRes((Customer)user)){
+                    System.out.println("You have no reservations currently \n");
+                }
                 deleteReservationCustomer();
             }
             if(command.equals("Q")){
@@ -598,10 +602,12 @@ public class UserScene {
     }
 
     public void deleteReservationCustomer(){
+        if(hasRes((Customer)user)){
         System.out.println("What reservation would you like to remove?");
         Reservation r = getChoice(restaurant.getReservationByCustomers((Customer)user));
         restaurant.removeReservation(r);
         System.out.println("Reservation Removed");
+        } 
     }
 
     public void deleteReservationStaff(){
@@ -676,6 +682,16 @@ public class UserScene {
         }
 
         return false;
+    }
+
+    public void printCurrentRes(){
+        
+        for(Reservation r: restaurant.getReservations()){
+            if(r.getCustomer() == user){
+                System.out.println(r);
+            }
+        }
+
     }
 
     
