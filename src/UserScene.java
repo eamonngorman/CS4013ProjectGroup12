@@ -213,7 +213,6 @@ public class UserScene {
         }
 
         if (user.getAccessLevel() == 5){
-            System.out.println(user.getAccessLevel());
             System.out.println("A)Edit Restaurants Q)uit");
             command = in.next().toUpperCase();
             if(command.equals("A")){
@@ -327,8 +326,8 @@ public class UserScene {
     }
 
     private void editRestaurants() {
-        System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
-        String command = in.nextLine().toUpperCase();
+        System.out.println("A)Add Restaurant  Q)uit");
+        String command = in.next().toUpperCase();
         if(command.equals("A")){
             addRestaurant();
         }
@@ -540,7 +539,7 @@ public class UserScene {
 
     public void addRestaurant(){
         System.out.println("What is the name of the new restaurant?: ");
-        String name = in.nextLine();
+        String name = in.next();
         Restaurant newRestaurant = new Restaurant(name);
         yum.getRestaurants().add(newRestaurant);
         csvWriter.writeRestaurantToCSV(newRestaurant);
@@ -707,9 +706,15 @@ public class UserScene {
 
     public void printCurrentRes(){
         
+        System.out.println("Reservations are for " + restaurant.getName());
+        int i = 1;
         for(Reservation r: restaurant.getReservations()){
             if(r.getCustomer() == user){
+                System.out.println("===============================");
+                System.out.println("Reservation No." + i);
                 System.out.println(r);
+                System.out.println("===============================");
+                i++;
             }
         }
 
