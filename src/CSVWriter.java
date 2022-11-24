@@ -17,7 +17,7 @@ public class CSVWriter {
                 header.append("Name, Access Level, Username, Password, Restaurant\n");
                 printWriter.write(header.toString());
             }
-            csvData.append(details[0]);
+            csvData.append("\n" + details[0]);
             csvData.append(",");
             csvData.append("0");
             csvData.append(",");
@@ -65,7 +65,7 @@ public class CSVWriter {
             csvData.append(order.getOrderStatus());
             csvData.append(",");
             csvData.append(order.getDate().toString());
-            csvData.append(",\n");
+            csvData.append(",");
 
             printWriter.write(csvData.toString());
             printWriter.close();
@@ -145,7 +145,7 @@ public class CSVWriter {
 
             }
 
-            csvData.append(",\n");
+            csvData.append(",");
 
             printWriter.write(csvData.toString());
             printWriter.close();
