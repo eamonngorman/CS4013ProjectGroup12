@@ -7,7 +7,7 @@ public class Requirements {
     - [x]Can customers use this system to search for tables that are available at a specific date/time?
     - [x]Can customers reserve a table in one of the restaurants?
     - []Do reservations record name, date/time, phone number and number of people the reservation is for?
-    - []Can front of house staff search the system for tables that are currently free for walk-in customers?
+    - [x]Can front of house staff search the system for tables that are currently free for walk-in customers?
     - [x]Do walk in bookings record date/time, and number of people?
     - [x]Can customers cancel a reservation?
     - []Are reminders sent to customers to remind them of their reservation?
