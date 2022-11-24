@@ -29,9 +29,9 @@ public class Reservation {
         this.date = startTime.toLocalDate();
     }
 
-    Reservation(Table table, LocalDateTime startTime) {
+    Reservation(Table table) {
         this.table = table;
-        this.startTime = startTime;
+        this.startTime = LocalDateTime.now();
         this.finishTime = startTime.plusMinutes(reservationMinutes);
     }
 
