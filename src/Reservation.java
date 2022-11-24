@@ -148,10 +148,10 @@ public class Reservation {
      */
     @Override
     public String toString(){
-        String s = "Day: " + getStartTime().getDayOfWeek();
-        return s;
-
-        
+        String s = "Day: " + getStartTime().toLocalDate();
+        s += "\nTime: " + getStartTime().toLocalTime();
+        s += "\nParty size: " + getNumOfPeople();
+        return s;        
     }
 
     

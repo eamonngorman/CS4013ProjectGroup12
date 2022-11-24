@@ -686,9 +686,15 @@ public class UserScene {
 
     public void printCurrentRes(){
         
+        System.out.println("Reservations are for " + restaurant.getName());
+        int i = 1;
         for(Reservation r: restaurant.getReservations()){
             if(r.getCustomer() == user){
+                System.out.println("===============================");
+                System.out.println("Reservation No." + i);
                 System.out.println(r);
+                System.out.println("===============================");
+                i++;
             }
         }
 
