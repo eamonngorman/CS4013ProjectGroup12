@@ -105,8 +105,8 @@ public class Restaurant {
         orders.remove(o);
     
     }
-    public void removePeople(Person p){
-        people.remove(p);
+    public void removePeople(Person p, String s){
+        people.remove(s, p);
     }
 
 

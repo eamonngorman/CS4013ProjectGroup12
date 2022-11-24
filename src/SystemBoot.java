@@ -174,7 +174,6 @@ public class SystemBoot {
                 String username = dataFields[2];
                 int accessLevel = Integer.parseInt(dataFields[1]);
                 String restaurantName = dataFields[4];
-                //// Add these to the specific restaurant!!!!!!!!!!!!!!!!!!!!!!
                 Person person = new Person(name, accessLevel);
                 if (accessLevel == 0){
                     Customer customer = new Customer(name);
