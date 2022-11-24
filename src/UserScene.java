@@ -237,11 +237,10 @@ public class UserScene {
     }
 
     private void CalculateIncomeOnDayOfTheWeek() {
-        System.out.println("Day: ");
-        String day = in.nextLine().toUpperCase();
-        DayOfWeek weekDay = DayOfWeek.valueOf(day);
+        System.out.println("Day: (ALL CAPITALS) ");
+        DayOfWeek day = DayOfWeek.valueOf(in.nextLine());
         CSVReader csvReader = new CSVReader();
-        ArrayList<Double> income = csvReader.readPaymentsFromCSV(weekDay);
+        ArrayList<Double> income = csvReader.readPaymentsFromCSV(day);
         Double sum = 0.00;
         for (Double payment : income){
             sum += payment;
@@ -434,7 +433,10 @@ public class UserScene {
 
 
     
-
+    /** 
+     * @param (true
+     * @return T
+     */
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
 
         if (choices.size() == 0)
@@ -453,7 +455,10 @@ public class UserScene {
     }
 
     
-
+    /** 
+     * @param (true
+     * @return Person
+     */
     private Person getChoice(HashMap<String, Person> hashMap) { //getChoice can now work for all arrayList types
         if (hashMap.size() == 0)
             return null;
@@ -524,7 +529,7 @@ public class UserScene {
         }
 
         restaurant.addReservation(r);
-        csvWriter.writeReservationToCSV(r, restaurant, user);
+        csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
 

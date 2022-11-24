@@ -1,17 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -130,12 +126,7 @@ public class CSVReader {
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
-
-                DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-                Date date = sourceFormat.parse(dataFields[6]);
-
-                LocalDate csvDate = convertToLocalDateViaInstant(date);
+                LocalDate csvDate = LocalDate.parse(dataFields[6]);
                 DayOfWeek weekDay = csvDate.getDayOfWeek();
                 if (weekDay == day) {
                     Double payment = Double.parseDouble(dataFields[3]);
@@ -144,17 +135,10 @@ public class CSVReader {
             }
         } catch (IOException e){
             e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
         return payments;
     }
 
-    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
-        return dateToConvert.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-    }
 
     public boolean isUsernameTaken(String username) {
         boolean isTaken = false;
@@ -178,6 +162,42 @@ public class CSVReader {
         }
         return isTaken;
 
+
+    }
+
+    public double readPayFor(Restaurant restaurant, DayOfWeek day, LocalTime startTime, LocalTime finishTime) {
+
+        double total = 0;
+
+        try {
+            File orderFile = new File("src/Orders.csv");
+            Scanner in = new Scanner(orderFile);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String dateString = dataFields[6];
+                String restName = dataFields[8];
+                String moneyString = dataFields[3];
+                double money = Double.parseDouble(moneyString);
+                LocalDateTime time = stringToTime(dateString);
+
+                if(restaurant.getName().equals(restName)
+                    && time.getDayOfWeek().equals(day)){
+                    if(time.toLocalTime().isAfter(startTime) && 
+                        time.toLocalTime().isBefore(finishTime)){
+                            total += money;
+                    }
+                }
+
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return total;
 
     }
 
