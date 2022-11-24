@@ -9,7 +9,7 @@ public class UserScene {
 
     private Scanner in;
     private Person user;
-    private Restaurant restaurant = new Restaurant();
+    private Restaurant restaurant;
     private RestaurantChain yum = new RestaurantChain();
 
     public UserScene(RestaurantChain yum) {
@@ -27,7 +27,9 @@ public class UserScene {
         boolean more = true;
 
         while (more) {
-            restaurant = getChoice(yum.getRestaurants());
+            if(restaurant == null) {
+                restaurant = getChoice(yum.getRestaurants());
+            }
             System.out.println("A)Login  B)Register  Q)uit");
             String command = in.nextLine().toUpperCase();
             CSVReader csvReader = new CSVReader();
@@ -88,7 +90,7 @@ public class UserScene {
             System.out.println("Password: ");
             String password = in.nextLine();
             details[2] = password;
-            w.writeNewCustomerToCSV(details);
+            w.writeNewCustomerToCSV(details, restaurant);
 
             Person newUser = new Customer(details[0]);
             restaurant.addPeople(newUser, username);
@@ -100,10 +102,12 @@ public class UserScene {
 
     public void login(){
 
-        String command = in.nextLine().toUpperCase();
+        String command;
 
         if (user.getAccessLevel() == 0){ //Customer Menu
             System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
+            command = in.nextLine().toUpperCase();
+
             if(command.equals("A")){
                 makeReservation();
             }
@@ -117,6 +121,8 @@ public class UserScene {
 
         if (user.getAccessLevel() == 1){
             System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
+            command = in.nextLine().toUpperCase();
+
             if(command.equals("A")){
                 makeReservation();
             }
@@ -130,6 +136,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 2){
             System.out.println("A)Add to Order  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+            command = in.nextLine().toUpperCase();
             if(command.equals("A")){
                 addItemToOrder();
             }
@@ -149,6 +156,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 3){
             System.out.println("A)Update Order  B)See Current Orders  Q)uit");
+            command = in.nextLine().toUpperCase();
             if(command.equals("A")){
                 updateOrderStatus();
             }
@@ -162,6 +170,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 4){
             System.out.println("A)Edit Tables  B)Edit Menus C)Edit Staff D)Calculate Restaurant Income  Q)uit");
+            command = in.nextLine().toUpperCase();
             if(command.equals("A")){
                 editTables();
             }
@@ -181,6 +190,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 5){
             System.out.println("A)Edit Restaurants B)Set Name C)Find Restaurant D)Get name Q)uit");
+            command = in.nextLine().toUpperCase();
             if(command.equals("A")){
                 editRestaurants();
             }
@@ -192,8 +202,9 @@ public class UserScene {
 
     private void calculateRestaurantIncome() {
 
-        String command = in.nextLine().toUpperCase();
         System.out.println("A)Calculate income from each restaurant  B)Remove from Order C)Cancel Order D)Finish Order  Q)uit");
+        String command = in.nextLine().toUpperCase();
+
         if(command.equals("A")){
             addItemToOrder();
         }
