@@ -409,10 +409,7 @@ public class UserScene {
 
 
     
-    /** 
-     * @param (true
-     * @return T
-     */
+
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
 
         if (choices.size() == 0)
@@ -431,10 +428,7 @@ public class UserScene {
     }
 
     
-    /** 
-     * @param (true
-     * @return Person
-     */
+
     private Person getChoice(HashMap<String, Person> hashMap) { //getChoice can now work for all arrayList types
         if (hashMap.size() == 0)
             return null;
@@ -492,8 +486,9 @@ public class UserScene {
         System.out.println("How many people are coming?");
         int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
-
-        r = new Reservation((Customer) user, table, people, formattedDate);
+        System.out.println("Please enter your phone number");
+        String phoneNumber = in.next();
+        r = new Reservation((Customer) user, table, people, formattedDate, phoneNumber);
         } else {
 
         System.out.println("How many seats are needed?");
