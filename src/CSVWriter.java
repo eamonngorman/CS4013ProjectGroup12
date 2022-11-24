@@ -99,6 +99,7 @@ public class CSVWriter {
                 header.append("ReservationId, numPeople, date, time, tableNo, customerId, Restaurant\n");
                 printWriter.write(header.toString());
             }
+            csvData.append("\n");
             csvData.append(reservation.getReservationId());
             csvData.append(",");
             csvData.append(reservation.getNumOfPeople());

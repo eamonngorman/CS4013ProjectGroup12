@@ -7,12 +7,12 @@ import java.util.Scanner;
 
 public class Tester {
     
-    public static void main(String[] args){
+    // public static void main(String[] args){
         
-        String input = "C";
-        int n = input.toUpperCase().charAt(0) - 'A';
+    //     String input = "C";
+    //     int n = input.toUpperCase().charAt(0) - 'A';
 
-        System.out.println(n);
+    //     System.out.println(n);
 
-    }
+    // }
 }
