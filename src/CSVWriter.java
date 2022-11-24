@@ -39,6 +39,102 @@ public class CSVWriter {
         }
     }
 
+    public void writeMenusToCSV(Menu menu, Restaurant restaurant){
+        PrintWriter printWriter;
+        try {
+            File file = new File("src/Menus.csv");
+            printWriter = new PrintWriter(new FileWriter(file, true));
+            Scanner input = new Scanner(file);
+            StringBuffer csvData = new StringBuffer("");
+
+            if (!input.hasNext()){
+                StringBuffer header = new StringBuffer("");
+                header.append("menuName, restaurantName\n");
+                printWriter.write(header.toString());
+            }
+
+            csvData.append("\n" + menu.getMenuName());
+            csvData.append(",");
+            csvData.append(restaurant.getName());
+            csvData.append(",");
+
+            printWriter.write(csvData.toString());
+            printWriter.close();
+
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void writeMenuCategoryToCSV(MenuCategory menuCat, Restaurant restaurant, Menu menu){
+        PrintWriter printWriter;
+        try {
+            File file = new File("src/MenuCategories.csv");
+            printWriter = new PrintWriter(new FileWriter(file, true));
+            Scanner input = new Scanner(file);
+            StringBuffer csvData = new StringBuffer("");
+
+            if (!input.hasNext()){
+                StringBuffer header = new StringBuffer("");
+                header.append("catName, menuName, restaurantName\n");
+                printWriter.write(header.toString());
+            }
+
+            csvData.append("\n" + menuCat.getCategoryName());
+            csvData.append(",");
+            csvData.append(menu.getMenuName());
+            csvData.append(",");
+            csvData.append(restaurant.getName());
+            csvData.append(",");
+
+            printWriter.write(csvData.toString());
+            printWriter.close();
+
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void writeMenuItemToCSV(MenuItem menuItem, MenuCategory menuCat, Restaurant restaurant, Menu menu){
+        PrintWriter printWriter;
+        try {
+            File file = new File("src/MenuItems.csv");
+            printWriter = new PrintWriter(new FileWriter(file, true));
+            Scanner input = new Scanner(file);
+            StringBuffer csvData = new StringBuffer("");
+
+            if (!input.hasNext()){
+                StringBuffer header = new StringBuffer("");
+                header.append("itemName, itemCost, categoryName, restaurantName, menuName\n");
+                printWriter.write(header.toString());
+            }
+
+            csvData.append("\n" + menuItem.getItemName());
+            csvData.append(",");
+            csvData.append(menuItem.getItemCost());
+            csvData.append(",");
+            csvData.append(menuCat.getCategoryName());
+            csvData.append(",");
+            csvData.append(restaurant.getName());
+            csvData.append(",");
+            csvData.append(menu.getMenuName());
+            csvData.append(",");
+
+            printWriter.write(csvData.toString());
+            printWriter.close();
+
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void writeTableToCSV(Table table, Restaurant restaurant){
         PrintWriter printWriter;
