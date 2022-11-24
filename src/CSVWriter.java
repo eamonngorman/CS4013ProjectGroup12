@@ -40,6 +40,38 @@ public class CSVWriter {
     }
 
 
+    public void writeTableToCSV(Table table, Restaurant restaurant){
+        PrintWriter printWriter;
+        try {
+            File file = new File("src/Tables.csv");
+            printWriter = new PrintWriter(new FileWriter(file, true));
+            Scanner input = new Scanner(file);
+            StringBuffer csvData = new StringBuffer("");
+
+            if (!input.hasNext()){
+                StringBuffer header = new StringBuffer("");
+                header.append("RestaurantName, TableNo, Capacity\n");
+                printWriter.write(header.toString());
+            }
+
+            csvData.append("\n" + restaurant.getName());
+            csvData.append(",");
+            csvData.append(table.getTableNum());
+            csvData.append(",");
+            csvData.append(table.getCanSeat());
+            csvData.append(",");
+
+            printWriter.write(csvData.toString());
+            printWriter.close();
+
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void writeOrderToCSV(Order order, Restaurant restaurant){
         PrintWriter printWriter;
         try {

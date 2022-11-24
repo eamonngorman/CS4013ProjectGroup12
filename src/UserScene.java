@@ -286,7 +286,7 @@ public class UserScene {
 
 
     private void editTables() {
-        System.out.println("A)dd R)emove Q)uit");
+        System.out.println("A)dd Q)uit");
         String command = in.nextLine().toUpperCase();
         if(command.equals("A")){
             System.out.println("Enter number of seats");
@@ -295,11 +295,7 @@ public class UserScene {
             int tabNum = in.nextInt();
             Table table = new Table(tabNum, numSeats);
             restaurant.addTable(table);
-        }
-        if(command.equals("R")){
-            System.out.println("Select a table to remove");
-            Table table = getChoice(restaurant.getTables());
-            restaurant.removeTable(table);
+            csvWriter.writeTableToCSV(table, restaurant);
         }
         if (command.equals("Q")){
             runStart();
@@ -524,22 +520,22 @@ public class UserScene {
 
     public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
-        System.out.println("Select menu to add item to: ");
+        System.out.println("Select menu: ");
         Menu selectedMenu = getChoice(menus);
 
         ArrayList<MenuCategory> menuCategories = selectedMenu.getCategories();
-        System.out.println(("Select category to add item from: "));
+        System.out.println(("Select category: "));
         MenuCategory selectedCategory = getChoice(menuCategories);
 
         ArrayList<MenuItem> menuItems = selectedCategory.getMenuItems();
-        System.out.println(("Select item to add to order: "));
+        System.out.println(("Select item: "));
         MenuItem item = getChoice(menuItems);
         return item;
     }
 
     public Order selectOrderFromTable(){
         ArrayList<Table> tables = restaurant.getTables();
-        System.out.println("Select table to add item to it's order: ");
+        System.out.println("Select table: ");
         Table table = getChoice(tables);
 
         return table.getOrder();
