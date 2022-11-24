@@ -117,6 +117,7 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+            login();
         }
 
         if (user.getAccessLevel() == 1){
@@ -132,6 +133,7 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+            login();
         }
 
         if (user.getAccessLevel() == 2){
@@ -152,6 +154,7 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+            login();
         }
 
         if (user.getAccessLevel() == 3){
@@ -166,6 +169,7 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+            login();
         }
 
         if (user.getAccessLevel() == 4){
@@ -186,6 +190,7 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+            login();
         }
 
         if (user.getAccessLevel() == 5){
@@ -197,6 +202,7 @@ public class UserScene {
             if(command.equals("Q")){
                 runStart();
             }
+            login();
         }
     }
 
@@ -249,6 +255,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
+        login();
     }
     private void editMember(Person person){
         System.out.println("Edit N)ame A)ccess Level Q)uit");
@@ -266,7 +273,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
-
+        login();
     }
 
     private void editRestaurants() {
@@ -288,7 +295,7 @@ public class UserScene {
         if(command.equals("Q")){
             runStart();
         }
-
+        login();
 
 
         }
@@ -313,6 +320,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
+        login();
     }
 
     private void editMenus() {
@@ -331,6 +339,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
+        login();
     }
 
     private void editMenu(Menu menus){
@@ -356,6 +365,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
+        login();
     }
 
     private void editCats(MenuCategory menuCat){
@@ -383,6 +393,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
+        login();
     }
 
     private void editItems(MenuItem menuItem){
@@ -401,6 +412,7 @@ public class UserScene {
         if (command.equals("Q")){
             runStart();
         }
+        login();
     }
 
 
@@ -481,6 +493,8 @@ public class UserScene {
             r = new Reservation((Customer) user, table, people, formattedDate);
         }
         restaurant.addReservation(r);
+        CSVWriter csvWriter = new CSVWriter();
+        csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
 
@@ -493,6 +507,7 @@ public class UserScene {
                 order.addToOrder(item);
             }
         }
+        login();
     }
 
     public void addRestaurant(){
@@ -504,6 +519,7 @@ public class UserScene {
         Restaurant newRestaurant = new Restaurant(name);
 
         yum.getRestaurants().add(newRestaurant);
+        login();
     }
 
     public void removeItemFromOrder(){
@@ -515,6 +531,7 @@ public class UserScene {
                 order.removeFromOrder(item);
             }
         }
+        login();
     }
 
     public MenuItem selectItem(){
@@ -550,12 +567,14 @@ public class UserScene {
                 return;
             }
         }
+        login();
     }
 
     public void updateOrderStatus(){
         Order selectedOrder = selectOrderFromTable();
         String status = getChoice(selectedOrder.getStatuses());
         selectedOrder.setOrderStatus(status);
+        login();
     }
 
     public void seeOrders(){
@@ -568,6 +587,7 @@ public class UserScene {
             System.out.println("\n" + c + ") \n" + orders.toString() + "\n");
             c++;
         }
+        login();
     }
 
     public void deleteReservationCustomer(){
