@@ -258,6 +258,26 @@ public class SystemBoot {
         }
     }
 
+    public void createOrder(){
+
+        File fileOrder = new File("src/Orders.csv");
+
+        try {
+            Scanner in = new Scanner(fileOrder);
+            if (in.hasNextLine()) {
+                in.nextLine();
+            }
+            while (in.hasNextLine()) {
+                String[] dataFields = in.nextLine().split(",");
+                String restaurantName = dataFields[0];
+                Restaurant r = new Restaurant(restaurantName);
+                this.restaurants.add(r);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public LocalDateTime stringToDate(String date){
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");

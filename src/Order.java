@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,7 +12,7 @@ public class Order {
     private boolean isPaid;
     private String orderStatus;
     private final String[] statuses = {"Waiting for preparation", "Being prepared", "Cooking", "Ready", "Served"};
-    private LocalDate date;
+    private LocalDateTime date;
     private char paymentMethod;
 
     Order(){
@@ -23,7 +20,7 @@ public class Order {
         this.orderStatus = statuses[0];
         this.itemsInOrder = new ArrayList<MenuItem>();
         this.totalCost = 0;
-        this.date = LocalDate.now();
+        this.date = LocalDateTime.now();
 
     }
     public void setPaymentMethod(char method){
@@ -80,7 +77,7 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 

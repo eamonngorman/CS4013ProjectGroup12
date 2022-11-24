@@ -459,18 +459,20 @@ public class UserScene {
 
     public void makeReservation() {
 
-        String date = in.nextLine();
+        
         System.out.println("What day would you like a reservation? (dd/mm/yyyy)");
-        String time = in.nextLine();
+        String date = in.next();
         System.out.println("What time would you like your reservation? (hh:mm)");
+        String time = in.next();
         String format = date + " " + time;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime formattedDate = LocalDateTime.parse(format, formatter);
 
-        int people = Integer.parseInt(in.nextLine());
+        
         System.out.println("How many people are coming?");
+        int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
-
+        
         Reservation r = new Reservation((Customer) user, table, people, formattedDate);
         restaurant.addReservation(r);
         login();

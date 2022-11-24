@@ -17,7 +17,7 @@ public class CSVWriter {
                 header.append("Name, Access Level, Username, Password, Restaurant\n");
                 printWriter.write(header.toString());
             }
-            csvData.append(details[0]);
+            csvData.append("\n" + details[0]);
             csvData.append(",");
             csvData.append("0");
             csvData.append(",");
@@ -48,24 +48,33 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("RestaurantId,Order Id,Items,Total Cost,Gratuity,Order Status,Date\n");
+                header.append("RestaurantId,Order Id,Items,Total Cost,Gratuity,Order Status,Date, Restaurant name\n");
                 printWriter.write(header.toString());
             }
 
-            csvData.append(restaurant.getRestaurantId());
+            csvData.append(restaurant.getRestaurantId());//[0]
             csvData.append(",");
-            csvData.append(order.getOrderId());
+            csvData.append(order.getOrderId());//[1]
             csvData.append(",");
-            csvData.append(order.getItems().toString());
+            csvData.append(order.getItems().toString());//[2]
             csvData.append(",");
-            csvData.append(order.getTotal());
+            csvData.append(order.getTotal());//[3]
             csvData.append(",");
-            csvData.append(order.getGratuity());
+            csvData.append(order.getGratuity());//[4]
             csvData.append(",");
-            csvData.append(order.getOrderStatus());
+            csvData.append(order.getOrderStatus());//[5]
             csvData.append(",");
+            csvData.append(timeToString(order.getDate()));//[6]
+            csvData.append(",");
+            csvData.append(order.getPaymentMethod());//[7]
+            csvData.append(",");
+
             csvData.append(order.getDate().toString());
+            csvData.append(",");
+
+            csvData.append(restaurant.getName());//[8]
             csvData.append(",\n");
+
 
             printWriter.write(csvData.toString());
             printWriter.close();
@@ -145,7 +154,7 @@ public class CSVWriter {
 
             }
 
-            csvData.append(",\n");
+            csvData.append(",");
 
             printWriter.write(csvData.toString());
             printWriter.close();
