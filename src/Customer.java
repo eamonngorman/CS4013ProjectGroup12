@@ -7,3 +7,8 @@ public class Customer extends Person {
     
 
 }
+
+
+//cust has a res
+//if cus.res is not empty
+//print reminders
