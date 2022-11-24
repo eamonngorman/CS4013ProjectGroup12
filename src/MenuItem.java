@@ -24,4 +24,8 @@ public class MenuItem {
     public double getItemCost() {
         return itemCost;
     }
+    @Override
+    public String toString(){
+        return ("Dish Name: "+ itemName+ "Dish Cost: "+ itemCost);
+    }
 }

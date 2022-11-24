@@ -48,5 +48,10 @@ public class Table {
         return currentOrder;
     }
 
+    @Override
+    public String toString(){
+        return ("Table Number: " + tableNum + "Can Seat: " + canSeat);
+    }
+
 
 }

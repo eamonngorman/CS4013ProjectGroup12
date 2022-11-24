@@ -218,8 +218,18 @@ public class SystemBoot {
                 Customer c = customerMap.get(custId);
                 int tableNum = Integer.parseInt(dataFields[4]);
                 Table t = tableMap.get(tableNum);
+                int numOfPeople = Integer.parseInt(dataFields[1]);
+                String dateString = dataFields[3];
+                LocalDateTime time = stringToDate(dateString);
 
-                //this.restaurants.add();
+                Reservation res = new Reservation(c, t, numOfPeople, time);
+
+                String restName = dataFields[6]
+                for (Restaurant r : restaurants) {
+                    if(restName.equals(r.getName())){
+                        r.addReservation(res);
+                    }
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
