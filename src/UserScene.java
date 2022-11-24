@@ -36,7 +36,7 @@ public class UserScene {
                 restaurant = getChoice(yum.getRestaurants());
             }
             System.out.println("A)Login  B)Register  Q)uit");
-            String command = in.nextLine().toUpperCase();
+            String command = in.next().toUpperCase();
             CSVReader csvReader = new CSVReader();
             if (command.equals("A")) {
                 System.out.println("Username:");
