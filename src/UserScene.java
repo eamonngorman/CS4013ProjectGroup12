@@ -121,7 +121,7 @@ public class UserScene {
 
         if (user.getAccessLevel() == 1){
             System.out.println("A)Make Reservation  B)Cancel Reservation  Q)uit");
-            command = in.nextLine().toUpperCase();
+            command = in.next()/*nextLine().*/.toUpperCase();
 
             if(command.equals("A")){
                 makeReservation();
