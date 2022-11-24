@@ -84,22 +84,6 @@ public class Reservation {
         return phoneNumber;
     }
 
-    
-    /** 
-     * @return int
-     */
-    /* 
-    public void addReservationToCsv() throws IOException{
-        StringBuilder line = new StringBuilder();
-        line.append(customer + ",");
-        line.append(table + ",");
-        line.append(numOfPeople + ",");
-        line.append(startTime + ",");
-        line.append(finishTime);
-        line.append("\n");
-        fileWriter.write(line.toString());
-    }
-    */
 
     public static int getReservationMinutes() {
         return reservationMinutes;

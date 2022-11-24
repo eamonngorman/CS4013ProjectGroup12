@@ -60,19 +60,6 @@ public class Order {
         itemsInOrder.remove(item);
     }
 
-    /*public void addOrderToCSv() throws IOException {
-        StringBuilder line = new StringBuilder();
-        String listString = "";
-        for (MenuItem m : itemsInOrder){
-            listString += m + "; ";
-        }
-        line.append(orderId + ",");
-        line.append(listString + ",");
-        line.append(totalCost);
-        line.append("\n");
-        fileWriter.write(line.toString());
-    }*/
-
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }

@@ -16,34 +16,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 public class CSVReader {
 
-
-
-    /*public void readOrdersFromCSV() throws FileNotFoundException {
-        int orderId = 1;
-        File file = new File("Orders.csv");
-        Scanner input = new Scanner(file);
-
-        /*
-        orderId; field 1
-    private ArrayList<MenuItem> itemsInOrder; field 2
-    private double totalCost; field 3
-    private double gratuity; field 4
-    private boolean isPaid; field 5
-    private String orderStatus; field 6
-
-    Order Id,Items,Total Cost,Gratuity,Order Status,Date
-
-
-
-
-
-        while (input.hasNext()){
-            int isOrderNum = input.nextInt();
-
-        }
-    }*/
-
-
     public boolean signIn(String username, String password) {
         boolean signInSuccess = false;
         try {

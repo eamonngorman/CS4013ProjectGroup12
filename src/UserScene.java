@@ -21,12 +21,6 @@ public class UserScene {
         this.yum = yum;
     }
 
-    /*
-     * for users
-     * we can use a hashmap with String userName as the key
-     * and Person person as the value
-     * this will require storing people in resturant
-     */
     public void runStart() {
         boolean more = true;
 
