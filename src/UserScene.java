@@ -237,10 +237,11 @@ public class UserScene {
     }
 
     private void CalculateIncomeOnDayOfTheWeek() {
-        System.out.println("Day: (ALL CAPITALS) ");
-        DayOfWeek day = DayOfWeek.valueOf(in.nextLine());
+        System.out.println("Day: ");
+        String day = in.nextLine().toUpperCase();
+        DayOfWeek weekDay = DayOfWeek.valueOf(day);
         CSVReader csvReader = new CSVReader();
-        ArrayList<Double> income = csvReader.readPaymentsFromCSV(day);
+        ArrayList<Double> income = csvReader.readPaymentsFromCSV(weekDay);
         Double sum = 0.00;
         for (Double payment : income){
             sum += payment;
