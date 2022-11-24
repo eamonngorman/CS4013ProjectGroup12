@@ -1,5 +1,11 @@
-ReservationId, numPeople, date, tableNo, customerId, Restaurant
+ReservationId, numPeople, date, tableNo, customerId, Restaurant, Name
 1,2,01/01/2023 12:00,1,4,Ardee,
 0,0,24/11/2022 03:56,1,0,Ardee,
 0,0,24/11/2022 04:39,1,0,Ardee,
 4,3,01/01/1999 03:24,2,0,Ardee,
+5,1,03/01/1995 01:01,1,0,Ardee,
+6,1,03/01/1995 01:01,2,0,Ardee,
+7,1,01/01/1111 10:10,1,0,Ardee,
+8,1,01/01/1111 10:10,1,0,Ardee,
+9,1,10/10/1111 10:10,1,0,Ardee,
+10,1,11/11/1111 11:11,1,5,Ardee,

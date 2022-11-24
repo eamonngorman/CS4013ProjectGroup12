@@ -178,7 +178,7 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("RestaurantId,Order Id,Items,Total Cost,Gratuity,Order Status,Date, Restaurant name\n");
+                header.append("RestaurantId,Order Id,Items,Total Cost,Gratuity,Order Status,Date, Restaurant name, CustName\n");
                 printWriter.write(header.toString());
             }
 
@@ -199,11 +199,9 @@ public class CSVWriter {
             csvData.append(order.getPaymentMethod());//[7]
             csvData.append(",");
 
-            csvData.append(order.getDate().toString());
-            csvData.append(",");
-
             csvData.append(restaurant.getName());//[8]
             csvData.append(",\n");
+
 
 
             printWriter.write(csvData.toString());
@@ -216,7 +214,7 @@ public class CSVWriter {
             e.printStackTrace();
         }
     }
-    public void writeReservationToCSV(Reservation reservation, Restaurant restaurant){
+    public void writeReservationToCSV(Reservation reservation, Restaurant restaurant, , Person user){
         PrintWriter printWriter;
         try {
             File file = new File("src/Reservations.csv");
@@ -241,6 +239,8 @@ public class CSVWriter {
             csvData.append(reservation.getCustomer().getIdNum());
             csvData.append(",");
             csvData.append(restaurant.getName());
+            csvData.append(",");
+            csvData.append(user.getName());
             csvData.append(",");
 
             printWriter.write(csvData.toString());

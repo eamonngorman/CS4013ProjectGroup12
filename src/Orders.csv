@@ -1,2 +1,2 @@
-RestaurantId[0], Order Id[1], Items[2], Total Cost[3], Gratuity[4], Order Status[5], Date[6], cashOrCard[7], restaurantName[8]
+RestaurantId[0], Order Id[1], Items[2], Total Cost[3], Gratuity[4], Order Status[5], Date[6], cashOrCard[7], restaurantName[8],
 1,1,,40.00,0.00,,31/12/2022,true

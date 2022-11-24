@@ -1,13 +1,16 @@
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Person {
     
     private String name;
     private int accessLevel;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private int idNum;
 
     Person(String name, int accessLevel) {
         this.name = name;
         this.accessLevel = accessLevel;
-        //need a way to create a unique ID number for every created person
+        this.idNum = count.incrementAndGet();
     }
 
     public void setName(String name) {

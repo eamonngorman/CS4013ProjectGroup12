@@ -4,5 +4,6 @@ public class Customer extends Person {
         super(name, 0);
         //create a customer, has lowest access level
     }
+    
 
 }
