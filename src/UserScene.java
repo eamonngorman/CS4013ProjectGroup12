@@ -267,6 +267,10 @@ public class UserScene {
         }
         login();
     }
+    
+    /** 
+     * @param person
+     */
     private void editMember(Person person){
         System.out.println("Edit N)ame A)ccess Level Q)uit");
         String command = in.nextLine().toUpperCase();
@@ -350,6 +354,10 @@ public class UserScene {
         login();
     }
 
+    
+    /** 
+     * @param menus
+     */
     private void editMenu(Menu menus){
         ArrayList<MenuCategory> menuCategories = menus.getCategories();
         System.out.println("E)dit category A)dd category Q)uit");
@@ -372,6 +380,10 @@ public class UserScene {
         login();
     }
 
+    
+    /** 
+     * @param menuCat
+     */
     private void editCats(MenuCategory menuCat, Menu menus){
         ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
         System.out.println("A)dd Item Q)uit");
@@ -383,7 +395,29 @@ public class UserScene {
             Double price = in.nextDouble();
             MenuItem menuItem = new MenuItem(item, price);
             menuCat.addMenuItem(menuItem);
-            csvWriter.writeMenuItemToCSV(menuItem, menuCat, restaurant, menus);
+        }
+        if (command.equals("Q")){
+            runStart();
+        }
+        login();
+    }
+
+    
+    /** 
+     * @param menuItem
+     */
+    private void editItems(MenuItem menuItem){
+        System.out.println("Change N)ame P)rice Q)uit");
+        String command = in.nextLine().toUpperCase();
+        if (command.equals("N")){
+            System.out.println("Enter New Name");
+            String name = in.nextLine();
+            menuItem.setItemName(name);
+        }
+        if (command.equals("P")){
+            System.out.println("Enter New Price");
+            Double price = in.nextDouble();
+            menuItem.setItemCost(price);
         }
         if (command.equals("Q")){
             runStart();
@@ -392,6 +426,11 @@ public class UserScene {
     }
 
 
+    
+    /** 
+     * @param (true
+     * @return T
+     */
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
 
         if (choices.size() == 0)
@@ -409,6 +448,11 @@ public class UserScene {
         }
     }
 
+    
+    /** 
+     * @param (true
+     * @return Person
+     */
     private Person getChoice(HashMap<String, Person> hashMap) { //getChoice can now work for all arrayList types
         if (hashMap.size() == 0)
             return null;
@@ -425,6 +469,11 @@ public class UserScene {
         }
     }
 
+    
+    /** 
+     * @param choices
+     * @return String
+     */
     // ask Eamonn before commenting this out. This is needed for String Arrays
     private String getChoice(String[] choices) {
         if (choices.length == 0)
@@ -514,6 +563,10 @@ public class UserScene {
         login();
     }
 
+    
+    /** 
+     * @return MenuItem
+     */
     public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
         System.out.println("Select menu: ");
@@ -529,6 +582,10 @@ public class UserScene {
         return item;
     }
 
+    
+    /** 
+     * @return Order
+     */
     public Order selectOrderFromTable(){
         ArrayList<Table> tables = restaurant.getTables();
         System.out.println("Select table: ");
@@ -612,6 +669,10 @@ public class UserScene {
         
     }
 
+    
+    /** 
+     * @param o
+     */
     public void printBill(Order o){
         System.out.println("Would you like to pay by C)ash or D)ebit Card");
         String command = in.nextLine().toUpperCase();
@@ -625,6 +686,10 @@ public class UserScene {
         o.printBill();
     }
 
+    
+    /** 
+     * @return RestaurantChain
+     */
     public RestaurantChain getYum() {
         return yum;
     }
