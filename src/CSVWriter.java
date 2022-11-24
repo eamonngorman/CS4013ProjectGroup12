@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class CSVWriter {
 
-    public void writeNewCustomerToCSV(String[] details){
+    public void writeNewCustomerToCSV(String[] details, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("src/PersonDetails.csv");
@@ -13,16 +13,18 @@ public class CSVWriter {
 
             if (!input.hasNext()){
                 StringBuffer header = new StringBuffer("");
-                header.append("Name, Access Level, Username, Password\n");
+                header.append("Name, Access Level, Username, Password, Restaurant\n");
                 printWriter.write(header.toString());
             }
-            csvData.append("\n" + details[0]);
+            csvData.append(details[0]);
             csvData.append(",");
             csvData.append("0");
             csvData.append(",");
             csvData.append(details[1]);
             csvData.append(",");
             csvData.append(details[2]);
+            csvData.append(",");
+            csvData.append(restaurant);
             csvData.append(",");
 
             printWriter.write(csvData.toString());
@@ -74,7 +76,7 @@ public class CSVWriter {
             e.printStackTrace();
         }
     }
-    public void writeReservationToCSV(Reservation reservation){
+    public void writeReservationToCSV(Reservation reservation, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("src/Reservations.csv");
