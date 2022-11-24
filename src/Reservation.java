@@ -9,12 +9,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Reservation {
 
     private Customer customer;
+    private Customer walkIn = new Customer("Walkin");
     private static final AtomicInteger count = new AtomicInteger(0);
     private int reservationId;
     private Table table;
     private int numOfPeople; // not needed?
-    private LocalDate date;
-    private LocalTime start;
     private LocalDateTime startTime;
     private static int reservationMinutes = 90;
     private LocalDateTime finishTime;
@@ -26,13 +25,13 @@ public class Reservation {
         this.numOfPeople = numOfPeople;
         this.startTime = startTime;
         this.finishTime = startTime.plusMinutes(reservationMinutes);
-        this.date = startTime.toLocalDate();
     }
 
     Reservation(Table table) {
         this.table = table;
         this.startTime = LocalDateTime.now();
         this.finishTime = startTime.plusMinutes(reservationMinutes);
+        this.customer = walkIn;
     }
 
     public Customer getCustomer() {
@@ -43,16 +42,8 @@ public class Reservation {
         return table;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
     public int getNumOfPeople() {
         return numOfPeople;
-    }
-
-    public LocalTime getStart() {
-        return start;
     }
 
     public LocalDateTime getStartTime() {
@@ -102,7 +93,7 @@ public class Reservation {
     }
     @Override
     public String toString(){
-        return (customer.getName() + ", " + table.toString() + ", Number of People: " + numOfPeople + ", Date: " + date + ", "+startTime +" - "+finishTime);
+        return (customer.getName() + ", " + table.toString() + ", Number of People: " + numOfPeople + ", Date: " + ", "+startTime +" - "+finishTime);
     }
 
     

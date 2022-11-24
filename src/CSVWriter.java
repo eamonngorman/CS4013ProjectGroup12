@@ -103,8 +103,6 @@ public class CSVWriter {
             csvData.append(",");
             csvData.append(reservation.getNumOfPeople());
             csvData.append(",");
-            csvData.append(reservation.getDate().toString());
-            csvData.append(",");
             csvData.append(timeToString(reservation.getStartTime()));
             csvData.append(",");
             csvData.append(reservation.getTable().getTableNum());

@@ -11,6 +11,7 @@ public class UserScene {
     private Person user;
     private Restaurant restaurant;
     private RestaurantChain yum = new RestaurantChain();
+    private CSVWriter csvWriter = new CSVWriter();
 
     public UserScene(RestaurantChain yum) {
         in = new Scanner(System.in);
@@ -417,9 +418,6 @@ public class UserScene {
 
 
     private <T> T getChoice(ArrayList<T> choices) { //getChoice can now work for all arrayList types
-        if (choices == null){
-            return null;
-        }
 
         if (choices.size() == 0)
             return null;
@@ -430,7 +428,6 @@ public class UserScene {
                 c++;
             }
             String input = in.next();
-
             int n = input.toUpperCase().charAt(0) - 'A';
             if (0 <= n && n < choices.size())
                 return choices.get(n);
@@ -463,7 +460,7 @@ public class UserScene {
                  System.out.println("\n" + c + ") \n" + choice.toString() + "\n");
                  c++;
              }
-             String input = in.nextLine();
+             String input = in.next();
              int n = input.toUpperCase().charAt(0) - 'A';
              if (0 <= n && n < choices.length)
                 return choices[n];
@@ -501,12 +498,13 @@ public class UserScene {
         }
 
         restaurant.addReservation(r);
-        CSVWriter csvWriter = new CSVWriter();
+        
         csvWriter.writeReservationToCSV(r, restaurant);
         login();
     }
 
     public void addItemToOrder(){
+
         MenuItem item = selectItem();
         Order selectedOrder = selectOrderFromTable();
 
@@ -544,7 +542,7 @@ public class UserScene {
 
     public MenuItem selectItem(){
         ArrayList<Menu> menus = restaurant.getMenus();
-        System.out.println("Select menu to add item from: ");
+        System.out.println("Select menu to add item to: ");
         Menu selectedMenu = getChoice(menus);
 
         ArrayList<MenuCategory> menuCategories = selectedMenu.getCategories();
@@ -592,7 +590,7 @@ public class UserScene {
         }
         char c = 'A';
         for (Object order : orders) {
-            System.out.println("\n" + c + ") \n" + orders.toString() + "\n");
+            System.out.println("\n" + c + ") \n" + order.toString() + "\n");
             c++;
         }
         login();
