@@ -472,8 +472,14 @@ public class UserScene {
         System.out.println("How many people are coming?");
         int people = in.nextInt();
         Table table =  getChoice(restaurant.getFreeTables(people, formattedDate));
-        
-        Reservation r = new Reservation((Customer) user, table, people, formattedDate);
+
+
+        Reservation r;
+        if (user.getAccessLevel() == 1){
+            r = new Reservation(table, formattedDate);
+        } else{
+            r = new Reservation((Customer) user, table, people, formattedDate);
+        }
         restaurant.addReservation(r);
         login();
     }
