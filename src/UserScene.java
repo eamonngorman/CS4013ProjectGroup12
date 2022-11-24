@@ -306,8 +306,8 @@ public class UserScene {
     }
 
     private void editRestaurants() {
-        System.out.println("A)Add Restaurant  B)Edit Restaurant  Q)uit");
-        String command = in.nextLine().toUpperCase();
+        System.out.println("A)Add Restaurant  Q)uit");
+        String command = in.next().toUpperCase();
         if(command.equals("A")){
             addRestaurant();
         }
@@ -519,7 +519,7 @@ public class UserScene {
 
     public void addRestaurant(){
         System.out.println("What is the name of the new restaurant?: ");
-        String name = in.nextLine();
+        String name = in.next();
         Restaurant newRestaurant = new Restaurant(name);
         yum.getRestaurants().add(newRestaurant);
         csvWriter.writeRestaurantToCSV(newRestaurant);

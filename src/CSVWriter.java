@@ -270,6 +270,7 @@ public class CSVWriter {
                 header.append("RestaurantName, RestaurantID, Tables, Reservations, People,\n");
                 printWriter.write(header.toString());
             }
+            csvData.append("\n");
             csvData.append(restaurant.getName());
             csvData.append(",");
             csvData.append(restaurant.getRestaurantId());
