@@ -1,13 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -126,8 +127,15 @@ public class CSVReader {
             }
             while (input.hasNext()) {
                 String[] dataFields = input.nextLine().split(",");
-                LocalDate csvDate = LocalDate.parse(dataFields[6]);
+                DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                Date date = sourceFormat.parse(dataFields[6]);
+
+                LocalDate csvDate = convertToLocalDateViaInstant(date);
                 DayOfWeek weekDay = csvDate.getDayOfWeek();
+
+
+
                 if (weekDay == day) {
                     Double payment = Double.parseDouble(dataFields[3]);
                     payments.add(payment);
@@ -135,8 +143,16 @@ public class CSVReader {
             }
         } catch (IOException e){
             e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
         return payments;
+    }
+
+    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
 
