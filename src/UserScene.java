@@ -12,6 +12,8 @@ public class UserScene {
     private Restaurant restaurant;
     private RestaurantChain yum = new RestaurantChain();
     private CSVWriter csvWriter = new CSVWriter();
+    private CSVReader csvReader = new CSVReader();
+     
 
     public UserScene(RestaurantChain yum) {
         in = new Scanner(System.in);
@@ -53,8 +55,6 @@ public class UserScene {
         }
     }
 
-    CSVWriter w = new CSVWriter();
-    CSVReader csvReader = new CSVReader();
 
     private void register() {
         String[] details = new String[3];
@@ -62,24 +62,7 @@ public class UserScene {
         String name = in.nextLine();
         details[0] = name;
         Customer newCustomer = new Customer(name);
-        /*System.out.println("Which restaurant do you want to register with?: A) Ardee B) Athleague C) Cavan D) Westport Q) Quit");
-        String command = in.nextLine().toUpperCase();
-        if(command.equals("A")){
-            ;
-        }
-        if(command.equals("B")){
-            ;
-        }
-        if(command.equals("C")){
-            ;
-        }
-        if(command.equals("D")){
-            ;
-        }
-        if(command.equals("Q")){
-            runStart();
-        }*/
-
+        
         System.out.println("Username: ");
         String username = in.nextLine();
 
@@ -91,7 +74,7 @@ public class UserScene {
             System.out.println("Password: ");
             String password = in.nextLine();
             details[2] = password;
-            w.writeNewCustomerToCSV(details, restaurant);
+            csvWriter.writeNewCustomerToCSV(details, restaurant);
 
             Person newUser = new Customer(details[0]);
             restaurant.addPeople(newUser, username);
@@ -456,6 +439,7 @@ public class UserScene {
 
         System.out.println("What day would you like a reservation? (dd/mm/yyyy)");
         String date = in.next();
+        //change so 1/12/2910 can be used
         System.out.println("What time would you like your reservation? (hh:mm)");
         String time = in.next();
         String format = date + " " + time;
@@ -509,14 +493,13 @@ public class UserScene {
     }
 
     public void removeItemFromOrder(){
-        MenuItem item = selectItem();
-        Order selectedOrder = selectOrderFromTable();
+        System.out.println("Select table: ");
+        Table table = getChoice(restaurant.getTables());
+        Order order = table.getOrder();
+        System.out.println("Select item to remove: ");
+        MenuItem item = getChoice(order.getItems());
+        order.removeFromOrder(item);
 
-        for (Order order : restaurant.getOrders()){
-            if (order.equals(selectedOrder)){
-                order.removeFromOrder(item);
-            }
-        }
         login();
     }
 

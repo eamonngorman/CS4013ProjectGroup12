@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CSVWriter {
 
-    public void writeNewCustomerToCSV(String[] details, Restaurant restaurant){
+    public void writeNewCustomerToCSV(String userName, String password, Person person, Restaurant restaurant){
         PrintWriter printWriter;
         try {
             File file = new File("src/PersonDetails.csv");
@@ -17,16 +17,18 @@ public class CSVWriter {
                 header.append("Name, Access Level, Username, Password, Restaurant\n");
                 printWriter.write(header.toString());
             }
-            csvData.append("\n" + details[0]);
+            csvData.append("\n" + person.getName());
             csvData.append(",");
-            csvData.append("0");
+            csvData.append(person.getAccessLevel());
             csvData.append(",");
-            csvData.append(details[1]);
+            csvData.append(userName);
             csvData.append(",");
-            csvData.append(details[2]);
+            csvData.append(password);
             csvData.append(",");
-            csvData.append(restaurant);
+            csvData.append(restaurant.getName());
             csvData.append(",");
+            csvData.append(person.getIdNum());
+
 
             printWriter.write(csvData.toString());
             printWriter.close();
