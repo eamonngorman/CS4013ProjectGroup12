@@ -149,6 +149,7 @@ public class SystemBoot {
                 for (Restaurant restaurant: restaurants){
                     if (restaurant.getName().equals(restaurantName)){
                         restaurant.getTables().add(table);
+                        restaurant.getOrders().add(table.getOrder());
                     }
                 }
             }
