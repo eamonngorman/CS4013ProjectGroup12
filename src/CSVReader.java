@@ -235,7 +235,9 @@ public class CSVReader {
                         total += money;
                     }
                 }
-            }
+            } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } return total;
         }
                 
     public Double[] createArrayForIncome(LocalDate startDate, LocalDate endDate) {
