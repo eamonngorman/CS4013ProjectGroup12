@@ -574,7 +574,7 @@ public class UserScene {
         Table t = getChoice(restaurant.getTables());
         Order o = t.getOrder();
         o.printBill();
-        System.out.println("Would you like to add a tip Y)es N)o");
+        System.out.println("Would you like to add a tip? Y)es N)o");
         String command = in.nextLine().toUpperCase();
         if (command.equals("Y")){
             System.out.println("How much would you like to tip?");
