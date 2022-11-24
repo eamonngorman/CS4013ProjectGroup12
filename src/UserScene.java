@@ -312,6 +312,7 @@ public class UserScene {
             int tabNum = in.nextInt();
             Table table = new Table(tabNum, numSeats);
             restaurant.addTable(table);
+            csvWriter.writeTableToCSV(table, restaurant);
         }
         if(command.equals("R")){
             System.out.println("Select a table to remove");
