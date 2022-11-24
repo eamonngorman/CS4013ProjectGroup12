@@ -240,45 +240,20 @@ public class UserScene {
 
 
     private void editStaff() {
-        System.out.println("A)dd Staff Member  E)dit Staff Member  R)emove Staff member Q)uit");
+        System.out.println("A)dd Staff Member Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("A")){
             System.out.println("Enter Name");
             String name = in.nextLine();
             System.out.println("Enter Username");
             String username = in.nextLine();
+            System.out.println("Enter password");
+            String password = in.next();
             System.out.println("Enter Access Level");
             int accessLevel = in.nextInt();
             Person person = new Person(name, accessLevel);
-            restaurant.addPeople(person, username);
-        }
-        if (command.equals("E")){
-            System.out.println("Select a Staff Member to edit");
-            Person person = getChoice(restaurant.getPeople());
-            editMember(person);
-        }
-        if (command.equals("R")){
-            System.out.println("Select a Staff Member to Remove");
-            Person person = getChoice(restaurant.getPeople());
-            restaurant.removePeople(person);
-        }
-        if (command.equals("Q")){
-            runStart();
-        }
-        login();
-    }
-    private void editMember(Person person){
-        System.out.println("Edit N)ame A)ccess Level Q)uit");
-        String command = in.nextLine().toUpperCase();
-        if (command.equals("N")){
-            System.out.println("Enter Name");
-            String name = in.nextLine();
-            person.setName(name);
-        }
-        if (command.equals("A")){
-            System.out.println("Enter Access Level");
-            int accessLevel = in.nextInt();
-            person.setAccessLevel(accessLevel);
+            restaurant.addPeople(person, password);
+            csvWriter.writeNewPersonToCSV(username, password, person, restaurant);
         }
         if (command.equals("Q")){
             runStart();
