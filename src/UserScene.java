@@ -304,17 +304,12 @@ public class UserScene {
     }
 
     private void editMenus() {
-        System.out.println("E)dit menu R)emove menu Q)uit");
+        System.out.println("E)dit menu Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals ("E")){
             System.out.println("Select a menu to edit");
             Menu menus = getChoice(restaurant.getMenus());
             editMenu(menus);
-        }
-        if (command.equals ("R")){
-            System.out.println("Select a menu to remove");
-            Menu menus = getChoice(restaurant.getMenus());
-            restaurant.removeMenu(menus);
         }
         if (command.equals("Q")){
             runStart();
@@ -324,7 +319,7 @@ public class UserScene {
 
     private void editMenu(Menu menus){
         ArrayList<MenuCategory> menuCategories = menus.getCategories();
-        System.out.println("E)dit category A)dd category R)emove category Q)uit");
+        System.out.println("E)dit category A)dd category Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("E")){
             System.out.println("Select a category to edit");
@@ -336,11 +331,6 @@ public class UserScene {
             String cat = in.nextLine();
             MenuCategory menuCat = new MenuCategory(cat);
             menus.addCategory(menuCat);
-        }
-        if (command.equals("R")){
-            System.out.println("Select a category to remove");
-            MenuCategory menuCat = getChoice(menuCategories);
-            menus.removeCategory(menuCat);
         }
         if (command.equals("Q")){
             runStart();
