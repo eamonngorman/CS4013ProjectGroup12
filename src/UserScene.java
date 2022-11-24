@@ -429,7 +429,8 @@ public class UserScene {
                 System.out.println(c + ")" + choice.toString());
                 c++;
             }
-            String input = in.nextLine();
+            String input = in.next();
+
             int n = input.toUpperCase().charAt(0) - 'A';
             if (0 <= n && n < choices.size())
                 return choices.get(n);
