@@ -357,7 +357,7 @@ public class UserScene {
 
     private void editCats(MenuCategory menuCat){
         ArrayList<MenuItem> menuItems = menuCat.getMenuItems();
-        System.out.println("E)dit Item A)dd Item R)emove Item Q)uit");
+        System.out.println("E)dit Item A)dd Item Q)uit");
         String command = in.nextLine().toUpperCase();
         if (command.equals("E")){
             System.out.println("Select an item to edit");
@@ -371,11 +371,6 @@ public class UserScene {
             Double price = in.nextDouble();
             MenuItem menuItem = new MenuItem(item, price);
             menuCat.addMenuItem(menuItem);
-        }
-        if (command.equals("R")){
-            System.out.println("Select an item to remove");
-            MenuItem menuItem = getChoice(menuItems);
-            menuCat.removeMenuItem(menuItem);
         }
         if (command.equals("Q")){
             runStart();
