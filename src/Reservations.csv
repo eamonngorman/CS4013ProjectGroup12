@@ -9,3 +9,7 @@ ReservationId, numPeople, date, tableNo, customerId, Restaurant, Name
 8,1,01/01/1111 10:10,1,0,Ardee,
 9,1,10/10/1111 10:10,1,0,Ardee,
 10,1,11/11/1111 11:11,1,5,Ardee,
+11,1,11/11/1111 11:11,1,9,Ardee,0,
+12,1,11/11/1111 11:11,1,9,Ardee,0,
+13,1,11/11/1111 11:11,1,9,Ardee,0,
+14,1,11/11/1111 11:11,1,9,Ardee,0,

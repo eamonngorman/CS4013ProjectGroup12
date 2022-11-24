@@ -142,7 +142,10 @@ public class Reservation {
      */
     @Override
     public String toString(){
-        return (customer.getName() + ", " + table.toString() + ", Number of People: " + numOfPeople + ", Date: " + ", "+startTime +" - "+finishTime);
+        String s = "Day: " + getStartTime().getDayOfWeek();
+        return s;
+
+        
     }
 
     
